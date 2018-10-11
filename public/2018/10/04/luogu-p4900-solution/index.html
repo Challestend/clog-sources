@@ -108,25 +108,25 @@
 
 
 
-  <meta name="description" content="总算是搞出来了一个自己觉得海星的$\text{blog}$……">
-<meta name="keywords" content="其它">
+  <meta name="description" content="传送门">
+<meta name="keywords" content="Luogu,数论">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/09/27/hello-world/index.html">
+<meta property="og:title" content="「Luogu-P4900」食堂">
+<meta property="og:url" content="http://yoursite.com/2018/10/04/luogu-p4900-solution/index.html">
 <meta property="og:site_name" content="Clog">
-<meta property="og:description" content="总算是搞出来了一个自己觉得海星的$\text{blog}$……">
+<meta property="og:description" content="传送门">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-11T00:16:03.190Z">
+<meta property="og:updated_time" content="2018-10-11T00:17:02.311Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="总算是搞出来了一个自己觉得海星的$\text{blog}$……">
+<meta name="twitter:title" content="「Luogu-P4900」食堂">
+<meta name="twitter:description" content="传送门">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/27/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/04/luogu-p4900-solution/"/>
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>Hello World | Clog</title>
+  <title>「Luogu-P4900」食堂 | Clog</title>
   
 
 
@@ -309,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/27/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/04/luogu-p4900-solution/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Challestend Rehtorbegnaro">
@@ -326,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World
+          <h1 class="post-title" itemprop="name headline">「Luogu-P4900」食堂
               
             
           </h1>
@@ -351,7 +351,7 @@
                 
               
 
-              <time title="Created: 2018-09-27 13:41:19" itemprop="dateCreated datePublished" datetime="2018-09-27T13:41:19+08:00">2018-09-27</time>
+              <time title="Created: 2018-10-04 12:11:18" itemprop="dateCreated datePublished" datetime="2018-10-04T12:11:18+08:00">2018-10-04</time>
             
 
             
@@ -368,7 +368,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-10-11 08:16:03" itemprop="dateModified" datetime="2018-10-11T08:16:03+08:00">2018-10-11</time>
+                <time title="Modified: 2018-10-11 08:17:02" itemprop="dateModified" datetime="2018-10-11T08:17:02+08:00">2018-10-11</time>
               
             
           </span>
@@ -385,7 +385,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/其它/" itemprop="url" rel="index"><span itemprop="name">其它</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/题解/" itemprop="url" rel="index"><span itemprop="name">题解</span></a></span>
 
                 
                 
@@ -419,7 +419,34 @@
       
 
       
-        <p>总算是搞出来了一个自己觉得海星的$\text{blog}$……</p>
+        <p><a href="https://www.luogu.org/problemnew/show/P4900" target="_blank" rel="noopener">传送门</a></p>
+<a id="more"></a>
+<p><del>闲着没事写篇题解（</del></p>
+<p>简单来说，就是要求</p>
+<script type="math/tex; mode=display">\sum\limits_{i=A}^{B}\sum\limits_{j=1}^{i}\lbrace\frac{i}{j}\rbrace\pmod{998244353}</script><p>其中$\lbrace x\rbrace$表示取$x$的小数部分。</p>
+<p>稍加思索，我们不难发现</p>
+<script type="math/tex; mode=display">\begin{aligned}
+&\sum\limits_{i=A}^{B}\sum\limits_{j=1}^{i}\lbrace\frac{i}{j}\rbrace\\
+\equiv&\sum\limits_{i=A}^{B}\sum\limits_{j=1}^{i}i\%j\times j^{-1}\\
+\equiv&\sum\limits_{i=1}^{B}\sum\limits_{j=1}^{i}i\%j\times j^{-1}-\sum\limits_{i=1}^{A-1}\sum\limits_{j=1}^{i}i\%j\times j^{-1}
+\pmod{998244353}
+\end{aligned}</script><p>因此，我们只需要关注下式的值</p>
+<script type="math/tex; mode=display">\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{i}i\%j\times j^{-1}\pmod{998244353}</script><p>我们可以参考一下<a href="https://www.luogu.org/problemnew/show/P3708" target="_blank" rel="noopener">这道题</a></p>
+<p>在这道题中，我们定义了</p>
+<script type="math/tex; mode=display">f(x)=\sum\limits_{i=1}^{n}x\%i</script><p>首先，如果不考虑$x\%i=0$的情况，我们有</p>
+<script type="math/tex; mode=display">x\%i=(x-1)\%i+1</script><script type="math/tex; mode=display">f(x)=f(x-1)+n</script><p>如果$x\%i=0$，我们需要从$f(x)$中减去$i$，而所有满足该条件的$i$的和就是$x$的约数和，因此</p>
+<script type="math/tex; mode=display">f(x)=f(x-1)+n-\sigma(x)</script><p>我们可以类似地定义</p>
+<script type="math/tex; mode=display">g(x)=\sum\limits_{i=1}^{n}x\%i\times i^{-1}\pmod{998244353}</script><script type="math/tex; mode=display">h(x)=\sum\limits_{i\mid x}i\times i^{-1}\equiv\sum\limits_{i\mid x}1\equiv d(x)\pmod{998244353}</script><p>从而我们有</p>
+<script type="math/tex; mode=display">g(x)\equiv g(x-1)+\sum\limits_{i=1}^{n}i^{-1}-d(x)\pmod{998244353}</script><p>然而我们需要的是</p>
+<script type="math/tex; mode=display">\sum\limits_{i=1}^{n}ans(i)\pmod{998244353}</script><p>其中</p>
+<script type="math/tex; mode=display">ans(x)=\sum\limits_{i=1}^{x}x\%i\times i^{-1}\pmod{998244353}</script><p>不难发现当$i&lt;j$时$i\%j=i$，从而</p>
+<script type="math/tex; mode=display">\begin{aligned}
+&g(x)-ans(x)\\
+\equiv&\sum\limits_{i=x+1}^{n}x\%i\times i^{-1}\\
+\equiv&\sum\limits_{i=x+1}^{n}x\times i^{-1}
+\pmod{998244353}
+\end{aligned}</script><p>最终，我们得到</p>
+<script type="math/tex; mode=display">ans(x)\equiv g(x)-x\sum\limits_{i=x+1}^{n}i^{-1}</script><script type="math/tex; mode=display">\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{i}i\%j\times j^{-1}\equiv\sum\limits_{i=1}^{n}ans(i)\pmod{998244353}</script><p>把上面这一坨东西预处理出来，我们就可以$O(1)$地处理所有询问了，总时间复杂度$O(n)$，空间复杂度$O(n)$。</p>
 
       
     </div>
@@ -440,7 +467,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/其它/" rel="tag"># 其它</a>
+            <a href="/tags/Luogu/" rel="tag"># Luogu</a>
+          
+            <a href="/tags/数论/" rel="tag"># 数论</a>
           
         </div>
       
@@ -453,15 +482,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/09/29/luogu-p3924-solution/" rel="next" title="「Luogu-P3924」康娜的线段树">
+                <i class="fa fa-chevron-left"></i> 「Luogu-P3924」康娜的线段树
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/27/luogu-t47720-solution/" rel="prev" title="「Luogu-T47720」孤立元">
-                「Luogu-T47720」孤立元 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

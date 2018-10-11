@@ -108,25 +108,25 @@
 
 
 
-  <meta name="description" content="总算是搞出来了一个自己觉得海星的$\text{blog}$……">
-<meta name="keywords" content="其它">
+  <meta name="description" content="传送门">
+<meta name="keywords" content="Luogu,数论,组合数学,期望">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/09/27/hello-world/index.html">
+<meta property="og:title" content="「Luogu-T47720」孤立元">
+<meta property="og:url" content="http://yoursite.com/2018/09/27/luogu-t47720-solution/index.html">
 <meta property="og:site_name" content="Clog">
-<meta property="og:description" content="总算是搞出来了一个自己觉得海星的$\text{blog}$……">
+<meta property="og:description" content="传送门">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-11T00:16:03.190Z">
+<meta property="og:updated_time" content="2018-10-11T00:17:13.146Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="总算是搞出来了一个自己觉得海星的$\text{blog}$……">
+<meta name="twitter:title" content="「Luogu-T47720」孤立元">
+<meta name="twitter:description" content="传送门">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/27/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/27/luogu-t47720-solution/"/>
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>Hello World | Clog</title>
+  <title>「Luogu-T47720」孤立元 | Clog</title>
   
 
 
@@ -309,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/27/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/27/luogu-t47720-solution/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Challestend Rehtorbegnaro">
@@ -326,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World
+          <h1 class="post-title" itemprop="name headline">「Luogu-T47720」孤立元
               
             
           </h1>
@@ -351,7 +351,7 @@
                 
               
 
-              <time title="Created: 2018-09-27 13:41:19" itemprop="dateCreated datePublished" datetime="2018-09-27T13:41:19+08:00">2018-09-27</time>
+              <time title="Created: 2018-09-27 14:29:56" itemprop="dateCreated datePublished" datetime="2018-09-27T14:29:56+08:00">2018-09-27</time>
             
 
             
@@ -368,7 +368,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-10-11 08:16:03" itemprop="dateModified" datetime="2018-10-11T08:16:03+08:00">2018-10-11</time>
+                <time title="Modified: 2018-10-11 08:17:13" itemprop="dateModified" datetime="2018-10-11T08:17:13+08:00">2018-10-11</time>
               
             
           </span>
@@ -385,7 +385,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/其它/" itemprop="url" rel="index"><span itemprop="name">其它</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/题解/" itemprop="url" rel="index"><span itemprop="name">题解</span></a></span>
 
                 
                 
@@ -419,7 +419,20 @@
       
 
       
-        <p>总算是搞出来了一个自己觉得海星的$\text{blog}$……</p>
+        <p><a href="https://www.luogu.org/problemnew/show/T47720" target="_blank" rel="noopener">传送门</a></p>
+<a id="more"></a>
+<p>自己出的第一道<del>毒瘤</del>数论题。</p>
+<p>对于每一个$i(1&lt;i&lt;n)$，如果它成为了孤立元，那么一定有$i-1\notin B$且$i+1\notin B$，而其他$n-3$个数无论怎样都无法阻止$i$对所有孤立元的和产生贡献，此时，其他$n-3$个数中有且仅有$m-1$个属于$B$，其总方案数为$C_{n-3}^{m-1}$。而对于$1$和$n$来说，它们只有$1$个相邻的元素，因此方案数为$C_{n-2}^{m-1}$。本题答案即为</p>
+<script type="math/tex; mode=display">\frac{\sum_{i=2}^{n-1}iC_{n-3}^{m-1}+(n+1)C_{n-2}^{m-1}}{C_{n}^{m}}</script><p>将这个式子进行一系列惨无人道的化简与整理后，我们得到如下形式</p>
+<script type="math/tex; mode=display">\frac{m(n+1)(n-m)(n-m-1)}{2n(n-1)}+\frac{m(n+1)(n-m)}{n(n-1)}</script><blockquote>
+<p>$\text{Updated on 2018-10-10}$：</p>
+<p>之前公式写错了，分子上的$m$全都漏掉了（</p>
+<p>以及，我们还可以将上式继续整理：</p>
+<script type="math/tex; mode=display">\frac{m(n+1)(n-m)(n-m+1)}{2n(n-1)}</script><p>以及，顺便测试了一下新的快读板子，然后发现<code>#ifdef</code>真没用<del>也可能是我太菜了</del>（</p>
+<p>以及，标程经过一系列<del>丧心病狂的</del>卡常卡到了$1861\text{ms}$，最慢的一个点只跑了$300\text{ms}$不到。截至本日，另外两个切掉这道题的$\text{dalao}$最慢的一个点也只跑了$400\text{ms}$上下。我要不要考虑加强一波数据或者缩一波时限呢？<del>所以说为什么我当初在本地测的时候平均每个点$500\text{ms}$，是我们机房的电脑太菜了吗（</del></p>
+</blockquote>
+<p>于是做法就有了，先$O(n)$预处理一遍，然后单次询问即可$O(1)$解决，总时间复杂度$O(n)$，空间复杂度$O(n)$。</p>
+<p>但是常数好像会很大，我原计划是要将数据范围开到$10^{7}​$级别的，然而自己写的标程都跑不过，于是只能一路削到现在的$10^{6}​$……</p>
 
       
     </div>
@@ -440,7 +453,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/其它/" rel="tag"># 其它</a>
+            <a href="/tags/Luogu/" rel="tag"># Luogu</a>
+          
+            <a href="/tags/数论/" rel="tag"># 数论</a>
+          
+            <a href="/tags/组合数学/" rel="tag"># 组合数学</a>
+          
+            <a href="/tags/期望/" rel="tag"># 期望</a>
           
         </div>
       
@@ -453,14 +472,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/09/27/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/09/27/luogu-t47720-solution/" rel="prev" title="「Luogu-T47720」孤立元">
-                「Luogu-T47720」孤立元 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/09/29/luogu-p3924-solution/" rel="prev" title="「Luogu-P3924」康娜的线段树">
+                「Luogu-P3924」康娜的线段树 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
