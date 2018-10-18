@@ -79,4 +79,4 @@ $$ans(x)\equiv g(x)-x\sum\limits_{i=x+1}^{n}i^{-1}$$
 
 $$\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{i}i\%j\times j^{-1}\equiv\sum\limits_{i=1}^{n}ans(i)\pmod{998244353}$$
 
-把上面这一坨东西预处理出来，我们就可以$O(1)$地处理所有询问了，总时间复杂度$O(n)$，空间复杂度$O(n)$。
+把上面这一坨东西预处理出来，我们就可以$O(1)$地处理所有询问了。

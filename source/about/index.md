@@ -1,6 +1,6 @@
 ---
-title: About me
-date: 2018-10-09 09:50:27
+title: About
+date: Undefined
 ---
 A juruo OIer from SD province.
 
@@ -10,6 +10,6 @@ Find me on:
 
 - [Luogu](https://www.luogu.org/space/show?uid=63352)
 - [LibreOJ](https://loj.ac/user/6666)
-- [CodeForces](http://codeforces.com/profile/CLT)
 - [NowCoder](https://www.nowcoder.com/514705863)
+- [CodeForces](http://codeforces.com/profile/CLT)
 - [GitHub](https://github.com/Challestend)
