@@ -1,7 +1,7 @@
 ---
 title: 「Luogu-P3924」康娜的线段树
 date: 2018-09-29 16:20:16
-tags: [Luogu,差分]
+tags: [洛谷,差分]
 categories: [题解]
 mathjax: true
 ---

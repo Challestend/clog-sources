@@ -1,7 +1,7 @@
 ---
 title: 「Luogu-P4900」食堂
 date: 2018-10-04 12:11:18
-tags: [Luogu,数论]
+tags: [洛谷,数论]
 categories: [题解]
 mathjax: true
 ---

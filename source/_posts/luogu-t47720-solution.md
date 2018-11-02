@@ -1,7 +1,7 @@
 ---
 title: 「Luogu-T47720」孤立元
 date: 2018-09-27 14:29:56
-tags: [Luogu,数论,组合数学,期望]
+tags: [数论,组合数学,期望]
 categories: [题解]
 mathjax: true
 ---

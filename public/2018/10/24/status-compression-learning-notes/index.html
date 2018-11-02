@@ -108,25 +108,29 @@
 
 
 
-  <meta name="description" content="传送门">
-<meta name="keywords" content="洛谷,差分">
+  <meta name="description" content="把标签和分类连在一起读就是标题了（ 好像上一篇珂朵莉树学习笔记也是这样（ 马上就要复赛了，但反正我已经退役预定了来颓blog吧。">
+<meta name="keywords" content="状态压缩,动态规划">
 <meta property="og:type" content="article">
-<meta property="og:title" content="「Luogu-P3924」康娜的线段树">
-<meta property="og:url" content="http://yoursite.com/2018/09/29/luogu-p3924-solution/index.html">
+<meta property="og:title" content="状态压缩动态规划学习笔记">
+<meta property="og:url" content="http://yoursite.com/2018/10/24/status-compression-learning-notes/index.html">
 <meta property="og:site_name" content="Clog">
-<meta property="og:description" content="传送门">
+<meta property="og:description" content="把标签和分类连在一起读就是标题了（ 好像上一篇珂朵莉树学习笔记也是这样（ 马上就要复赛了，但反正我已经退役预定了来颓blog吧。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-29T07:15:29.818Z">
+<meta property="og:image" content="https://i.loli.net/2018/10/24/5bd07656b885a.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/10/25/5bd124f4cdbb9.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/10/25/5bd13984b8601.jpg">
+<meta property="og:updated_time" content="2018-10-25T06:47:48.214Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="「Luogu-P3924」康娜的线段树">
-<meta name="twitter:description" content="传送门">
+<meta name="twitter:title" content="状态压缩动态规划学习笔记">
+<meta name="twitter:description" content="把标签和分类连在一起读就是标题了（ 好像上一篇珂朵莉树学习笔记也是这样（ 马上就要复赛了，但反正我已经退役预定了来颓blog吧。">
+<meta name="twitter:image" content="https://i.loli.net/2018/10/24/5bd07656b885a.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/29/luogu-p3924-solution/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/24/status-compression-learning-notes/"/>
 
 
 
@@ -136,7 +140,7 @@
   };
 </script>
 
-  <title>「Luogu-P3924」康娜的线段树 | Clog</title>
+  <title>状态压缩动态规划学习笔记 | Clog</title>
   
 
 
@@ -309,7 +313,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/29/luogu-p3924-solution/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/24/status-compression-learning-notes/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Challestend Rehtorbegnaro">
@@ -326,7 +330,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">「Luogu-P3924」康娜的线段树
+          <h1 class="post-title" itemprop="name headline">状态压缩动态规划学习笔记
               
             
           </h1>
@@ -351,7 +355,7 @@
                 
               
 
-              <time title="Created: 2018-09-29 16:20:16" itemprop="dateCreated datePublished" datetime="2018-09-29T16:20:16+08:00">2018-09-29</time>
+              <time title="Created: 2018-10-24 21:24:05" itemprop="dateCreated datePublished" datetime="2018-10-24T21:24:05+08:00">2018-10-24</time>
             
 
             
@@ -368,7 +372,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-10-29 15:15:29" itemprop="dateModified" datetime="2018-10-29T15:15:29+08:00">2018-10-29</time>
+                <time title="Modified: 2018-10-25 14:47:48" itemprop="dateModified" datetime="2018-10-25T14:47:48+08:00">2018-10-25</time>
               
             
           </span>
@@ -385,7 +389,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/题解/" itemprop="url" rel="index"><span itemprop="name">题解</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
 
                 
                 
@@ -419,24 +423,41 @@
       
 
       
-        <p><a href="https://www.luogu.org/problemnew/show/P3924" target="_blank" rel="noopener">传送门</a></p>
+        <p><del>把标签和分类连在一起读就是标题了（</del></p>
+<p><del>好像上一篇珂朵莉树学习笔记也是这样（</del></p>
+<p><del>马上就要复赛了，但反正我已经退役预定了来颓blog吧。</del></p>
 <a id="more"></a>
-<p>读完题目以后，首先一种简单的想法就是建一颗线段树然后模拟，每个节点维护它所管理的区间内所有数的和以及他自身被访问的概率，以及它和它的子树内所有节点的前两个属性的乘积之和。然后你再一看数据范围：</p>
-<blockquote>
-<p>对于$70\%$的数据，保证$1\leqslant n,m\leqslant 10^{5}$。</p>
-<p>对于$100\%$的数据，保证$1\leqslant n,m\leqslant 10^{6}$。</p>
-</blockquote>
-<p><del>也就是说，上述做法<strong>最多</strong>只能拿$70$分。为什么说「最多」呢？因为这道题在中间运算过程中需要使用浮点数，而浮点数是自带大常数的，如果你的程序写得再丑一点常数再大一点，说不定$70$分都拿不到了。</del></p>
-<blockquote>
-<p>$\text{Updated on 2018-10-09}$：</p>
-<p>不好意思时间复杂度算错了我太菜了。</p>
-<p>但反正线段树需要卡常才能过（</p>
-</blockquote>
-<p>我们来想办法优化。考虑到，对于线段树的每一个非叶子节点，它所维护的区间和也只是原序列中某一段数字的和，如果我们能把这些节点被访问的概率下推到它的每一个叶子节点，也许就能达到优化的目的。</p>
-<p>定义$E_i$为叶子节点$[i,i]$对答案的贡献，$c_i$为其所有祖先节点被访问的概率之和，不难发现$c_ia_i=E_i$。我们只要预处理出$c_i$，计算出$\prod_{i=1}^{n}c_ia_i$，然后处理出$c_i$的前缀和，每次操作直接查询操作区间内$c_i$的和，再乘以他给的那个数，累加到答案上就可以了。</p>
-<p>稍加分析，我们不难得出如下结论。设根节点深度为$0$，则任意一个节点，就比如说$x$，被访问的概率为$2^{-dep[x]}$，其中$dep[x]$表示$x$的深度。而对于$x$子树内的每一个叶子节点$[i,i]$，我们执行一次$c_i+=2^{-dep[x]}$即可。我们可以用一次类似于树形$DP$的$DFS$来完成这一过程。需要注意的是，我们肯定不能暴力枚举所有叶子节点，在$DFS$时，我们实际上修改的是$c$数组的差分数组，$DFS$结束后再还原出$c$数组即可。</p>
-<p>以及，最后一句话。</p>
-<p>这道题卡精度。</p>
+<p>首先我们来看一道例题，<a href="https://www.luogu.org/problemnew/show/P1879" target="_blank" rel="noopener">「USACO06NOV」玉米田Corn Fields</a>。</p>
+<p>首先，我们想到定义<code>f[i][...]</code>表示当前处理到第$i$行，然后blablabla一堆状态的总方案数。既然任意两块草地之间不能有公共边，我们肯定需要记录第$i$行哪些地方种了草，哪些地方没种草。那么我们记录的状态就是……<code>f[i][0/1]...(省略10个[0/1])...[0/1]</code>，后面$12$维状态中第$j+1$维表示的是第$i$行第$j$列是否种草。</p>
+<p>但是等等……$13$维的状态……</p>
+<p><img src="https://i.loli.net/2018/10/24/5bd07656b885a.jpg" alt=""></p>
+<p>注意到，后面$12$维状态只有$0$和$1$，于是我们就有了这么一个想法：把后$12$维状态看成一个$2$进制数，其中从右往左第$i$位表示当前行第$i$列是否种草，$1$表示种，$0$表示不种。在这一过程中，我们将后$12$维状态「压缩」成了一个$2$进制数，这也正是「状态压缩」这个名字的含义。</p>
+<p>于是，现在我们定义<code>f[i][S]</code>表示当前处理到第$i$行，其中第$i$行的状态是$S$的总方案数。在转移时，我们还需要判断状态是否合法，我们可以定义<code>a[i]</code>表示第$i$行哪些格子能种草，$1$表示能，$0$表示不能。<code>valid[S]</code>表示如果不考虑某些格子不能种草，状态$S$是否合法，也就是是否不存在两个相邻的$1$。<code>a[i]</code>在读入时就可以处理出来，至于<code>valid[S]</code>，我们可以通过这样的一个循环处理出来：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;(<span class="number">1</span>&lt;&lt;m);++i)</span><br><span class="line">    valid[i]=valid[i&gt;&gt;<span class="number">1</span>]&amp;(~(i&amp;(i&gt;&gt;<span class="number">1</span>)&amp;<span class="number">1</span>));</span><br></pre></td></tr></table></figure>
+<p>用人话来讲就是<code>[S是否合法]=[S&gt;&gt;1是否合法]&amp;[S与S&gt;&gt;1的最后一位是否不同为1]</code>。</p>
+<p>在转移时，我们认为当前枚举到的状态是合法的当且仅当它只在能种草的格子上种草，并且不与上一行的状态冲突，也就是<code>(S|a[i])==a[i]&amp;&amp;valid[S]&amp;&amp;(S&amp;S&#39;)==0</code>。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;(<span class="number">1</span>&lt;&lt;m);++i)</span><br><span class="line">    <span class="keyword">if</span>((i|a[<span class="number">1</span>])==a[<span class="number">1</span>]&amp;&amp;valid[i])</span><br><span class="line">        f[<span class="number">1</span>][i]=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;++i)</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> j=<span class="number">0</span>;j&lt;(<span class="number">1</span>&lt;&lt;m);++j)</span><br><span class="line">        <span class="keyword">if</span>((j|a[i])==a[i]&amp;&amp;valid[j])</span><br><span class="line">            <span class="keyword">for</span>(re <span class="keyword">int</span> k=<span class="number">0</span>;k&lt;(<span class="number">1</span>&lt;&lt;m);++k)</span><br><span class="line">                <span class="keyword">if</span>((k|a[i<span class="number">-1</span>])==a[i<span class="number">-1</span>]&amp;&amp;valid[k]&amp;&amp;(k&amp;j)==<span class="number">0</span>)</span><br><span class="line">                    (f[i][j]+=f[i<span class="number">-1</span>][k])%=mod;</span><br></pre></td></tr></table></figure>
+<p>粗略计算的话，时间复杂度差不多是$O(n4^m)$，最坏情况下差不多是$12\times 4^{12}=201326592$，看着很吓人，然而实际上，其中大部分状态都是不合法的，会被我们的两个<code>if</code>剪掉，因而实际运行跑得比谁都快（</p>
+<p>为了更好地体会状压的复杂度的神奇之处，我们再来看一下这道题，<a href="https://www.luogu.org/problemnew/show/P2704" target="_blank" rel="noopener">「NOI2001」炮兵阵地</a>。</p>
+<p>因为一个炮兵部队的攻击范围能够上下扩展两行，我们在记录状态时，需要记录之前两行的状态，也就是用<code>f[i][S1][S2]</code>表示当前处理到第$i$行，第$i-1$行状态为$S1$，第$i$状态为$S2$时最多能放多少个炮兵部队。我们自然也需要记录<code>a[i]</code>和<code>valid[S]</code>，不过，这次<code>valid[s]</code>的预处理过程差不多是这样：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;(<span class="number">1</span>&lt;&lt;m);++i)&#123;</span><br><span class="line">    valid[i]=(i&amp;<span class="number">1</span>)?valid[i&gt;&gt;<span class="number">3</span>]&amp;((~i)&gt;&gt;<span class="number">2</span>)&amp;((~i)&gt;&gt;<span class="number">1</span>):valid[i&gt;&gt;<span class="number">1</span>];</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2018/10/25/5bd124f4cdbb9.jpg" alt=""></p>
+<p><del>看起来</del>有些<del>非常</del>复杂，用人话来讲就是……诶我当时是不是写错了（</p>
+<p>……不好像又没写错……</p>
+<p>好吧没写错。</p>
+<p>如果$S$的最后一位是$1$，则<code>[S是否合法]=[S&gt;&gt;3是否合法]&amp;[S的倒数第2位和倒数第3位是否都为0]</code>，否则<code>[S是否合法]=[S&gt;&gt;1是否合法]</code>。</p>
+<p>因为我们要求的是最多能放多少个炮兵部队，我们还需要知道某个状态放了多少个炮兵部队，也就是某个状态$S$在二进制下$1$的个数，我们可以这样处理：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;(<span class="number">1</span>&lt;&lt;m);++i)</span><br><span class="line">    cnt[i]=cnt[i&gt;&gt;<span class="number">1</span>]+(i&amp;<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>转移过程如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;(<span class="number">1</span>&lt;&lt;m);++i)</span><br><span class="line">    <span class="keyword">if</span>((i|a[<span class="number">1</span>])==a[<span class="number">1</span>]&amp;&amp;valid[i])</span><br><span class="line">        <span class="keyword">for</span>(re <span class="keyword">int</span> j=<span class="number">0</span>;j&lt;(<span class="number">1</span>&lt;&lt;m);++j)</span><br><span class="line">            <span class="keyword">if</span>((j|a[<span class="number">2</span>])==a[<span class="number">2</span>]&amp;&amp;valid[j]&amp;&amp;(i&amp;j)==<span class="number">0</span>)</span><br><span class="line">                    f[<span class="number">2</span>][i][j]=cnt[i]+cnt[j];</span><br><span class="line"><span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">3</span>;i&lt;=n;++i)</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> j=<span class="number">0</span>;j&lt;(<span class="number">1</span>&lt;&lt;m);++j)</span><br><span class="line">        <span class="keyword">if</span>((j|a[i<span class="number">-2</span>])==a[i<span class="number">-2</span>]&amp;&amp;valid[j])</span><br><span class="line">            <span class="keyword">for</span>(re <span class="keyword">int</span> k=<span class="number">0</span>;k&lt;(<span class="number">1</span>&lt;&lt;m);++k)</span><br><span class="line">                <span class="keyword">if</span>((k|a[i<span class="number">-1</span>])==a[i<span class="number">-1</span>]&amp;&amp;valid[k]&amp;&amp;(j&amp;k)==<span class="number">0</span>)</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> l=<span class="number">0</span>;l&lt;(<span class="number">1</span>&lt;&lt;m);++l)</span><br><span class="line">                        <span class="keyword">if</span>((l|a[i])==a[i]&amp;&amp;valid[l]&amp;&amp;(l&amp;j)==<span class="number">0</span>&amp;&amp;(l&amp;k)==<span class="number">0</span>)</span><br><span class="line">                            f[i][k][l]=max(f[i][k][l],f[i<span class="number">-1</span>][j][k]+cnt[l]);</span><br></pre></td></tr></table></figure>
+<p>时间复杂度差不多是$O(n8^m)$，最坏情况下差不多是$100\times 8^{10}=107374182400$，然而由于转移过程中的大量剪枝，实际时间复杂度差不多是$O(\text{won’t TLE})$（</p>
+<p>我们再来看一个状压的应用，<a href="https://www.spoj.com/problems/MMINPAID/" target="_blank" rel="noopener">「SP3953」MMINPAID - Paid Roads</a>，或者您也可以<del>反正我就是</del>在<a href="https://www.luogu.org/problemnew/show/SP3953" target="_blank" rel="noopener">洛谷</a>上提交。</p>
+<p>大概是一道最短路，然而与一般的最短路不同的是，在这道题中，经过某条边之前所经过的节点集合如果不同，可能会导致花费的不同。这样一来，我们一般的最短路算法就会有后效性。解决方法也很简单，就是把经过节点集合压缩到一个$2$进制数内。定义<code>dis[u][S]</code>为只经过$S$内的节点的前提下，从$1$到$u$的最小花费。对于$u$发出的所有边的终点$v$，<code>dis[v][S|(1&lt;&lt;(v-1))]=min(dis[v][S|(1&lt;&lt;(v-1))],dis[u][S]+cost)</code>，其中$cost$表示经过从$u$到$v$这条边的花费，当然这需要分情况讨论。</p>
+<p>这样一来，我们只需要写一个可重复入队的堆优化$Dijkstra$就可以了。需要注意的是，我们需要把节点与经过节点集合看成是一个整体，或者说，将它们联系在一起然后抽象成一个「点」。</p>
+<p><del>我是不会说我把$\text{impossible}$打成$\text{Impossible}$然后交上去$\text{WA}$了一发的（</del></p>
+<p>一般情况下，如果一道题数据范围很小，但是爆搜过不去，比如说$n\leqslant 20$，就很有可能是状压题<del>或者也有可能是神仙剪枝题</del>。大部分状压的时间复杂度都不会直接是一个$O(2^n)$，$O(n2^n)$或者说$O(n^22^n)$大概比较常见，当然我比较菜，做过的题比较少，所以这一段基本是瞎扯。</p>
+<p><img src="https://i.loli.net/2018/10/25/5bd13984b8601.jpg" alt=""></p>
+<p>以上，我觉得我的状压讲的差不多了（</p>
 
       
     </div>
@@ -457,9 +478,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/洛谷/" rel="tag"># 洛谷</a>
+            <a href="/tags/状态压缩/" rel="tag"># 状态压缩</a>
           
-            <a href="/tags/差分/" rel="tag"># 差分</a>
+            <a href="/tags/动态规划/" rel="tag"># 动态规划</a>
           
         </div>
       
@@ -472,8 +493,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/27/luogu-t47720-solution/" rel="next" title="「Luogu-T47720」孤立元">
-                <i class="fa fa-chevron-left"></i> 「Luogu-T47720」孤立元
+              <a href="/2018/10/13/chtholly-tree-learning-notes/" rel="next" title="珂朵莉树学习笔记">
+                <i class="fa fa-chevron-left"></i> 珂朵莉树学习笔记
               </a>
             
           </div>
@@ -481,10 +502,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/04/luogu-p4900-solution/" rel="prev" title="「Luogu-P4900」食堂">
-                「Luogu-P4900」食堂 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
