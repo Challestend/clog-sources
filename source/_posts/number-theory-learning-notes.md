@@ -265,7 +265,7 @@ $$f(d)=\sum\limits_{i=1}^{N}\sum\limits_{j=1}^{M}[(i,j)=d]$$
 
 $$F(d)=\sum\limits_{i=1}^{N}\sum\limits_{j=1}^{M}[d\mid (i,j)]$$
 
-我们知道$$d\mid (i,j)⇔d\mid i\wedge d\mid j$$。在$[1,N]$中共有$\lfloor\cfrac{N}{d}\rfloor$个$d$的倍数，在$[1,M]$中共有$\lfloor\cfrac{M}{d}\rfloor$个$d$的倍数。因此我们得到
+我们知道$d\mid (i,j)$就意味着$d\mid i\wedge d\mid j$。在$[1,N]$中共有$\lfloor\cfrac{N}{d}\rfloor$个$d$的倍数，在$[1,M]$中共有$\lfloor\cfrac{M}{d}\rfloor$个$d$的倍数。因此我们得到
 
 $$F(d)=\lfloor\cfrac{N}{d}\rfloor\lfloor\cfrac{M}{d}\rfloor$$
 
@@ -277,8 +277,4 @@ $$f(1)=\sum\limits_{i=1}^{min(N,M)}\lfloor\cfrac{N}{i}\rfloor\lfloor\cfrac{M}{i}
 
 这样一来，先线性筛出$\mu$，结合整除分块即可做到$O(\sqrt{n})$地求解了。
 
-> 累死我了（
-> 
-> 这已经写了超过$10\text{KB}$了（
-> 
-> 剩下的先咕了吧（
+至于整除分块，我就不展开讲了。
