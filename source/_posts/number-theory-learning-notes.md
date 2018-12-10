@@ -11,6 +11,7 @@ mathjax: true
 
 - [铃悬的数学小讲堂——狄利克雷卷积与莫比乌斯反演](https://lx-2003.blog.luogu.org/mobius-inversion)
 - [浅谈杜教筛](https://www.luogu.org/blog/54745/dls-tql)
+- [铃悬的数学小讲堂——杜教筛](https://lx-2003.blog.luogu.org/dujiao-sieve)
 
 <!-- more -->
 
@@ -27,6 +28,10 @@ $$(f+g)(n)=f(n)+g(n)$$
 数乘也是类似的。
 
 $$(\alpha f)(n)=\alpha f(n)$$
+
+点积也是类似的。
+
+$$(f\cdot g)(n)=f(n)g(n)$$
 
 ~~好像没啥用。~~
 
@@ -239,42 +244,181 @@ $$F=f\otimes 1⇔F\otimes\mu=f$$
 
 于是就有了上面的反向反演。
 
-## 例题
+> $\text{Updated on 2018-12-03}$：
+> 
+> 例题……还是算了吧（
+> 
+> 发现反演常用的套路都忘的差不多了，还是别丢人了（
 
-反正都讲完了反演了，就顺便来道[练习题](https://www.luogu.org/problemnew/show/P2522)吧。
+# 杜教筛
 
-题目大意很简单，就是要求
+## 实现与模板题
 
-$$\sum\limits_{i=a}^{b}\sum\limits_{j=c}^{d}[(i,j)=k]$$
+接下来才是主要内容。
 
-容斥一波我们得到
+现在，我们要求一个积性函数的前$n$项和。$n\leqslant 10^{10}$。
 
-$$\sum\limits_{i=1}^{b}\sum\limits_{j=1}^{d}[(i,j)=k]-\sum\limits_{i=1}^{a-1}\sum\limits_{j=1}^{d}[(i,j)=k]-\sum\limits_{i=1}^{b}\sum\limits_{j=1}^{c-1}[(i,j)=k]+\sum\limits_{i=1}^{a-1}\sum\limits_{j=1}^{c-1}[(i,j)=k]$$
+我们定义
 
-因此我们只需要关注下式的值
+$$S(n)=\sum\limits_{i=1}^{n}f(i)$$
 
-$$\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}[(i,j)=k]$$
+再拿来一个积性函数$g$，然后把它与$f$卷积并求前缀和。
 
-考虑到$(i,j)=k⇔\cfrac{i}{k}\perp\cfrac{j}{k}$，设$N=\lfloor\cfrac{n}{d}\rfloor$，$M=\lfloor\cfrac{m}{d}\rfloor$，我们可以进一步改写上式
+$$\begin{aligned}
+\sum_{i=1}^{n}(f\times g)(i)&=\sum_{i=1}^{n}\sum_{j\mid i}f(j)g(\cfrac{i}{j})\\
+&=\sum_{i=1}^{n}g(i)\sum_{j=1}^{\lfloor\frac{n}{i}\rfloor}f(j)\\
+&=\sum_{i=1}^{n}g(i)S(\lfloor\cfrac{n}{i}\rfloor)
+\end{aligned}$$
 
-$$\sum\limits_{i=1}^{N}\sum\limits_{j=1}^{M}[i\perp j]$$
+然而我的语文实在是太菜了，大概说也说不明白，自行理解吧（
 
-定义
+因为$g$也是积性函数，有$g(1)=1$，所以
 
-$$f(d)=\sum\limits_{i=1}^{N}\sum\limits_{j=1}^{M}[(i,j)=d]$$
+$$\begin{aligned}
+S(n)&=g(1)S(n)\\
+&=\sum_{i=1}^{n}g(i)S(\lfloor\cfrac{n}{i}\rfloor)-\sum_{i=2}^{n}g(i)S(\lfloor\cfrac{n}{i}\rfloor)\\
+&=\sum_{i=1}^{n}(f\times g)(i)-\sum_{i=2}^{n}g(i)S(\lfloor\cfrac{n}{i}\rfloor)
+\end{aligned}$$
 
-$$F(d)=\sum\limits_{i=1}^{N}\sum\limits_{j=1}^{M}[d\mid (i,j)]$$
+就是说从第一项开始的前缀和减去从第二项开始的前缀和等于第一项本身。
 
-我们知道$d\mid (i,j)$就意味着$d\mid i\wedge d\mid j$。在$[1,N]$中共有$\lfloor\cfrac{N}{d}\rfloor$个$d$的倍数，在$[1,M]$中共有$\lfloor\cfrac{M}{d}\rfloor$个$d$的倍数。因此我们得到
+如果说我们选择的$g$可以让我们迅速地求出$f\times g$和$g$的前缀和，我们就可以做到快速求$f$的前缀和了。
 
-$$F(d)=\lfloor\cfrac{N}{d}\rfloor\lfloor\cfrac{M}{d}\rfloor$$
+关于后面的$g(i)S(\lfloor\cfrac{n}{i}\rfloor)$，如果直接暴力算复杂度会是$O(n)$的，在大部分情况下，这是无法接受的。
 
-同时，不难发现$F=f\otimes 1$，因此我们得到$f=F\otimes\mu$，即
+我们来分析一下$\lfloor\cfrac{n}{i}\rfloor$。如果$1\leqslant i\leqslant\sqrt{n}$，因为$i$只有$\sqrt{n}$种不同的取值，$\lfloor\cfrac{n}{i}\rfloor$同样也只有$\sqrt{n}$种不同的取值。如果$\sqrt{n}<i\leqslant n$，$1\leqslant\lfloor\cfrac{n}{i}\rfloor<\sqrt{n}$，又因为要向下取整，自然也只有$\sqrt{n}$种不同的取值。如果我们能够把$\lfloor\cfrac{n}{i}\rfloor$相同的$i$一起计算，就能够将时间杂度优化到$O(\sqrt{n})$。
 
-$$f(d)=\sum\limits_{d\mid x}F(x)\mu(\cfrac{x}{d})$$
+大体代码如下：
 
-$$f(1)=\sum\limits_{i=1}^{min(N,M)}\lfloor\cfrac{N}{i}\rfloor\lfloor\cfrac{M}{i}\rfloor\mu(i)$$
+```cpp
+for(re int l=1,r;l<=n;l=r+1){
+	r=n/(n/l);
+	//......
+}
+```
 
-这样一来，先线性筛出$\mu$，结合整除分块即可做到$O(\sqrt{n})$地求解了。
+关于$r$的这个上界是怎么来的，我并不会证（
 
-至于整除分块，我就不展开讲了。
+这样一来，要计算$S(n)$，我们需要调用所有的$\lfloor\cfrac{n}{x}\rfloor$，分别是$\lfloor\cfrac{n}{1}\rfloor,\lfloor\cfrac{n}{2}\rfloor,\cdots,\lfloor\cfrac{n}{\sqrt{n}}\rfloor,\sqrt{n},\sqrt{n}-1,\cdots,1$。单独计算一个$S(n)$的时间复杂度很明显是$O(\sqrt{n})$的。那么这样一来，总体的时间复杂度就是
+
+$$\begin{aligned}
+O(\sum\limits_{i=1}^{\sqrt{n}}\sqrt{i}+\sqrt{\lfloor\cfrac{n}{i}\rfloor})&=O(\sum\limits_{i=1}^{\sqrt{n}}\sqrt{\lfloor\cfrac{n}{i}\rfloor})\\
+&=O(\int\limits_{1}^{\sqrt{n}}\sqrt{\lfloor\cfrac{n}{x}\rfloor}dx)\\
+&=O(\int\limits_{1}^{\sqrt{n}}\sqrt{\cfrac{n}{x}}dx)\\
+&=O(2n^{\frac{1}{2}}(n^{\frac{1}{4}}-1))\\
+&=O(n^{\frac{3}{4}})
+\end{aligned}$$
+
+因为相比之下$\sqrt{\lfloor\cfrac{n}{i}\rfloor}$很明显要大一些，我们就可以将$\sqrt{i}$舍去。然后去掉取整符号并用积分近似。
+
+这个实现方法还可以优化。具体来讲，我们先线性筛出前$m$项，然后再用杜教筛。这么做的时间复杂度是$O(m+\cfrac{n}{\sqrt{m}})$，当$m=n^{\frac{2}{3}}$时取得最小值$O(n^{\frac{2}{3}})$。
+
+举个例子，就比如说我们要求
+
+$$\sum\limits_{i=1}^{n}\varphi(i)$$
+
+我们取$f=\varphi,g=1$，这样根据$\varphi$的性质，$f\times g=id$。不难看出$g$与$f\times g$的前缀和都可以$O(1)$求。具体的代码实现差不多长这样：
+
+```cpp
+long long getSum(int n){
+	if(n<=maxn)
+		return phi[n];
+	//phi是提前线性筛好的前缀和
+	if(ans.count(n))
+		return ans[n];
+	//ans用来实现记忆化的哈希表，比如说unordered_map
+	re long long res=1LL*n*(n+1)>>1;
+	//f*g的前缀和
+	for(re int l=2,r;l<=n;l=r+1){
+	//注意要从2开始
+		r=n/(n/l);
+		res-=(r-l+1)*getSum(n/l);
+		//r-l+1是g的前缀和
+		//像这样递归+记忆化求解f的前缀和
+	}
+	return ans[n]=res;
+	//返回的时候不要忘记存一下
+	//就比如说我就忘过一次（
+}
+```
+
+以及，不用哈希表也是可以的。因为我们查询的数都是形如$\lfloor\cfrac{n}{x}\rfloor$的，当这个值大于$n^{\frac{2}{3}}$，即$x<n^{\frac{1}{3}}$时，我们才会到哈希表里查询。因此我们可以令`ans[x]`表示$S(\lfloor\cfrac{n}{x}\rfloor)$。具体代码我就不写了（
+
+再举个例子，求
+
+$$\sum\limits_{i=1}^{n}\mu(i)$$
+
+取$f=\mu,g=1,f\times g=\epsilon$。代码和上面差不多。
+
+如果您理解了上面两个函数，这道[模板题](https://www.luogu.org/problemnew/show/P4213)您就可以切了。
+
+## 其他题
+
+### [「Luogu-P3768」简单的数学题](https://www.luogu.org/problemnew/show/P3768)
+
+快乐地推式子：
+
+$$\begin{aligned}
+\sum\limits_{i=1}^{n}i\sum\limits_{j=1}^{n}j\text{gcd}(i,j)&=\sum\limits_{d=1}^{n}d^{3}\sum\limits_{i=1}^{\lfloor\frac{n}{d}\rfloor}i\sum\limits_{j=1}^{\lfloor\frac{n}{d}\rfloor}j[i\perp j]\\
+&=\sum\limits_{d=1}^{n}d^{3}\sum\limits_{i=1}^{\lfloor\frac{n}{d}\rfloor}i\sum\limits_{j=1}^{\lfloor\frac{n}{d}\rfloor}j\sum\limits_{x\mid i,x\mid j}\mu(x)\\
+&=\sum\limits_{d=1}^{n}d^{3}\sum\limits_{x=1}^{\lfloor\frac{n}{d}\rfloor}x^{2}\mu(x)\text{Sum}^{2}(\lfloor\cfrac{n}{dx}\rfloor)\\
+&=\sum\limits_{i=1}^{n}\text{Sum}^{2}(\lfloor\cfrac{n}{i}\rfloor)i^{2}\sum\limits_{j\mid i}j\mu(\cfrac{i}{j})\\
+&=\sum\limits_{i=1}^{n}\text{Sum}^{2}(\lfloor\cfrac{n}{i}\rfloor)i^{2}\varphi(i)
+\end{aligned}$$
+
+其中
+
+$$\text{Sum}(n)=\sum\limits_{i=1}^{n}i$$
+
+最后一步是因为
+
+$$\begin{aligned}
+id\times\mu&=\varphi\times 1\times\mu\\
+&=\varphi\times\epsilon\\
+&=\varphi
+\end{aligned}$$
+
+理解不了上面的式子的话就多看看吧（
+
+不难发现我们是要求$f(n)=n^{2}\varphi(n)$的前缀和，那么，我们该怎么选取$g$呢？
+
+~~枚举瞎蒙（~~
+
+考虑$g(n)=n^{2}$。
+
+$$\begin{aligned}
+(f\times g)(n)&=\sum\limits_{i\mid n}f(i)g(\cfrac{n}{i})\\
+&=\sum\limits_{i\mid n}i^{2}\varphi(i)\cfrac{n^{2}}{i^{2}}\\
+&=n^{2}\sum\limits_{i\mid n}\varphi(i)\\
+&=n^{3}
+\end{aligned}$$
+
+~~其实我都不知道我当时是怎么想到这种操作的（~~
+
+然后就和上面一样了。
+
+### [「Luogu-U18201」分析矿洞](https://www.luogu.org/problemnew/show/U18201)
+
+不知道从哪翻出来的题（
+
+是某场个人邀请赛的$\text{T}1$~~，从某种意义上也能看出那场比赛有多么神仙~~。
+
+$$\begin{aligned}
+\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{n}\varphi(\text{gcd}^{2}(i,j))&=\sum\limits_{d=1}^{n}\varphi(d^{2})\sum\limits_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum\limits_{j=1}^{\lfloor\frac{n}{d}\rfloor}[i\perp j]\\
+&=\sum\limits_{d=1}^{n}\varphi(d^{2})\sum\limits_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum\limits_{j=1}^{\lfloor\frac{n}{d}\rfloor}\sum\limits_{x\mid i,x\mid j}\mu(x)\\
+&=\sum\limits_{d=1}^{n}\varphi(d^{2})\sum\limits_{x=1}^{\lfloor\frac{n}{d}\rfloor}\mu(x)\lfloor\cfrac{n}{dx}\rfloor^{2}\\
+&=\sum\limits_{i=1}^{n}\lfloor\cfrac{n}{i}\rfloor^{2}\sum\limits_{j\mid i}\varphi(j^{2})\mu(\cfrac{i}{j})\\
+&=\sum\limits_{i=1}^{n}\lfloor\cfrac{n}{i}\rfloor^{2}\sum\limits_{j\mid i}j\varphi(j)\mu(\cfrac{i}{j})
+\end{aligned}$$
+
+设$f_1(n)=n\varphi(n),f_2(n)=\mu(n)$，考虑筛$f=f_1\times f_2$的前缀和。然而，与上面的其它题不同，并不存在一个$g$使我们能够$O(1)$地求出$g$和$f\times g$的前缀和。一种较优的方案是，令$g=1$，$f\times g=(id\cdot\varphi)\times\mu\times 1=id\cdot\varphi$，这样，我们还需要筛出$f_1(n)=n\varphi(n)$的前缀和。
+
+怎么办？
+
+再套一层杜教筛！
+
+然而可能是常数会有些大也可能是我太菜了自带大常数，好像会跑的很慢（
+
+以及，像这种$n$爆了`int`的，一定要注意经常取模。~~因为这个$\text{WA}$了好几次（~~
+
+最后，源文件$17\text{KB}$祭，blog翻页祭。

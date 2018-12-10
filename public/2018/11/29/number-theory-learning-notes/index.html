@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="en">
+<html class="theme-next mist use-motion" lang="en">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -84,9 +84,9 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Mist',
     version: '6.4.1',
-    sidebar: {"position":"left","width":300,"display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","width":400,"display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="最近在洛谷日报的待审核列表里翻到了杜教筛的相关内容，打算连着之前的卷积反演啥的一起复习一下。 抄袭来源参考文献：  铃悬的数学小讲堂——狄利克雷卷积与莫比乌斯反演 浅谈杜教筛">
+  <meta name="description" content="最近在洛谷日报的待审核列表里翻到了杜教筛的相关内容，打算连着之前的卷积反演啥的一起复习一下。 抄袭来源参考文献：  铃悬的数学小讲堂——狄利克雷卷积与莫比乌斯反演 浅谈杜教筛 铃悬的数学小讲堂——杜教筛">
 <meta name="keywords" content="数论,杜教筛">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一些乱七八糟的数论">
-<meta property="og:url" content="http://yoursite.com/2018/11/29/number-theory-learning-notes/index.html">
+<meta property="og:url" content="https://github.com/Challestend/2018/11/29/number-theory-learning-notes/index.html">
 <meta property="og:site_name" content="Clog">
-<meta property="og:description" content="最近在洛谷日报的待审核列表里翻到了杜教筛的相关内容，打算连着之前的卷积反演啥的一起复习一下。 抄袭来源参考文献：  铃悬的数学小讲堂——狄利克雷卷积与莫比乌斯反演 浅谈杜教筛">
+<meta property="og:description" content="最近在洛谷日报的待审核列表里翻到了杜教筛的相关内容，打算连着之前的卷积反演啥的一起复习一下。 抄袭来源参考文献：  铃悬的数学小讲堂——狄利克雷卷积与莫比乌斯反演 浅谈杜教筛 铃悬的数学小讲堂——杜教筛">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-11-30T11:53:03.905Z">
+<meta property="og:updated_time" content="2018-12-04T08:29:02.778Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些乱七八糟的数论">
-<meta name="twitter:description" content="最近在洛谷日报的待审核列表里翻到了杜教筛的相关内容，打算连着之前的卷积反演啥的一起复习一下。 抄袭来源参考文献：  铃悬的数学小讲堂——狄利克雷卷积与莫比乌斯反演 浅谈杜教筛">
+<meta name="twitter:description" content="最近在洛谷日报的待审核列表里翻到了杜教筛的相关内容，打算连着之前的卷积反演啥的一起复习一下。 抄袭来源参考文献：  铃悬的数学小讲堂——狄利克雷卷积与莫比乌斯反演 浅谈杜教筛 铃悬的数学小讲堂——杜教筛">
 
 
 
@@ -128,7 +128,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/29/number-theory-learning-notes/"/>
+  <link rel="canonical" href="https://github.com/Challestend/2018/11/29/number-theory-learning-notes/"/>
 
 
 
@@ -235,7 +235,7 @@
           
           <li class="menu-item menu-item-about">
     <a href="/about/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+      <i class="menu-item-icon fa fa-fw fa-id-card"></i> <br />About</a>
   </li>
         
         
@@ -243,7 +243,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives<span class="badge">11</span></a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives<span class="badge">12</span></a>
   </li>
         
         
@@ -251,7 +251,7 @@
           
           <li class="menu-item menu-item-categories">
     <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories<span class="badge">4</span></a>
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories<span class="badge">5</span></a>
   </li>
         
         
@@ -259,13 +259,16 @@
           
           <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags<span class="badge">16</span></a>
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags<span class="badge">18</span></a>
   </li>
 
       
       
     </ul>
   
+
+  
+    
 
   
 
@@ -288,9 +291,6 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-            
-
-          
           <div id="content" class="content">
             
 
@@ -312,7 +312,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/29/number-theory-learning-notes/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Challestend/2018/11/29/number-theory-learning-notes/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Challestend Rehtorbegnaro">
@@ -373,7 +373,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-30 19:53:03" itemprop="dateModified" datetime="2018-11-30T19:53:03+08:00">2018-11-30</time>
+                <time title="Modified: 2018-12-04 16:29:02" itemprop="dateModified" datetime="2018-12-04T16:29:02+08:00">2018-12-04</time>
               
             
           </span>
@@ -418,6 +418,34 @@
           
 
           
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Symbols count in article: </span>
+                
+                <span title="Symbols count in article">11k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">18 mins.</span>
+              
+            </div>
+          
 
           
 
@@ -439,12 +467,14 @@
 <ul>
 <li><a href="https://lx-2003.blog.luogu.org/mobius-inversion" target="_blank" rel="noopener">铃悬的数学小讲堂——狄利克雷卷积与莫比乌斯反演</a></li>
 <li><a href="https://www.luogu.org/blog/54745/dls-tql" target="_blank" rel="noopener">浅谈杜教筛</a></li>
+<li><a href="https://lx-2003.blog.luogu.org/dujiao-sieve" target="_blank" rel="noopener">铃悬的数学小讲堂——杜教筛</a></li>
 </ul>
 <a id="more"></a>
 <h1 id="数论函数"><a href="#数论函数" class="headerlink" title="数论函数"></a>数论函数</h1><h2 id="定义与相关性质"><a href="#定义与相关性质" class="headerlink" title="定义与相关性质"></a>定义与相关性质</h2><p>数论函数就是定义域为$\mathbb{N}^{+}$的函数。</p>
 <p>两个数论函数相加，就是简单地把函数值相加。</p>
 <script type="math/tex; mode=display">(f+g)(n)=f(n)+g(n)</script><p>数乘也是类似的。</p>
-<script type="math/tex; mode=display">(\alpha f)(n)=\alpha f(n)</script><p><del>好像没啥用。</del></p>
+<script type="math/tex; mode=display">(\alpha f)(n)=\alpha f(n)</script><p>点积也是类似的。</p>
+<script type="math/tex; mode=display">(f\cdot g)(n)=f(n)g(n)</script><p><del>好像没啥用。</del></p>
 <p>在数论函数相关的运算中，一个非常重要的运算是狄利克雷卷积。两个数论函数的狄利克雷卷积是这样定义的：</p>
 <script type="math/tex; mode=display">(f\times g)(n)=\sum\limits_{i\mid n}f(i)g(\cfrac{n}{i})</script><p>或者说：</p>
 <script type="math/tex; mode=display">(f\times g)(n)=\sum\limits_{ij=n}f(i)g(j)</script><p>它具有以下的一些性质：</p>
@@ -535,16 +565,86 @@ F\times\mu&=f
 <script type="math/tex; mode=display">F(n)=\sum\limits_{n\mid d}f(d)⇔f(n)=\sum\limits_{n\mid d}F(d)\mu(\cfrac{d}{n})</script><p>我们可以定义一种新的运算</p>
 <script type="math/tex; mode=display">(f\otimes g)(n)=\sum\limits_{n\mid d}f(d)g(\cfrac{d}{n})</script><p>我们不难证明出它具有结合律。具体过程与上文证明狄利克雷卷积的结合律的过程基本重复。那么我们就有</p>
 <script type="math/tex; mode=display">F=f\otimes 1⇔F\otimes\mu=f</script><p>于是就有了上面的反向反演。</p>
-<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p>反正都讲完了反演了，就顺便来道<a href="https://www.luogu.org/problemnew/show/P2522" target="_blank" rel="noopener">练习题</a>吧。</p>
-<p>题目大意很简单，就是要求</p>
-<script type="math/tex; mode=display">\sum\limits_{i=a}^{b}\sum\limits_{j=c}^{d}[(i,j)=k]</script><p>容斥一波我们得到</p>
-<script type="math/tex; mode=display">\sum\limits_{i=1}^{b}\sum\limits_{j=1}^{d}[(i,j)=k]-\sum\limits_{i=1}^{a-1}\sum\limits_{j=1}^{d}[(i,j)=k]-\sum\limits_{i=1}^{b}\sum\limits_{j=1}^{c-1}[(i,j)=k]+\sum\limits_{i=1}^{a-1}\sum\limits_{j=1}^{c-1}[(i,j)=k]</script><p>因此我们只需要关注下式的值</p>
-<script type="math/tex; mode=display">\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}[(i,j)=k]</script><p>考虑到$(i,j)=k⇔\cfrac{i}{k}\perp\cfrac{j}{k}$，设$N=\lfloor\cfrac{n}{d}\rfloor$，$M=\lfloor\cfrac{m}{d}\rfloor$，我们可以进一步改写上式</p>
-<script type="math/tex; mode=display">\sum\limits_{i=1}^{N}\sum\limits_{j=1}^{M}[i\perp j]</script><p>定义</p>
-<script type="math/tex; mode=display">f(d)=\sum\limits_{i=1}^{N}\sum\limits_{j=1}^{M}[(i,j)=d]</script><script type="math/tex; mode=display">F(d)=\sum\limits_{i=1}^{N}\sum\limits_{j=1}^{M}[d\mid (i,j)]</script><p>我们知道$d\mid (i,j)$就意味着$d\mid i\wedge d\mid j$。在$[1,N]$中共有$\lfloor\cfrac{N}{d}\rfloor$个$d$的倍数，在$[1,M]$中共有$\lfloor\cfrac{M}{d}\rfloor$个$d$的倍数。因此我们得到</p>
-<script type="math/tex; mode=display">F(d)=\lfloor\cfrac{N}{d}\rfloor\lfloor\cfrac{M}{d}\rfloor</script><p>同时，不难发现$F=f\otimes 1$，因此我们得到$f=F\otimes\mu$，即</p>
-<script type="math/tex; mode=display">f(d)=\sum\limits_{d\mid x}F(x)\mu(\cfrac{x}{d})</script><script type="math/tex; mode=display">f(1)=\sum\limits_{i=1}^{min(N,M)}\lfloor\cfrac{N}{i}\rfloor\lfloor\cfrac{M}{i}\rfloor\mu(i)</script><p>这样一来，先线性筛出$\mu$，结合整除分块即可做到$O(\sqrt{n})$地求解了。</p>
-<p>至于整除分块，我就不展开讲了。</p>
+<blockquote>
+<p>$\text{Updated on 2018-12-03}$：</p>
+<p>例题……还是算了吧（</p>
+<p>发现反演常用的套路都忘的差不多了，还是别丢人了（</p>
+</blockquote>
+<h1 id="杜教筛"><a href="#杜教筛" class="headerlink" title="杜教筛"></a>杜教筛</h1><h2 id="实现与模板题"><a href="#实现与模板题" class="headerlink" title="实现与模板题"></a>实现与模板题</h2><p>接下来才是主要内容。</p>
+<p>现在，我们要求一个积性函数的前$n$项和。$n\leqslant 10^{10}$。</p>
+<p>我们定义</p>
+<script type="math/tex; mode=display">S(n)=\sum\limits_{i=1}^{n}f(i)</script><p>再拿来一个积性函数$g$，然后把它与$f$卷积并求前缀和。</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\sum_{i=1}^{n}(f\times g)(i)&=\sum_{i=1}^{n}\sum_{j\mid i}f(j)g(\cfrac{i}{j})\\
+&=\sum_{i=1}^{n}g(i)\sum_{j=1}^{\lfloor\frac{n}{i}\rfloor}f(j)\\
+&=\sum_{i=1}^{n}g(i)S(\lfloor\cfrac{n}{i}\rfloor)
+\end{aligned}</script><p>然而我的语文实在是太菜了，大概说也说不明白，自行理解吧（</p>
+<p>因为$g$也是积性函数，有$g(1)=1$，所以</p>
+<script type="math/tex; mode=display">\begin{aligned}
+S(n)&=g(1)S(n)\\
+&=\sum_{i=1}^{n}g(i)S(\lfloor\cfrac{n}{i}\rfloor)-\sum_{i=2}^{n}g(i)S(\lfloor\cfrac{n}{i}\rfloor)\\
+&=\sum_{i=1}^{n}(f\times g)(i)-\sum_{i=2}^{n}g(i)S(\lfloor\cfrac{n}{i}\rfloor)
+\end{aligned}</script><p>就是说从第一项开始的前缀和减去从第二项开始的前缀和等于第一项本身。</p>
+<p>如果说我们选择的$g$可以让我们迅速地求出$f\times g$和$g$的前缀和，我们就可以做到快速求$f$的前缀和了。</p>
+<p>关于后面的$g(i)S(\lfloor\cfrac{n}{i}\rfloor)$，如果直接暴力算复杂度会是$O(n)$的，在大部分情况下，这是无法接受的。</p>
+<p>我们来分析一下$\lfloor\cfrac{n}{i}\rfloor$。如果$1\leqslant i\leqslant\sqrt{n}$，因为$i$只有$\sqrt{n}$种不同的取值，$\lfloor\cfrac{n}{i}\rfloor$同样也只有$\sqrt{n}$种不同的取值。如果$\sqrt{n}&lt;i\leqslant n$，$1\leqslant\lfloor\cfrac{n}{i}\rfloor&lt;\sqrt{n}$，又因为要向下取整，自然也只有$\sqrt{n}$种不同的取值。如果我们能够把$\lfloor\cfrac{n}{i}\rfloor$相同的$i$一起计算，就能够将时间杂度优化到$O(\sqrt{n})$。</p>
+<p>大体代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(re <span class="keyword">int</span> l=<span class="number">1</span>,r;l&lt;=n;l=r+<span class="number">1</span>)&#123;</span><br><span class="line">	r=n/(n/l);</span><br><span class="line">	<span class="comment">//......</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>关于$r$的这个上界是怎么来的，我并不会证（</p>
+<p>这样一来，要计算$S(n)$，我们需要调用所有的$\lfloor\cfrac{n}{x}\rfloor$，分别是$\lfloor\cfrac{n}{1}\rfloor,\lfloor\cfrac{n}{2}\rfloor,\cdots,\lfloor\cfrac{n}{\sqrt{n}}\rfloor,\sqrt{n},\sqrt{n}-1,\cdots,1$。单独计算一个$S(n)$的时间复杂度很明显是$O(\sqrt{n})$的。那么这样一来，总体的时间复杂度就是</p>
+<script type="math/tex; mode=display">\begin{aligned}
+O(\sum\limits_{i=1}^{\sqrt{n}}\sqrt{i}+\sqrt{\lfloor\cfrac{n}{i}\rfloor})&=O(\sum\limits_{i=1}^{\sqrt{n}}\sqrt{\lfloor\cfrac{n}{i}\rfloor})\\
+&=O(\int\limits_{1}^{\sqrt{n}}\sqrt{\lfloor\cfrac{n}{x}\rfloor}dx)\\
+&=O(\int\limits_{1}^{\sqrt{n}}\sqrt{\cfrac{n}{x}}dx)\\
+&=O(2n^{\frac{1}{2}}(n^{\frac{1}{4}}-1))\\
+&=O(n^{\frac{3}{4}})
+\end{aligned}</script><p>因为相比之下$\sqrt{\lfloor\cfrac{n}{i}\rfloor}$很明显要大一些，我们就可以将$\sqrt{i}$舍去。然后去掉取整符号并用积分近似。</p>
+<p>这个实现方法还可以优化。具体来讲，我们先线性筛出前$m$项，然后再用杜教筛。这么做的时间复杂度是$O(m+\cfrac{n}{\sqrt{m}})$，当$m=n^{\frac{2}{3}}$时取得最小值$O(n^{\frac{2}{3}})$。</p>
+<p>举个例子，就比如说我们要求</p>
+<script type="math/tex; mode=display">\sum\limits_{i=1}^{n}\varphi(i)</script><p>我们取$f=\varphi,g=1$，这样根据$\varphi$的性质，$f\times g=id$。不难看出$g$与$f\times g$的前缀和都可以$O(1)$求。具体的代码实现差不多长这样：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">getSum</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n&lt;=maxn)</span><br><span class="line">		<span class="keyword">return</span> phi[n];</span><br><span class="line">	<span class="comment">//phi是提前线性筛好的前缀和</span></span><br><span class="line">	<span class="keyword">if</span>(ans.count(n))</span><br><span class="line">		<span class="keyword">return</span> ans[n];</span><br><span class="line">	<span class="comment">//ans用来实现记忆化的哈希表，比如说unordered_map</span></span><br><span class="line">	re <span class="keyword">long</span> <span class="keyword">long</span> res=<span class="number">1L</span>L*n*(n+<span class="number">1</span>)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="comment">//f*g的前缀和</span></span><br><span class="line">	<span class="keyword">for</span>(re <span class="keyword">int</span> l=<span class="number">2</span>,r;l&lt;=n;l=r+<span class="number">1</span>)&#123;</span><br><span class="line">	<span class="comment">//注意要从2开始</span></span><br><span class="line">		r=n/(n/l);</span><br><span class="line">		res-=(r-l+<span class="number">1</span>)*getSum(n/l);</span><br><span class="line">		<span class="comment">//r-l+1是g的前缀和</span></span><br><span class="line">		<span class="comment">//像这样递归+记忆化求解f的前缀和</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans[n]=res;</span><br><span class="line">	<span class="comment">//返回的时候不要忘记存一下</span></span><br><span class="line">	<span class="comment">//就比如说我就忘过一次（</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以及，不用哈希表也是可以的。因为我们查询的数都是形如$\lfloor\cfrac{n}{x}\rfloor$的，当这个值大于$n^{\frac{2}{3}}$，即$x&lt;n^{\frac{1}{3}}$时，我们才会到哈希表里查询。因此我们可以令<code>ans[x]</code>表示$S(\lfloor\cfrac{n}{x}\rfloor)$。具体代码我就不写了（</p>
+<p>再举个例子，求</p>
+<script type="math/tex; mode=display">\sum\limits_{i=1}^{n}\mu(i)</script><p>取$f=\mu,g=1,f\times g=\epsilon$。代码和上面差不多。</p>
+<p>如果您理解了上面两个函数，这道<a href="https://www.luogu.org/problemnew/show/P4213" target="_blank" rel="noopener">模板题</a>您就可以切了。</p>
+<h2 id="其他题"><a href="#其他题" class="headerlink" title="其他题"></a>其他题</h2><h3 id="「Luogu-P3768」简单的数学题"><a href="#「Luogu-P3768」简单的数学题" class="headerlink" title="「Luogu-P3768」简单的数学题"></a><a href="https://www.luogu.org/problemnew/show/P3768" target="_blank" rel="noopener">「Luogu-P3768」简单的数学题</a></h3><p>快乐地推式子：</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\sum\limits_{i=1}^{n}i\sum\limits_{j=1}^{n}j\text{gcd}(i,j)&=\sum\limits_{d=1}^{n}d^{3}\sum\limits_{i=1}^{\lfloor\frac{n}{d}\rfloor}i\sum\limits_{j=1}^{\lfloor\frac{n}{d}\rfloor}j[i\perp j]\\
+&=\sum\limits_{d=1}^{n}d^{3}\sum\limits_{i=1}^{\lfloor\frac{n}{d}\rfloor}i\sum\limits_{j=1}^{\lfloor\frac{n}{d}\rfloor}j\sum\limits_{x\mid i,x\mid j}\mu(x)\\
+&=\sum\limits_{d=1}^{n}d^{3}\sum\limits_{x=1}^{\lfloor\frac{n}{d}\rfloor}x^{2}\mu(x)\text{Sum}^{2}(\lfloor\cfrac{n}{dx}\rfloor)\\
+&=\sum\limits_{i=1}^{n}\text{Sum}^{2}(\lfloor\cfrac{n}{i}\rfloor)i^{2}\sum\limits_{j\mid i}j\mu(\cfrac{i}{j})\\
+&=\sum\limits_{i=1}^{n}\text{Sum}^{2}(\lfloor\cfrac{n}{i}\rfloor)i^{2}\varphi(i)
+\end{aligned}</script><p>其中</p>
+<script type="math/tex; mode=display">\text{Sum}(n)=\sum\limits_{i=1}^{n}i</script><p>最后一步是因为</p>
+<script type="math/tex; mode=display">\begin{aligned}
+id\times\mu&=\varphi\times 1\times\mu\\
+&=\varphi\times\epsilon\\
+&=\varphi
+\end{aligned}</script><p>理解不了上面的式子的话就多看看吧（</p>
+<p>不难发现我们是要求$f(n)=n^{2}\varphi(n)$的前缀和，那么，我们该怎么选取$g$呢？</p>
+<p><del>枚举瞎蒙（</del></p>
+<p>考虑$g(n)=n^{2}$。</p>
+<script type="math/tex; mode=display">\begin{aligned}
+(f\times g)(n)&=\sum\limits_{i\mid n}f(i)g(\cfrac{n}{i})\\
+&=\sum\limits_{i\mid n}i^{2}\varphi(i)\cfrac{n^{2}}{i^{2}}\\
+&=n^{2}\sum\limits_{i\mid n}\varphi(i)\\
+&=n^{3}
+\end{aligned}</script><p><del>其实我都不知道我当时是怎么想到这种操作的（</del></p>
+<p>然后就和上面一样了。</p>
+<h3 id="「Luogu-U18201」分析矿洞"><a href="#「Luogu-U18201」分析矿洞" class="headerlink" title="「Luogu-U18201」分析矿洞"></a><a href="https://www.luogu.org/problemnew/show/U18201" target="_blank" rel="noopener">「Luogu-U18201」分析矿洞</a></h3><p>不知道从哪翻出来的题（</p>
+<p>是某场个人邀请赛的$\text{T}1$<del>，从某种意义上也能看出那场比赛有多么神仙</del>。</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{n}\varphi(\text{gcd}^{2}(i,j))&=\sum\limits_{d=1}^{n}\varphi(d^{2})\sum\limits_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum\limits_{j=1}^{\lfloor\frac{n}{d}\rfloor}[i\perp j]\\
+&=\sum\limits_{d=1}^{n}\varphi(d^{2})\sum\limits_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum\limits_{j=1}^{\lfloor\frac{n}{d}\rfloor}\sum\limits_{x\mid i,x\mid j}\mu(x)\\
+&=\sum\limits_{d=1}^{n}\varphi(d^{2})\sum\limits_{x=1}^{\lfloor\frac{n}{d}\rfloor}\mu(x)\lfloor\cfrac{n}{dx}\rfloor^{2}\\
+&=\sum\limits_{i=1}^{n}\lfloor\cfrac{n}{i}\rfloor^{2}\sum\limits_{j\mid i}\varphi(j^{2})\mu(\cfrac{i}{j})\\
+&=\sum\limits_{i=1}^{n}\lfloor\cfrac{n}{i}\rfloor^{2}\sum\limits_{j\mid i}j\varphi(j)\mu(\cfrac{i}{j})
+\end{aligned}</script><p>设$f_1(n)=n\varphi(n),f_2(n)=\mu(n)$，考虑筛$f=f_1\times f_2$的前缀和。然而，与上面的其它题不同，并不存在一个$g$使我们能够$O(1)$地求出$g$和$f\times g$的前缀和。一种较优的方案是，令$g=1$，$f\times g=(id\cdot\varphi)\times\mu\times 1=id\cdot\varphi$，这样，我们还需要筛出$f_1(n)=n\varphi(n)$的前缀和。</p>
+<p>怎么办？</p>
+<p>再套一层杜教筛！</p>
+<p>然而可能是常数会有些大也可能是我太菜了自带大常数，好像会跑的很慢（</p>
+<p>以及，像这种$n$爆了<code>int</code>的，一定要注意经常取模。<del>因为这个$\text{WA}$了好几次（</del></p>
+<p>最后，源文件$17\text{KB}$祭，blog翻页祭。</p>
 
       
     </div>
@@ -589,6 +689,10 @@ F\times\mu&=f
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/08/future-algorithm-ep1/" rel="prev" title="「未来算法Episode I」严格根号分块实现树套树">
+                「未来算法Episode I」严格根号分块实现树套树 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -666,7 +770,7 @@ F\times\mu&=f
           
 
           <div id="music163player">
-            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=340 height=300 src="//music.163.com/outchain/player?type=0&id=2535864400&auto=0&height=430"></iframe>
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=320 height=300 src="//music.163.com/outchain/player?type=0&id=2535864400&auto=0&height=430"></iframe>
           </div>
 
 
@@ -738,7 +842,7 @@ F\times\mu&=f
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数论函数"><span class="nav-number">1.</span> <span class="nav-text">数论函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义与相关性质"><span class="nav-number">1.1.</span> <span class="nav-text">定义与相关性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#积性函数与完全积性函数"><span class="nav-number">1.2.</span> <span class="nav-text">积性函数与完全积性函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#莫比乌斯反演"><span class="nav-number">2.</span> <span class="nav-text">莫比乌斯反演</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#正向反演"><span class="nav-number">2.1.</span> <span class="nav-text">正向反演</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反向反演"><span class="nav-number">2.2.</span> <span class="nav-text">反向反演</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例题"><span class="nav-number">2.3.</span> <span class="nav-text">例题</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数论函数"><span class="nav-number">1.</span> <span class="nav-text">数论函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义与相关性质"><span class="nav-number">1.1.</span> <span class="nav-text">定义与相关性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#积性函数与完全积性函数"><span class="nav-number">1.2.</span> <span class="nav-text">积性函数与完全积性函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#莫比乌斯反演"><span class="nav-number">2.</span> <span class="nav-text">莫比乌斯反演</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#正向反演"><span class="nav-number">2.1.</span> <span class="nav-text">正向反演</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反向反演"><span class="nav-number">2.2.</span> <span class="nav-text">反向反演</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#杜教筛"><span class="nav-number">3.</span> <span class="nav-text">杜教筛</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实现与模板题"><span class="nav-number">3.1.</span> <span class="nav-text">实现与模板题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他题"><span class="nav-number">3.2.</span> <span class="nav-text">其他题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#「Luogu-P3768」简单的数学题"><span class="nav-number">3.2.1.</span> <span class="nav-text">「Luogu-P3768」简单的数学题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#「Luogu-U18201」分析矿洞"><span class="nav-number">3.2.2.</span> <span class="nav-text">「Luogu-U18201」分析矿洞</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -766,7 +870,21 @@ F\times\mu&=f
   <span class="author" itemprop="copyrightHolder">Challestend Rehtorbegnaro</span>
 
   
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="Symbols count total">48k</span>
+  
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="Reading time total">1:19</span>
   
 </div>
 
@@ -781,7 +899,7 @@ F\times\mu&=f
 
 
 
-  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
 
 
 
@@ -880,13 +998,6 @@ F\times\mu&=f
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=6.4.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.1"></script>
-
-
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
