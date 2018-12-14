@@ -60,7 +60,7 @@ rss:
 footer:
   # Specify the date when the site was setup.
   # If not defined, current year will be used.
-  # since: 2015
+  since: 2018
 
   # Icon between year and copyright info.
   icon:
@@ -125,6 +125,7 @@ menu:
   # schedule: /schedule/ || calendar
   # sitemap: /sitemap.xml || sitemap
   # commonweal: /404/ || heartbeat
+  log: /log/ || book
 
 # Enable/Disable menu icons / item badges.
 menu_settings:
@@ -183,18 +184,19 @@ social_icons:
 
 # Blog rolls
 links_icon: link
-links_title: 同级的其他神仙
+links_title: 以下全部都是大佬
 links_layout: block
 # links_layout: inline
 links:
-  BJ: https://me.csdn.net/feifanbaijun
-  HZ: https://www.luogu.org/blog/66965/
-  LJY: https://hachimanjy.github.io/
-  SHZR: http://www.cnblogs.com/shzr/
-  WJH: https://www.cnblogs.com/SuperGoodGame/
-  WZX: https://35178.blog.luogu.org/
-  YEM: https://www.cnblogs.com/taduro/
-  ZJF: https://stevebraveman.github.io/
+  asuldb(Luogu): https://35178.blog.luogu.org/
+  feifanbaijun(CSDN): https://me.csdn.net/feifanbaijun
+  hachimanjy(GitHub): https://hachimanjy.github.io/
+  Juan_feng(Luogu): https://www.luogu.org/blog/66965/
+  rbzno1(GitHub): https://rbzno1.github.io/
+  shzr(CNBlog): http://www.cnblogs.com/shzr/
+  Steve_braveman(GitHub): https://stevebraveman.github.io/
+  SuperGoodGame(CNBlog): https://www.cnblogs.com/SuperGoodGame/
+  Taduro(GitHub): https://dftyem.github.io/
 
 # Sidebar Avatar
 avatar:
@@ -234,16 +236,16 @@ sidebar:
   # If commented, will be default for:
   # Muse | Mist: 320
   # Pisces | Gemini: 240
-  width: 400
+  width: 320
 
   # Sidebar Display, available value (only for Muse | Mist):
   #  - post    expand on posts automatically. Default.
   #  - always  expand for all pages automatically
   #  - hide    expand only when click on the sidebar toggle icon.
   #  - remove  Totally remove sidebar including sidebar toggle.
-  display: post
+  # display: post
   # display: always
-  # display: hide
+  display: hide
   # display: remove
 
   # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).
@@ -295,7 +297,7 @@ post_meta:
 symbols_count_time:
   separated_meta: true
   item_text_post: true
-  item_text_total: false
+  item_text_total: true
   awl: 2
   wpm: 300
 
@@ -710,12 +712,12 @@ algolia_search:
 # Local search
 # Dependencies: https://github.com/theme-next/hexo-generator-searchdb
 local_search:
-  enable: false
+  enable: true
   # if auto, trigger search by changing input
   # if manual, trigger search by pressing enter key or search button
-  trigger: auto
+  trigger: manual
   # show top n results per article, show all results by setting to -1
-  top_n_per_article: 1
+  top_n_per_article: -1
   # unescape html strings to the readable one
   unescape: false
 
@@ -768,7 +770,7 @@ tabs:
 # Dependencies: https://github.com/theme-next/theme-next-reading-progress
 reading_progress:
   enable: true
-  color: "#37c6c0"
+  color: "#000000"
   height: 2px
 
 
@@ -794,7 +796,7 @@ motion:
     post_body: slideDownIn
     coll_header: slideLeftIn
     # Only for Pisces | Gemini.
-    sidebar: slideUpIn
+    sidebar: fadeIn
 
 # Fancybox. There is support for old version 2 and new version 3.
 # Please, choose only any one variant, do not need to install both.
@@ -812,7 +814,7 @@ lazyload: false
 
 # Progress bar in the top during page loading.
 # Dependencies: https://github.com/theme-next/theme-next-pace
-pace: false
+pace: true
 # Themes list:
 #pace-theme-big-counter
 #pace-theme-bounce
@@ -828,8 +830,7 @@ pace: false
 #pace-theme-mac-osx
 #pace-theme-minimal
 # For example
-# pace_theme: pace-theme-center-simple
-pace_theme: pace-theme-minimal
+pace_theme: pace-theme-center-simple
 
 # Canvas-nest
 # Dependencies: https://github.com/theme-next/theme-next-canvas-nest

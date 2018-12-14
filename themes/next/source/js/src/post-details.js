@@ -84,7 +84,7 @@ $(document).ready(function() {
       }, 500);
   });
 
-  Expand sidebar on post detail page by default, when post has a toc.
+  // Expand sidebar on post detail page by default, when post has a toc.
   var $tocContent = $('.post-toc-content');
   var display = CONFIG.page.sidebar;
   if (typeof display !== 'boolean') {
