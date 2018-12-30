@@ -1,3 +1,5 @@
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
 <div class="copyright">{#
 #}{% set current = date(Date.now(), "YYYY") %}{#
 #}&copy; {% if theme.footer.since and theme.footer.since != current %}{{ theme.footer.since }} – {% endif %}{#
@@ -32,6 +34,14 @@
     #}{{ symbolsTimeTotal(site, theme.symbols_count_time.awl, theme.symbols_count_time.wpm, __('symbols_count_time.time_minutes')) }}{#
   #}</span>
   {% endif %}
+
+  <span class="post-meta-divider">|</span>
+  <span class="post-meta-item-icon">
+    <i class="fa fa-users"></i>
+  </span>
+  <span id="busuanzi_container_site_uv">
+    站点访客数： <span id="busuanzi_value_site_uv"></span> 人次
+  </span>
 </div>
 
 {% if theme.seo %}

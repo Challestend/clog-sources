@@ -123,7 +123,7 @@
 <meta property="og:site_name" content="空を喰らう幽霊塔">
 <meta property="og:description" content="传送门">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-12T02:05:26.495Z">
+<meta property="og:updated_time" content="2018-12-29T04:37:49.951Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="「Luogu-T47720」孤立元">
 <meta name="twitter:description" content="传送门">
@@ -250,7 +250,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">12</span></a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">18</span></a>
   </li>
         
         
@@ -258,7 +258,7 @@
           
           <li class="menu-item menu-item-categories">
     <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">5</span></a>
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">6</span></a>
   </li>
         
         
@@ -266,7 +266,7 @@
           
           <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">20</span></a>
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">24</span></a>
   </li>
         
         
@@ -274,7 +274,7 @@
           
           <li class="menu-item menu-item-log">
     <a href="/log/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />日志</a>
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br />更新日志</a>
   </li>
 
       
@@ -419,7 +419,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-12-12 10:05:26" itemprop="dateModified" datetime="2018-12-12T10:05:26+08:00">2018-12-12</time>
+                <time title="修改时间：2018-12-29 12:37:49" itemprop="dateModified" datetime="2018-12-29T12:37:49+08:00">2018-12-29</time>
               
             
           </span>
@@ -474,7 +474,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">881</span>
+                <span title="本文字数">861</span>
               
 
               
@@ -514,12 +514,12 @@
 <p>对于每一个$i(1&lt;i&lt;n)$，如果它成为了孤立元，那么一定有$i-1\notin B$且$i+1\notin B$，而其他$n-3$个数无论怎样都无法阻止$i$对所有孤立元的和产生贡献，此时，其他$n-3$个数中有且仅有$m-1$个属于$B$，其总方案数为$C_{n-3}^{m-1}$。而对于$1$和$n$来说，它们只有$1$个相邻的元素，因此方案数为$C_{n-2}^{m-1}$。本题答案即为</p>
 <script type="math/tex; mode=display">\frac{\sum_{i=2}^{n-1}iC_{n-3}^{m-1}+(n+1)C_{n-2}^{m-1}}{C_{n}^{m}}</script><p>将这个式子进行一系列惨无人道的化简与整理后，我们得到如下形式</p>
 <script type="math/tex; mode=display">\frac{m(n+1)(n-m)(n-m-1)}{2n(n-1)}+\frac{m(n+1)(n-m)}{n(n-1)}</script><blockquote>
-<p>$\text{Updated on 2018-10-10}$：</p>
+<p>Updated on 2018-10-10</p>
 <p>之前公式写错了，分子上的$m$全都漏掉了（</p>
 <p>以及，我们还可以将上式继续整理：</p>
 <script type="math/tex; mode=display">\frac{m(n+1)(n-m)(n-m+1)}{2n(n-1)}</script><p><del>以及，顺便测试了一下新的快读板子，然后发现<code>#ifdef</code>真没用也可能是我太菜了（</del></p>
 <blockquote>
-<p>$\text{Updated on 2018-10-16}$：</p>
+<p>Updated on 2018-10-16</p>
 <p>好吧我当时并不会用<code>#ifdef</code>（</p>
 </blockquote>
 <p>以及，标程经过一系列<del>丧心病狂的</del>卡常卡到了$1861\text{ms}$，最慢的一个点只跑了$300\text{ms}$不到。截至本日，另外两个切掉这道题的$\text{dalao}$最慢的一个点也只跑了$400\text{ms}$上下。我要不要考虑加强一波数据或者缩一波时限呢？<del>所以说为什么我当初在本地测的时候平均每个点$500\text{ms}$，是我们机房的电脑太菜了吗（</del></p>
@@ -725,7 +725,9 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -739,7 +741,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">47515</span>
+    <span title="站点总字数">74006</span>
   
 
   
@@ -750,8 +752,16 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">79 分钟</span>
+    <span title="站点阅读时长">123 分钟</span>
   
+
+  <span class="post-meta-divider">|</span>
+  <span class="post-meta-item-icon">
+    <i class="fa fa-users"></i>
+  </span>
+  <span id="busuanzi_container_site_uv">
+    站点访客数： <span id="busuanzi_value_site_uv"></span> 人次
+  </span>
 </div>
 
 
@@ -898,7 +908,7 @@
   
   <script type="text/javascript">
     var GUEST = ['nick','mail','link'];
-    var guest = 'nick';
+    var guest = 'nick,mail';
     guest = guest.split(',').filter(function (item) {
       return GUEST.indexOf(item)>-1;
     });
