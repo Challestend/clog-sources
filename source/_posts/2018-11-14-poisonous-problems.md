@@ -4,7 +4,7 @@ date: 2018-11-14 11:02:21
 tags:
   - 毒瘤题
 categories:
-  - 其它
+  - 未分类
 mathjax: true
 top: 1
 ---

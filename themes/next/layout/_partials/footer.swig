@@ -8,9 +8,10 @@
     <i class="fa fa-{{ theme.footer.icon.name }}"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">{{ theme.footer.copyright | default(author) }}</span>
+</div>
 
+<div class="copyright">
   {% if config.symbols_count_time.total_symbols %}
-    <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
