@@ -37,7 +37,7 @@ mathjax: true
 我们来看一下[__Shadowice1984__](https://www.luogu.org/space/show?uid=56384)dalao在他的[另一篇题解](https://www.luogu.org/blog/ShadowassIIXVIIIIV/solution-p4119)中做出的评价：
 
 > 这其实是一个误区。主席树之所以采取了二分的思路来解决问题是因为我们要求回答单次询问做到$O(\operatorname{log}n)$的复杂度，这时候唯一的可行思路就是二分否则我们无法将复杂度控制在一个$\text{log}$之内。
-> 
+>
 > 但是我们现在是使用分块解决问题。分块是有自己复杂度的，就是$O(\sqrt{n})$而不是$O(\operatorname{log}n)$，这意味着分块其实和$\text{log}$的数据结构以及二分法并不是很搭（因为分块的结构本质上就不支持二分）。如果我们需要强行嵌入$\text{log}$的数据结构的话在绝大部分情况下都会使复杂度凭空多出个$\text{log}$来，这在强调常数的根号算法中绝对是致命的。
 
 我也是从这位dalao的[blog](https://www.luogu.org/blog/ShadowassIIXVIIIIV/solution-p3380)里看到了严格根号分块实现树套树这种未来算法。
@@ -57,6 +57,8 @@ mathjax: true
 综上所述，该算法的时间复杂度为$O((n+m)\sqrt{n}+m\sqrt{n+m})$。当$n$，$m$取到极限值时，差不多是$38172068$，相比之下$O(m\operatorname{log}^{2}n)\approx 12183043$。看起来好像比不过树套树，实际上开个$\text{O}2$跑得比谁都快，正如一开始那张图所示。
 
 不过代码写出来有点长的：
+
+{% fold "Toggle Code" %}
 
 ```cpp
 #include<cstdio>
@@ -351,6 +353,8 @@ int main(){
 	return 0;
 }
 ```
+
+{% endfold %}
 
 我还没写啥呢咋就$12\text{KB}$了（
 

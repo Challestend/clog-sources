@@ -126,7 +126,7 @@
 <meta property="og:image" content="https://i.loli.net/2018/10/24/5bd07656b885a.jpg">
 <meta property="og:image" content="https://i.loli.net/2018/10/25/5bd124f4cdbb9.jpg">
 <meta property="og:image" content="https://i.loli.net/2018/10/25/5bd13984b8601.jpg">
-<meta property="og:updated_time" content="2018-12-19T12:03:55.791Z">
+<meta property="og:updated_time" content="2019-01-16T04:18:56.684Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="状态压缩动态规划学习笔记">
 <meta name="twitter:description" content="把标签和分类连在一起读就是标题了（ 好像上一篇珂朵莉树学习笔记也是这样（ 马上就要复赛了，但反正我已经退役预定了来颓blog吧。">
@@ -254,7 +254,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">22</span></a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">24</span></a>
   </li>
         
         
@@ -270,7 +270,7 @@
           
           <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">31</span></a>
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">36</span></a>
   </li>
         
         
@@ -423,7 +423,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-12-19 20:03:55" itemprop="dateModified" datetime="2018-12-19T20:03:55+08:00">2018-12-19</time>
+                <time title="修改时间：2019-01-16 12:18:56" itemprop="dateModified" datetime="2019-01-16T12:18:56+08:00">2019-01-16</time>
               
             
           </span>
@@ -478,7 +478,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">3592</span>
+                <span title="本文字数">3662</span>
               
 
               
@@ -522,23 +522,38 @@
 <p><img src="https://i.loli.net/2018/10/24/5bd07656b885a.jpg" alt=""></p>
 <p>注意到，后面$12$维状态只有$0$和$1$，于是我们就有了这么一个想法：把后$12$维状态看成一个$2$进制数，其中从右往左第$i$位表示当前行第$i$列是否种草，$1$表示种，$0$表示不种。在这一过程中，我们将后$12$维状态「压缩」成了一个$2$进制数，这也正是「状态压缩」这个名字的含义。</p>
 <p>于是，现在我们定义<code>f[i][S]</code>表示当前处理到第$i$行，其中第$i$行的状态是$S$的总方案数。在转移时，我们还需要判断状态是否合法，我们可以定义<code>a[i]</code>表示第$i$行哪些格子能种草，$1$表示能，$0$表示不能。<code>valid[S]</code>表示如果不考虑某些格子不能种草，状态$S$是否合法，也就是是否不存在两个相邻的$1$。<code>a[i]</code>在读入时就可以处理出来，至于<code>valid[S]</code>，我们可以通过这样的一个循环处理出来：</p>
+<div><div class="fold_hider"><div class="close hider_title">Toggle Code</div></div><div class="fold">
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;(<span class="number">1</span>&lt;&lt;m);++i)</span><br><span class="line">    valid[i]=valid[i&gt;&gt;<span class="number">1</span>]&amp;(~(i&amp;(i&gt;&gt;<span class="number">1</span>)&amp;<span class="number">1</span>));</span><br></pre></td></tr></table></figure>
+
+</div></div>
 <p>用人话来讲就是<code>[S是否合法]=[S&gt;&gt;1是否合法]&amp;[S与S&gt;&gt;1的最后一位是否不同为1]</code>。</p>
 <p>在转移时，我们认为当前枚举到的状态是合法的当且仅当它只在能种草的格子上种草，并且不与上一行的状态冲突，也就是<code>(S|a[i])==a[i]&amp;&amp;valid[S]&amp;&amp;(S&amp;S&#39;)==0</code>。</p>
+<div><div class="fold_hider"><div class="close hider_title">Toggle Code</div></div><div class="fold">
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;(<span class="number">1</span>&lt;&lt;m);++i)</span><br><span class="line">    <span class="keyword">if</span>((i|a[<span class="number">1</span>])==a[<span class="number">1</span>]&amp;&amp;valid[i])</span><br><span class="line">        f[<span class="number">1</span>][i]=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;++i)</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> j=<span class="number">0</span>;j&lt;(<span class="number">1</span>&lt;&lt;m);++j)</span><br><span class="line">        <span class="keyword">if</span>((j|a[i])==a[i]&amp;&amp;valid[j])</span><br><span class="line">            <span class="keyword">for</span>(re <span class="keyword">int</span> k=<span class="number">0</span>;k&lt;(<span class="number">1</span>&lt;&lt;m);++k)</span><br><span class="line">                <span class="keyword">if</span>((k|a[i<span class="number">-1</span>])==a[i<span class="number">-1</span>]&amp;&amp;valid[k]&amp;&amp;(k&amp;j)==<span class="number">0</span>)</span><br><span class="line">                    (f[i][j]+=f[i<span class="number">-1</span>][k])%=mod;</span><br></pre></td></tr></table></figure>
+
+</div></div>
 <p>粗略计算的话，时间复杂度差不多是$O(n4^m)$，最坏情况下差不多是$12\times 4^{12}=201326592$，看着很吓人，然而实际上，其中大部分状态都是不合法的，会被我们的两个<code>if</code>剪掉，因而实际运行跑得比谁都快（</p>
 <p>为了更好地体会状压的复杂度的神奇之处，我们再来看一下这道题，<a href="https://www.luogu.org/problemnew/show/P2704" target="_blank" rel="noopener">「NOI2001」炮兵阵地</a>。</p>
 <p>因为一个炮兵部队的攻击范围能够上下扩展两行，我们在记录状态时，需要记录之前两行的状态，也就是用<code>f[i][S1][S2]</code>表示当前处理到第$i$行，第$i-1$行状态为$S1$，第$i$状态为$S2$时最多能放多少个炮兵部队。我们自然也需要记录<code>a[i]</code>和<code>valid[S]</code>，不过，这次<code>valid[s]</code>的预处理过程差不多是这样：</p>
+<div><div class="fold_hider"><div class="close hider_title">Toggle Code</div></div><div class="fold">
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;(<span class="number">1</span>&lt;&lt;m);++i)&#123;</span><br><span class="line">    valid[i]=(i&amp;<span class="number">1</span>)?valid[i&gt;&gt;<span class="number">3</span>]&amp;((~i)&gt;&gt;<span class="number">2</span>)&amp;((~i)&gt;&gt;<span class="number">1</span>):valid[i&gt;&gt;<span class="number">1</span>];</span><br></pre></td></tr></table></figure>
+
+</div></div>
 <p><img src="https://i.loli.net/2018/10/25/5bd124f4cdbb9.jpg" alt=""></p>
 <p><del>看起来</del>有些<del>非常</del>复杂，用人话来讲就是……诶我当时是不是写错了（</p>
 <p>……不好像又没写错……</p>
 <p>好吧没写错。</p>
 <p>如果$S$的最后一位是$1$，则<code>[S是否合法]=[S&gt;&gt;3是否合法]&amp;[S的倒数第2位和倒数第3位是否都为0]</code>，否则<code>[S是否合法]=[S&gt;&gt;1是否合法]</code>。</p>
 <p>因为我们要求的是最多能放多少个炮兵部队，我们还需要知道某个状态放了多少个炮兵部队，也就是某个状态$S$在二进制下$1$的个数，我们可以这样处理：</p>
+<div><div class="fold_hider"><div class="close hider_title">Toggle Code</div></div><div class="fold">
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;(<span class="number">1</span>&lt;&lt;m);++i)</span><br><span class="line">    cnt[i]=cnt[i&gt;&gt;<span class="number">1</span>]+(i&amp;<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+</div></div>
 <p>转移过程如下：</p>
+<div><div class="fold_hider"><div class="close hider_title">Toggle Code</div></div><div class="fold">
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;(<span class="number">1</span>&lt;&lt;m);++i)</span><br><span class="line">    <span class="keyword">if</span>((i|a[<span class="number">1</span>])==a[<span class="number">1</span>]&amp;&amp;valid[i])</span><br><span class="line">        <span class="keyword">for</span>(re <span class="keyword">int</span> j=<span class="number">0</span>;j&lt;(<span class="number">1</span>&lt;&lt;m);++j)</span><br><span class="line">            <span class="keyword">if</span>((j|a[<span class="number">2</span>])==a[<span class="number">2</span>]&amp;&amp;valid[j]&amp;&amp;(i&amp;j)==<span class="number">0</span>)</span><br><span class="line">                    f[<span class="number">2</span>][i][j]=cnt[i]+cnt[j];</span><br><span class="line"><span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">3</span>;i&lt;=n;++i)</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> j=<span class="number">0</span>;j&lt;(<span class="number">1</span>&lt;&lt;m);++j)</span><br><span class="line">        <span class="keyword">if</span>((j|a[i<span class="number">-2</span>])==a[i<span class="number">-2</span>]&amp;&amp;valid[j])</span><br><span class="line">            <span class="keyword">for</span>(re <span class="keyword">int</span> k=<span class="number">0</span>;k&lt;(<span class="number">1</span>&lt;&lt;m);++k)</span><br><span class="line">                <span class="keyword">if</span>((k|a[i<span class="number">-1</span>])==a[i<span class="number">-1</span>]&amp;&amp;valid[k]&amp;&amp;(j&amp;k)==<span class="number">0</span>)</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> l=<span class="number">0</span>;l&lt;(<span class="number">1</span>&lt;&lt;m);++l)</span><br><span class="line">                        <span class="keyword">if</span>((l|a[i])==a[i]&amp;&amp;valid[l]&amp;&amp;(l&amp;j)==<span class="number">0</span>&amp;&amp;(l&amp;k)==<span class="number">0</span>)</span><br><span class="line">                            f[i][k][l]=max(f[i][k][l],f[i<span class="number">-1</span>][j][k]+cnt[l]);</span><br></pre></td></tr></table></figure>
+
+</div></div>
 <p>时间复杂度差不多是$O(n8^m)$，最坏情况下差不多是$100\times 8^{10}=107374182400$，然而由于转移过程中的大量剪枝，实际时间复杂度差不多是$O(\text{won’t TLE})$（</p>
 <p>我们再来看一个状压的应用，<a href="https://www.spoj.com/problems/MMINPAID/" target="_blank" rel="noopener">「SP3953」MMINPAID - Paid Roads</a>，或者您也可以<del>反正我就是</del>在<a href="https://www.luogu.org/problemnew/show/SP3953" target="_blank" rel="noopener">洛谷</a>上提交。</p>
 <p>大概是一道最短路，然而与一般的最短路不同的是，在这道题中，经过某条边之前所经过的节点集合如果不同，可能会导致花费的不同。这样一来，我们一般的最短路算法就会有后效性。解决方法也很简单，就是把经过节点集合压缩到一个$2$进制数内。定义<code>dis[u][S]</code>为只经过$S$内的节点的前提下，从$1$到$u$的最小花费。对于$u$发出的所有边的终点$v$，<code>dis[v][S|(1&lt;&lt;(v-1))]=min(dis[v][S|(1&lt;&lt;(v-1))],dis[u][S]+cost)</code>，其中$cost$表示经过从$u$到$v$这条边的花费，当然这需要分情况讨论。</p>
@@ -682,7 +697,7 @@
               <ul class="links-of-blogroll-list">
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://35178.blog.luogu.org/" title="asuldb(Luogu)" target="_blank">asuldb(Luogu)</a>
+                    <a href="https://www.cnblogs.com/asuldb" title="asuldb(Luogu)" target="_blank">asuldb(Luogu)</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
@@ -703,6 +718,10 @@
                 
                   <li class="links-of-blogroll-item">
                     <a href="http://www.cnblogs.com/shzr/" title="shzr(CNBlog)" target="_blank">shzr(CNBlog)</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cnblogs.com/snowy2002" title="SnoWY(CNBlog)" target="_blank">SnoWY(CNBlog)</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
@@ -761,7 +780,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">97444</span>
+    <span title="站点总字数">123209</span>
   
 
   
@@ -772,7 +791,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">162 分钟</span>
+    <span title="站点阅读时长">205 分钟</span>
   
 
   <span class="post-meta-divider">|</span>

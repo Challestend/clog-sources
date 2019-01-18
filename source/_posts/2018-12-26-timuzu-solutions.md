@@ -8,16 +8,19 @@ tags:
   - 毒瘤题
 categories:
   - 题解
+password: FLS&&8]T:$f3[yrtt!osE+K&3"`?IlA{
+abstract: 该文章已被加密
+message: 输入密码继续阅读
 ---
 先宣传一波[团队](https://www.luogu.org/team/show?teamid=11367)。
 
 <!-- more -->
 
-# [「T47720」孤立元](https://www.luogu.org/problemnew/show/T47720)
+### [「T47720」孤立元](https://www.luogu.org/problemnew/show/T47720)
 
 [已有题解](/luogu-t47720-solution/)。
 
-# [「T53537」营救元首](https://www.luogu.org/problemnew/show/T53537)
+### [「T53537」营救元首](https://www.luogu.org/problemnew/show/T53537)
 
 能看出[五彩斑斓的世界](https://www.luogu.org/problemnew/show/P4117)来吗？
 
@@ -32,6 +35,8 @@ categories:
 操作$3$就不必多说了，散块暴力找，整块`lower_bound`。
 
 不过说实话，写起来挺麻烦的。也懒得看以前我写的代码了，直接贴出来吧。
+
+{% fold "Toggle Code" %}
 
 ```cpp
 #include<cstdio>
@@ -330,7 +335,9 @@ int main(){
 }
 ```
 
-# [「T53987」ZJF日记](https://www.luogu.org/problemnew/show/T53987)
+{% endfold %}
+
+### [「T53987」ZJF日记](https://www.luogu.org/problemnew/show/T53987)
 
 最短路计数+次短路求解。
 
@@ -340,11 +347,11 @@ int main(){
 
 sto __多弗桃__ orz
 
-## 关于SPFA
+#### 关于SPFA
 
 他死了。
 
-# [「T56269」选择性失忆](https://www.luogu.org/problemnew/show/T56269)
+### [「T56269」选择性失忆](https://www.luogu.org/problemnew/show/T56269)
 
 sto __SnoWY__ orz
 
@@ -366,7 +373,7 @@ emmmmmm……这是什么鬼（
 
 [](https://i.loli.net/2018/12/26/5c237e1c077b4.jpg)
 
-# [「T62117」复习](https://www.luogu.org/problemnew/show/T62117)
+### [「T62117」复习](https://www.luogu.org/problemnew/show/T62117)
 
 这是一道被线段树踩爆了的分块题。
 
@@ -378,7 +385,7 @@ emmmmmm……这是什么鬼（
 
 代码太丢人了不贴了。
 
-# [「T64137」「魔板」线段树 2](https://www.luogu.org/problemnew/show/T64137)
+### [「T64137」「魔板」线段树 2](https://www.luogu.org/problemnew/show/T64137)
 
 这是一道~~丧心病狂的~~卡时空块状分块题。
 
@@ -389,3 +396,73 @@ emmmmmm……这是什么鬼（
 首先一开始我们定的时空限制是$1\text{s}/4\text{MB}$。然而还是放跑了空间复杂度足够优秀的线段树。然后一气之下删了`fread`，把空间限制改到$2\text{MB}$，并把时间限制改到$850\text{ms}$。然后有神仙通过将线段树的多个叶子结点合并起来的方法又水过去了。最后空间直接卡到了现在的$1.5\text{MB}$。然后最后两个点询问加到$2\times 10^{6}$，并塞入大量单点操作，才算把该卡的都卡掉了。
 
 顺便第一次写计分脚本祭。
+
+### [「T65749」斩整「土偶剪定」](https://www.luogu.org/problemnew/show/T65749)
+
+首先高维这种东西我们肯定不能硬想。
+
+首先假设$a_{i}\gt 1$。如果说一个小土块恰有$k$面有颜色，这也就意味着，它恰有$k$个维度的坐标是$1$或$a_{i}$，剩下$n-k$个维度除了$1$和$a_{i}$以外随便选。那么我们的总方案数就是
+
+$$2^{k}\sum_{\mid S\mid=n-k\wedge\forall i\in S,i\in[1,n]\cap\mathbb{Z}}\prod_{i\in S}(a_{i}-2)$$
+
+下文为了方便，我们定义$Q_{k}$为
+
+$$\sum_{\mid S\mid=k\wedge\forall i\in S,i\in[1,n]\cap\mathbb{Z}}\prod_{i\in S}(a_{i}-2)$$
+
+也就是从所有的$a_{i}-2$中选$k$个相乘的所有方案的结果的总和。同时$Q_{0}=1$。
+
+没错就是[这道题](https://www.luogu.org/problemnew/show/P4247)。
+
+现在我们想要对于$[0,n]$内的每一个$i$求出$Q_{i}$。在上面那道题中我们采用的办法是分治。具体来说就是，如果说我们要在$[l,r]$内选$k$个数相乘，我们可以先在$[l,mid]$内选$x$个数相乘，再在$[mid+1,r]$内选$k-x$个数相乘，然后把结果相乘并累加。
+
+形式化地讲的话
+
+$$Q_{k}=\sum_{i=0}^{k}Q_{l,i}Q_{r,k-i}$$
+
+然后我们直接$O(n^{2})$暴力算就好。但是我们发现如果说我们直接分治，我们会得到这么一个关于时间复杂度的递推式
+
+$$T(n)=2T(\cfrac{n}{2})+O(n^{2})$$
+
+根据主定理，我们有$T(n)=O(n^{2})$。
+
+其实我一开始以为它是$O(n^{2}\log n)$的，仔细一算才发现不对（
+
+不过我的标算并不是这么写的。我的做法是从头扫到尾，将前$k$个与第$k+1$个合并。这样的时间复杂度是
+
+$$T(n)=T(n-1)+O(n)$$
+
+很明显也是$O(n^{2})$的。不过好像常数相对较大？
+
+~~然而对比了一下发现常数小了不少（~~
+
+那么问题来了，如果说存在$a_{i}=1$怎么办？
+
+存在$a_{i}=1$就说明，这一维的坐标一定会同时碰到两个边界。那么我们就可以扔掉这个$1$，把它当成$n-1$维处理，然后在最左边添上两个$0$就行了。
+
+同理，如果存在$m$个$a_{i}=1$，我们就扔掉它们并当成$n-m$维处理，然后在最左边添上$2m$个$0$。
+
+其实这道题还可以优化。仔细观察这个式子
+
+$$Q_{k}=\sum_{i=0}^{k}Q_{l,i}Q_{r,k-i}$$
+
+我们看到这其实就是一个卷积，我们套一波FFT/NTT就能把时间复杂度优化到
+
+$$T(n)=2T(\cfrac{n}{2})+O(n\log n)$$
+
+根据主定理，我们有$T(n)=O(n\log^{2}n)$。一写发现跑得飞快。
+
+当然这是仅限于分治做法的，像我标算这种做法上了FFT/NTT也优化不了（
+
+![](/images/TIM截图20190116111347.png)
+
+上面这三个评测记录，最下面的是真正的标算，中间的是分治，上面的是NTT优化分治。
+
+#### 论如何用最简短的语言描述主定理
+
+$$T(n)=aT(\cfrac{n}{b})+O(n^{c}\log^{k}n)$$
+
+$$T(n)=\begin{cases}
+&O(n^{c})\;\;&(c>\log_{b}a\wedge k=0)\\
+&O(n^{\log_{b}a})&(c<\log_{b}a\wedge k=0)\\
+&O(n^{c}\log^{k+1}n)&(c=\log_{b}a)
+\end{cases}$$

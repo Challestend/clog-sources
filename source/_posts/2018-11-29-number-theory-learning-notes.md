@@ -248,9 +248,9 @@ $$F=f\otimes 1⇔F\otimes\mu=f$$
 于是就有了上面的反向反演。
 
 > Updated on 2018-12-03
-> 
+>
 > 例题……还是算了吧（
-> 
+>
 > 发现反演常用的套路都忘的差不多了，还是别丢人了（
 
 # 杜教筛
@@ -293,12 +293,16 @@ S(n)&=g(1)S(n)\\
 
 大体代码如下：
 
+{% fold "Toggle Code" %}
+
 ```cpp
 for(re int l=1,r;l<=n;l=r+1){
 	r=n/(n/l);
 	//......
 }
 ```
+
+{% endfold %}
 
 关于$r$的这个上界是怎么来的，我并不会证（
 
@@ -322,6 +326,8 @@ $$\sum\limits_{i=1}^{n}\varphi(i)$$
 
 我们取$f=\varphi,g=1$，这样根据$\varphi$的性质，$f\times g=id$。不难看出$g$与$f\times g$的前缀和都可以$O(1)$求。具体的代码实现差不多长这样：
 
+{% fold "Toggle Code" %}
+
 ```cpp
 long long getSum(int n){
 	if(n<=maxn)
@@ -344,6 +350,8 @@ long long getSum(int n){
 	//就比如说我就忘过一次（
 }
 ```
+
+{% endfold %}
 
 以及，不用哈希表也是可以的。因为我们查询的数都是形如$\lfloor\cfrac{n}{x}\rfloor$的，当这个值大于$n^{\frac{2}{3}}$，即$x<n^{\frac{1}{3}}$时，我们才会到哈希表里查询。因此我们可以令`ans[x]`表示$S(\lfloor\cfrac{n}{x}\rfloor)$。具体代码我就不写了（
 

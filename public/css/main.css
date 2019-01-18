@@ -1851,7 +1851,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #e47008;
+  background: #38cd4e;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2636,4 +2636,15 @@ hr {
     width: auto;
     text-align: center;
   }
+}
+.hider_title {
+  font-family: "Arima Madurai";
+  cursor: pointer;
+  color: #5e72e4;
+}
+.close:after {
+  content: "";
+}
+.open:after {
+  content: "";
 }
