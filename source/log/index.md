@@ -29,4 +29,7 @@ mathjax: true
   - 新增了SnoWY的blog
   - 更新了asuldb的blog地址
   - 字体又炸了（
+- 2019-03-06
+  - 新增了ctz的blog
+  - 点击鼠标时加入了一些~~奇怪的~~特效
 - To Be Continued

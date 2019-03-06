@@ -188,7 +188,8 @@ links_title: 以下全部都是大佬
 links_layout: block
 # links_layout: inline
 links:
-  asuldb(Luogu): https://www.cnblogs.com/asuldb
+  asuldb(CNBlog): https://www.cnblogs.com/asuldb
+  ctz(GitHub): https://ctz45562.github.io/
   feifanbaijun(CSDN): https://me.csdn.net/feifanbaijun
   hachimanjy(GitHub): https://hachimanjy.github.io/
   Juan_feng(Luogu): https://www.luogu.org/blog/66965/
@@ -204,7 +205,7 @@ avatar:
   # in theme directory(source/images): /images/Challestend.png
   # in site  directory(source/uploads): /uploads/avatar.gif
   # You can also use other linking images.
-  url: /images/Challestend.png
+  url: /images/Remilia_.png
   # If true, the avatar would be dispalyed in circle.
   rounded: true
   # The value of opacity should be choose from 0 to 1 to set the opacity of the avatar.
@@ -965,3 +966,6 @@ vendors:
 css: css
 js: js
 images: images
+
+# Fireworks
+fireworks: true

@@ -3,8 +3,8 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 空を喰らう幽霊塔
-subtitle: どうか醜いくらいに美しい愛で、この心を抉ってくれよ。
+title: CLT'S BLOG
+subtitle: QAQ
 description: A juruo OIer from SD province.
 keywords:
 author: Challestend Rehtorbegnaro
@@ -42,7 +42,7 @@ highlight:
   enable: true
   line_number: true
   auto_detect: false
-  tab_replace:
+  tab_replace: "    "
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')

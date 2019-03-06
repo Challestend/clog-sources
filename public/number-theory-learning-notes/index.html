@@ -120,7 +120,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="一些乱七八糟的数论">
 <meta property="og:url" content="https://github.com/Challestend/number-theory-learning-notes/index.html">
-<meta property="og:site_name" content="空を喰らう幽霊塔">
+<meta property="og:site_name" content="CLT&#39;S BLOG">
 <meta property="og:description" content="最近在洛谷日报的待审核列表里翻到了杜教筛的相关内容，打算连着之前的卷积反演啥的一起复习一下。 抄袭来源参考文献：  铃悬的数学小讲堂——狄利克雷卷积与莫比乌斯反演 浅谈杜教筛 铃悬的数学小讲堂——杜教筛">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-02-13T00:16:28.185Z">
@@ -130,7 +130,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="空を喰らう幽霊塔" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="CLT'S BLOG" type="application/atom+xml" />
 
 
 
@@ -145,7 +145,7 @@
   };
 </script>
 
-  <title>一些乱七八糟的数论 | 空を喰らう幽霊塔</title>
+  <title>一些乱七八糟的数论 | CLT'S BLOG</title>
   
 
 
@@ -202,13 +202,13 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">空を喰らう幽霊塔</span>
+        <span class="site-title">CLT'S BLOG</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
     
       
-        <p class="site-subtitle">どうか醜いくらいに美しい愛で、この心を抉ってくれよ。</p>
+        <p class="site-subtitle">QAQ</p>
       
     
   </div>
@@ -363,11 +363,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Challestend Rehtorbegnaro">
       <meta itemprop="description" content="A juruo OIer from SD province.">
-      <meta itemprop="image" content="/images/Challestend.png">
+      <meta itemprop="image" content="/images/Remilia_.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="空を喰らう幽霊塔">
+      <meta itemprop="name" content="CLT'S BLOG">
     </span>
 
     
@@ -474,7 +474,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">10523</span>
+                <span title="本文字数">10601</span>
               
 
               
@@ -636,7 +636,7 @@ S(n)&=g(1)S(n)\\
 <p>我们来分析一下$\lfloor\cfrac{n}{i}\rfloor$。如果$1\leqslant i\leqslant\sqrt{n}$，因为$i$只有$\sqrt{n}$种不同的取值，$\lfloor\cfrac{n}{i}\rfloor$同样也只有$\sqrt{n}$种不同的取值。如果$\sqrt{n}&lt;i\leqslant n$，$1\leqslant\lfloor\cfrac{n}{i}\rfloor&lt;\sqrt{n}$，又因为要向下取整，自然也只有$\sqrt{n}$种不同的取值。如果我们能够把$\lfloor\cfrac{n}{i}\rfloor$相同的$i$一起计算，就能够将时间杂度优化到$O(\sqrt{n})$。</p>
 <p>大体代码如下：</p>
 <div><div class="fold_hider"><div class="close hider_title">Toggle Code</div></div><div class="fold">
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(re <span class="keyword">int</span> l=<span class="number">1</span>,r;l&lt;=n;l=r+<span class="number">1</span>)&#123;</span><br><span class="line">	r=n/(n/l);</span><br><span class="line">	<span class="comment">//......</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(re <span class="keyword">int</span> l=<span class="number">1</span>,r;l&lt;=n;l=r+<span class="number">1</span>)&#123;</span><br><span class="line">    r=n/(n/l);</span><br><span class="line">    <span class="comment">//......</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </div></div>
 <p>关于$r$的这个上界是怎么来的，我并不会证（</p>
@@ -652,7 +652,7 @@ O(\sum\limits_{i=1}^{\sqrt{n}}\sqrt{i}+\sqrt{\lfloor\cfrac{n}{i}\rfloor})&=O(\su
 <p>举个例子，就比如说我们要求</p>
 <script type="math/tex; mode=display">\sum\limits_{i=1}^{n}\varphi(i)</script><p>我们取$f=\varphi,g=1$，这样根据$\varphi$的性质，$f\times g=id$。不难看出$g$与$f\times g$的前缀和都可以$O(1)$求。具体的代码实现差不多长这样：</p>
 <div><div class="fold_hider"><div class="close hider_title">Toggle Code</div></div><div class="fold">
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">getSum</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n&lt;=maxn)</span><br><span class="line">		<span class="keyword">return</span> phi[n];</span><br><span class="line">	<span class="comment">//phi是提前线性筛好的前缀和</span></span><br><span class="line">	<span class="keyword">if</span>(ans.count(n))</span><br><span class="line">		<span class="keyword">return</span> ans[n];</span><br><span class="line">	<span class="comment">//ans用来实现记忆化的哈希表，比如说unordered_map</span></span><br><span class="line">	re <span class="keyword">long</span> <span class="keyword">long</span> res=<span class="number">1L</span>L*n*(n+<span class="number">1</span>)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="comment">//f*g的前缀和</span></span><br><span class="line">	<span class="keyword">for</span>(re <span class="keyword">int</span> l=<span class="number">2</span>,r;l&lt;=n;l=r+<span class="number">1</span>)&#123;</span><br><span class="line">	<span class="comment">//注意要从2开始</span></span><br><span class="line">		r=n/(n/l);</span><br><span class="line">		res-=(r-l+<span class="number">1</span>)*getSum(n/l);</span><br><span class="line">		<span class="comment">//r-l+1是g的前缀和</span></span><br><span class="line">		<span class="comment">//像这样递归+记忆化求解f的前缀和</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans[n]=res;</span><br><span class="line">	<span class="comment">//返回的时候不要忘记存一下</span></span><br><span class="line">	<span class="comment">//就比如说我就忘过一次（</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">getSum</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=maxn)</span><br><span class="line">        <span class="keyword">return</span> phi[n];</span><br><span class="line">    <span class="comment">//phi是提前线性筛好的前缀和</span></span><br><span class="line">    <span class="keyword">if</span>(ans.count(n))</span><br><span class="line">        <span class="keyword">return</span> ans[n];</span><br><span class="line">    <span class="comment">//ans用来实现记忆化的哈希表，比如说unordered_map</span></span><br><span class="line">    re <span class="keyword">long</span> <span class="keyword">long</span> res=<span class="number">1L</span>L*n*(n+<span class="number">1</span>)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="comment">//f*g的前缀和</span></span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> l=<span class="number">2</span>,r;l&lt;=n;l=r+<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="comment">//注意要从2开始</span></span><br><span class="line">        r=n/(n/l);</span><br><span class="line">        res-=(r-l+<span class="number">1</span>)*getSum(n/l);</span><br><span class="line">        <span class="comment">//r-l+1是g的前缀和</span></span><br><span class="line">        <span class="comment">//像这样递归+记忆化求解f的前缀和</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans[n]=res;</span><br><span class="line">    <span class="comment">//返回的时候不要忘记存一下</span></span><br><span class="line">    <span class="comment">//就比如说我就忘过一次（</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </div></div>
 <p>以及，不用哈希表也是可以的。因为我们查询的数都是形如$\lfloor\cfrac{n}{x}\rfloor$的，当这个值大于$n^{\frac{2}{3}}$，即$x&lt;n^{\frac{1}{3}}$时，我们才会到哈希表里查询。因此我们可以令<code>ans[x]</code>表示$S(\lfloor\cfrac{n}{x}\rfloor)$。具体代码我就不写了（</p>
@@ -810,7 +810,7 @@ id\times\mu&=\varphi\times 1\times\mu\\
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/images/Challestend.png"
+                src="/images/Remilia_.png"
                 alt="Challestend Rehtorbegnaro" />
             
               <p class="site-author-name" itemprop="name">Challestend Rehtorbegnaro</p>
@@ -841,7 +841,11 @@ id\times\mu&=\varphi\times 1\times\mu\\
               <ul class="links-of-blogroll-list">
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://www.cnblogs.com/asuldb" title="asuldb(Luogu)" target="_blank">asuldb(Luogu)</a>
+                    <a href="https://www.cnblogs.com/asuldb" title="asuldb(CNBlog)" target="_blank">asuldb(CNBlog)</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ctz45562.github.io/" title="ctz(GitHub)" target="_blank">ctz(GitHub)</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
@@ -940,7 +944,7 @@ id\times\mu&=\varphi\times 1\times\mu\\
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">148665</span>
+    <span title="站点总字数">162438</span>
   
 
   
@@ -951,7 +955,7 @@ id\times\mu&=\varphi\times 1\times\mu\\
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">248 分钟</span>
+    <span title="站点阅读时长">271 分钟</span>
   
 
   <span class="post-meta-divider">|</span>
@@ -1584,6 +1588,11 @@ id\times\mu&=\varphi\times 1\times\mu\\
 
 
 
-  <a href="https://github.com/Challestend"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <a href="https://github.com/Challestend"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas>
+    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+    <script type="text/javascript" src="/js/src/fireworks.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
 </body>
 </html>
