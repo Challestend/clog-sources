@@ -214,8 +214,6 @@ $$h(n,a,b,c)=\begin{cases}
 
 另外写的时候注意三个函数值要套在结构体里一起算，不然还是会T。
 
-{% fold "Toggle Code" %}
-
 ```cpp
 #include<cstdio>
 #define re register
@@ -336,8 +334,6 @@ int main(){
 }
 ```
 
-{% endfold %}
-
 那么问题来了，这个东西有什么用啊。
 
 ~~没啥用（~~
@@ -367,8 +363,6 @@ $$\sum_{i=L}^{R}ai\operatorname{mod}b=\sum_{i=L}^{R}\left(ai-\lfloor\cfrac{ai}{b
 然后把一些没必要用或者是不能用`__int128_t`的改成`signed`即可。
 
 代码还是有必要贴一下的。
-
-{% fold "Toggle Code" %}
 
 ```cpp
 #include<cstdio>
@@ -517,5 +511,3 @@ signed main(){
 	return 0;
 }
 ```
-
-{% endfold %}

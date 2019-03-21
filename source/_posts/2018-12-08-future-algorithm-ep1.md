@@ -58,8 +58,6 @@ mathjax: true
 
 不过代码写出来有点长的：
 
-{% fold "Toggle Code" %}
-
 ```cpp
 #include<cstdio>
 #include<cstring>
@@ -353,8 +351,6 @@ int main(){
 	return 0;
 }
 ```
-
-{% endfold %}
 
 我还没写啥呢咋就$12\text{KB}$了（
 

@@ -31,8 +31,6 @@ emmmmmm……
 
 就比如说，下面是我第一次交的程序的主程序部分。
 
-{% fold "Toggle Code" %}
-
 ```cpp
 for(re int i=1;i<=m;++i){
 	int opt,x,y;
@@ -67,8 +65,6 @@ for(re int i=1;i<=m;++i){
 }
 ```
 
-{% endfold %}
-
 然后我Splay节点的内部信息甚至开成了`unsigned`，excuse me？？？
 
 ~~不这个东西这不是我写的（~~
@@ -92,8 +88,6 @@ for(re int i=1;i<=m;++i){
 我们可以对于`ans0`中是$1$的那些位，提取出`rc->ans1`的对应位，对于`ans0`中是$0$的那些位，提取出`rc->ans0`的对应位。
 
 然后`ans1`也类似处理就行了。
-
-{% fold "Toggle Code" %}
 
 ```cpp
 struct SplayNode{
@@ -121,8 +115,6 @@ struct SplayNode{
 	}
 };
 ```
-
-{% endfold %}
 
 但是还有一个问题是，LCT在连边和提取路径时需要`makeRoot`，也就是说需要区间翻转。
 

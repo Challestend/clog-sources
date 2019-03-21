@@ -88,8 +88,6 @@ $$F(x,0)=\sum_{i=2}^{x}f^{\prime}(i)$$
 
 具体实现细节我说不清，看代码吧（
 
-{% fold "Toggle Code" %}
-
 ```cpp
 cltstream::read(n);
 sq=sqrt(n);
@@ -126,8 +124,6 @@ for(re int j=1;j<=g[0];++j)
 	}
 ```
 
-{% endfold %}
-
 这一部分的时间复杂度已被证明是$O(\cfrac{n^{\tfrac{3}{4}}}{\log n})$。~~然而看上去很奇怪（~~
 
 ### 第二部分
@@ -156,8 +152,6 @@ $$S(x,y)=F(x,+\infty)-\sum\limits_{i=1}^{y-1}f(\mathbb{P}_{i})+\sum_{i=y}^{\math
 
 然后暴力搜，记忆化都不需要，时间复杂度还是$O(\cfrac{n^{\tfrac{3}{4}}}{\log n})$。~~就很神奇（~~
 
-{% fold "Toggle Code" %}
-
 ```cpp
 int S(re int x,re int y){
 	if(x<=1||g[y]>x)
@@ -174,8 +168,6 @@ int S(re int x,re int y){
 }
 ```
 
-{% endfold %}
-
 ### [「Luogu-P4213」「模板」杜教筛（Sum）](https://www.luogu.org/problemnew/show/P4213)
 
 首先我们有
@@ -187,8 +179,6 @@ $$\mu(p)=-1$$
 然后$\text{id}$和$1$都是能$O(1)$求前缀和完全积性函数，因此可以用min_25筛搞。
 
 说起来比较麻烦，min_25筛不结合代码大概也很难理解，所以说直接上代码（
-
-{% fold "Toggle Code" %}
 
 ```cpp
 #include<cstdio>
@@ -319,8 +309,7 @@ int main(){
 	clop();
 	return 0;
 }
-```
-{% endfold %}
+``
 
 ![](/images/TIM截图20190214152934.png)
 
@@ -369,8 +358,6 @@ $$f(p)=p\otimes 1=\begin{cases}
 
 关于次大质因数大于$\mathbb{P}_{y-1}$的，还是枚举递归暴力搜。然后还是没有算$f(\mathbb{P}_{i}^{j})$，手动加。
 
-{% fold "Toggle Code" %}
-
 ```cpp
 long long S(re long long n,re long long x,re int y){
 	if(x<=1||g[y]>x)
@@ -385,8 +372,6 @@ long long S(re long long n,re long long x,re int y){
 	}
 }
 ```
-
-{% endfold %}
 
 [提交记录](http://uoj.ac/submission/324057)。
 

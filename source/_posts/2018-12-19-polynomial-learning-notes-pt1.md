@@ -185,8 +185,6 @@ F(\omega_{n}^{k+\frac{n}{2}})&=F_{1}(\omega_{n}^{2k+n})+\omega_{n}^{k+\frac{n}{2
 
 简单地贴一下代码：
 
-{% fold "Toggle Code" %}
-
 ```cpp
 void work(complex* F,int n){
 	if(n==1)
@@ -206,8 +204,6 @@ void work(complex* F,int n){
 	}
 }
 ```
-
-{% endfold %}
 
 不过，以上代码是我现写出来的，~~保证其不正确性~~不保证其正确性。
 
@@ -237,20 +233,14 @@ void work(complex* F,int n){
 
 我们可以$O(n)$地处理处每个数的镜像：
 
-{% fold "Toggle Code" %}
-
 ```cpp
 for(int i=0;i<n;++i)
 	rev[i]=(rev[i>>1]>>1)|((i&1)?(n>>1):0);
 ```
 
-{% endfold %}
-
 中间有一个位或运算符，我们以它为分界线，将上面这行代码分成左右两部分。左边就是$i$这个数除了最后一位以外的所有位的镜像；右边特判了一下$i$的最后一位是否为$1$，如果是的话，就在最高位补一个$1$。
 
 接下来的步骤我不是很能解释得清楚，因为我也是背的板子。总之这个东西写出来差不多长这样：
-
-{% fold "Toggle Code" %}
 
 ```cpp
 void work(complex* F,int n){
@@ -271,8 +261,6 @@ void work(complex* F,int n){
 	}
 }
 ```
-
-{% endfold %}
 
 那么现在还差最后一步，将点值表达转回系数表达。我们将$F(\omega_{n}^{0}),F(\omega_{n}^{1}),\cdots,F(\omega_{n}^{n-1})$分别记为$y_{0},y_{1},\cdots,y_{n-1}$，我们求点值的过程可以用矩阵表达成这样：
 
@@ -345,8 +333,6 @@ complex unit(cos(Pi/p),tp*sin(Pi/p));
 然后调用时再传一个参数`tp`进去。`tp=1`表示是系数转点值，`tp=-1`表示是点值转系数。
 
 完整代码如下：
-
-{% fold "Toggle Code" %}
 
 ```cpp
 #include<cstdio>
@@ -426,8 +412,6 @@ int main(){
 }
 ```
 
-{% endfold %}
-
 ~~不要问我`cltstream`哪去了（~~
 
 然后您就可以切掉这道[板子题](https://www.luogu.org/problemnew/show/P3803)了。
@@ -476,8 +460,6 @@ E_{i}&=\sum_{j=0}^{i-1}F[j]G[i-j]\\
 对于$j>i$的情况，我们将数组$F$左右翻转，然后继续套板子就行（
 
 具体还是看代码吧：
-
-{% fold "Toggle Code" %}
 
 ```cpp
 #include\lt cstdio>
@@ -562,8 +544,6 @@ int main(){
 }
 ```
 
-{% endfold %}
-
 # 数论变换（Number-Theoretic Transformation）
 
 注意到朴素的FFT使用的是单位复根。然而它们有一个十分大的缺陷，就是必须要用`double`存。这会带来精度上的误差，一个直接的结果就是，对于只有整数参与的多项式乘法，跑完FFT却会出现小数。
@@ -613,8 +593,6 @@ $$\omega_{2^{k}}=\omega_{2^{k+1}}^{2}$$
 然后我们把FFT板子里的单位复根全部换成原根，运算换成模意义下的就行了。
 
 代码：
-
-{% fold "Toggle Code" %}
 
 ```cpp
 #include<cstdio>
@@ -733,7 +711,5 @@ int main(){
 	return 0;
 }
 ```
-
-{% endfold %}
 
 以上。

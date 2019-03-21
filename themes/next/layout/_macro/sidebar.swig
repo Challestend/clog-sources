@@ -101,11 +101,6 @@
             {% endif %}
           #}
 
-          <div id="music163player">
-            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=300 src="//music.163.com/outchain/player?type=0&id=2535864400&auto=0&height=430"></iframe>
-          </div>
-
-
           {% if theme.social %}
             <div class="links-of-author motion-element">
               {% for name, link in theme.social %}

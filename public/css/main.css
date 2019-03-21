@@ -883,7 +883,6 @@ pre .javascript .function {
 .post-body .tabs ul.nav-tabs {
   margin: 0;
   padding: 0;
-  display: -ms-flexbox;
   display: flex;
   margin-bottom: -1px;
 }
@@ -1267,6 +1266,7 @@ pre .javascript .function {
 .post-sticky-flag {
   display: inline-block;
   font-size: 16px;
+  -webkit-transform: rotate(30deg);
   transform: rotate(30deg);
 }
 .use-motion .post-block,
@@ -1494,6 +1494,7 @@ pre .javascript .function {
   left: 0;
   background-color: #000;
   visibility: hidden;
+  -webkit-transform: scaleX(0);
   transform: scaleX(0);
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
@@ -1501,6 +1502,7 @@ pre .javascript .function {
 }
 .posts-expand .post-title-link:hover::before {
   visibility: visible;
+  -webkit-transform: scaleX(1);
   transform: scaleX(1);
 }
 .posts-expand .post-title-link .fa {
@@ -1851,7 +1853,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #4affb9;
+  background: #c15cff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2003,17 +2005,39 @@ pre .javascript .function {
 .cc-license img {
   display: inline-block;
 }
-@keyframes iconAnimate {
+@-webkit-keyframes iconAnimate {
   0%, 100% {
+    -webkit-transform: scale(1);
     transform: scale(1);
   }
   10%, 30% {
+    -webkit-transform: scale(0.9);
     transform: scale(0.9);
   }
   20%, 40%, 60%, 80% {
+    -webkit-transform: scale(1.1);
     transform: scale(1.1);
   }
   50%, 70% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+@keyframes iconAnimate {
+  0%, 100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  10%, 30% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+  20%, 40%, 60%, 80% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  50%, 70% {
+    -webkit-transform: scale(1.1);
     transform: scale(1.1);
   }
 }
@@ -2123,6 +2147,8 @@ pre .javascript .function {
   position: absolute;
   left: 50%;
   top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   color: #ccc;
 }
@@ -2270,20 +2296,36 @@ pre .javascript .function {
   padding: 15px 0 15px 10px;
 }
 #schedule ul#event-list li.event-now h2.event-summary:before {
+  -webkit-transform: scale(1.2);
   transform: scale(1.2);
   color: #fff;
-  animation: dot-flash 1s alternate infinite ease-in-out;
+  -webkit-animation: dot-flash 1s alternate infinite ease-in-out;
+          animation: dot-flash 1s alternate infinite ease-in-out;
 }
 #schedule ul#event-list li.event-now * {
   color: #fff !important;
 }
-@keyframes dot-flash {
+@-webkit-keyframes dot-flash {
   from {
     opacity: 1;
+    -webkit-transform: scale(1.1);
     transform: scale(1.1);
   }
   to {
     opacity: 0;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@keyframes dot-flash {
+  from {
+    opacity: 1;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  to {
+    opacity: 0;
+    -webkit-transform: scale(1);
     transform: scale(1);
   }
 }
@@ -2636,6 +2678,9 @@ hr {
     width: auto;
     text-align: center;
   }
+}
+.post-body {
+  text-align: left !important;
 }
 .hider_title {
   font-family: "Arima Madurai";

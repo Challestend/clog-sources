@@ -27,8 +27,6 @@ mathjax: true
 
 珂朵莉树存储的是区间，而且每个区间内的所有值都相同，也就是说，我们需要存储的是一个区间的左右端点和值。我们可以写一个结构体：
 
-{% fold "Toggle Code" %}
-
 ```cpp
 struct node{
     int l,r;
@@ -49,18 +47,12 @@ inline bool operator<(node p,node q){
 }
 ```
 
-{% endfold %}
-
 然后我们就可以初始化了。对于这道题，我们可以像这样初始化：
-
-{% fold "Toggle Code" %}
 
 ```cpp
 for(re int i=1;i<=n;++i)
     s.insert(node(i,i,rnd()%maxval+1));
 ```
-
-{% endfold %}
 
 初始化完了？
 
@@ -73,8 +65,6 @@ std::<set>::iterator split(int pos)
 ```
 
 作用是分离出一个左端点为`pos`的区间并返回它的迭代器。它的具体实现如下：
-
-{% fold "Toggle Code" %}
 
 ```cpp
 #define _it std::set<node>::iterator
@@ -96,8 +86,6 @@ inline _it split(int pos){
 }
 ```
 
-{% endfold %}
-
 虽然只是把一个区间砍成两半又放回去了，但我们并不是在做无用功，因为我们把原区间与操作无关的部分分离开了。
 
 `insert`函数的返回值类型是`std::pair<std::_Rb_tree_const_iterator<node>,bool>`~~，别问我啥意思我也不懂，我只是从它的错误报告里抄过来了~~，因此我们需要加个`.first`。
@@ -112,8 +100,6 @@ void assign(int l,int r,int x)
 
 将区间$[l,r]$推平，全部赋成$x$。它的具体实现如下：
 
-{% fold "Toggle Code" %}
-
 ```cpp
 inline void assign(int l,int r,int x){
     _it itr=split(r+1),itl=split(l);
@@ -126,8 +112,6 @@ inline void assign(int l,int r,int x){
 }
 ```
 
-{% endfold %}
-
 这就完了？
 
 这就完了。
@@ -138,8 +122,6 @@ inline void assign(int l,int r,int x){
 
 操作一，一个一个区间地拿出来加。
 
-{% fold "Toggle Code" %}
-
 ```cpp
 inline void IntervalAdd(int l,int r,int x){
     _it itr=split(r+1),itl=split(l);
@@ -148,15 +130,11 @@ inline void IntervalAdd(int l,int r,int x){
 }
 ```
 
-{% endfold %}
-
 就这么几行？
 
 就这么几行。
 
 操作三，把所有区间取出来，然后直接调用`std::sort`。
-
-{% fold "Toggle Code" %}
 
 ```cpp
 inline long long IntervalXth(int l,int r,int x){
@@ -174,11 +152,7 @@ inline long long IntervalXth(int l,int r,int x){
 }
 ```
 
-{% endfold %}
-
 操作四，暴力快速幂。
-
-{% fold "Toggle Code" %}
 
 ```cpp
 inline int IntervalXpow(int l,int r,int x,int y){
@@ -189,8 +163,6 @@ inline int IntervalXpow(int l,int r,int x,int y){
     return res;
 }
 ```
-
-{% endfold %}
 
 您可能会想，这么暴力的东西，时间复杂度确定不会动不动原地起爆？
 
@@ -217,8 +189,6 @@ inline int IntervalXpow(int l,int r,int x,int y){
 > 以及，删掉了某些内容（
 
 于是，接下来是珂朵莉树的完整板子。
-
-{% fold "Toggle Code" %}
 
 ```cpp
 #include<cstdio>
@@ -393,7 +363,5 @@ int main(){
     return 0;
 }
 ```
-
-{% endfold %}
 
 以上。

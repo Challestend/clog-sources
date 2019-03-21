@@ -5,7 +5,7 @@ title: 题目组试题选讲
 tags:
   - 洛谷
   - 题目组
-  - 毒瘤题
+  - 毒瘤
 categories:
   - 题解
 password: FLS&&8]T:$f3[yrtt!osE+K&3"`?IlA{
@@ -35,8 +35,6 @@ message: 输入密码继续阅读
 操作$3$就不必多说了，散块暴力找，整块`lower_bound`。
 
 不过说实话，写起来挺麻烦的。也懒得看以前我写的代码了，直接贴出来吧。
-
-{% fold "Toggle Code" %}
 
 ```cpp
 #include<cstdio>
@@ -334,8 +332,6 @@ int main(){
     return 0;
 }
 ```
-
-{% endfold %}
 
 ### [「T53987」ZJF日记](https://www.luogu.org/problemnew/show/T53987)
 

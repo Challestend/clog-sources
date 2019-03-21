@@ -26,8 +26,6 @@ mathjax: true
 
 然后是毒瘤的下推标记。
 
-{% fold "Toggle Code" %}
-
 ```cpp
 addv[son]+=A[father]*suma[son]+B[father]*sumb[son]+addv[father];
 //就是上面这句qaq现在还是一脸懵逼qaq
@@ -37,11 +35,7 @@ adda[son]+=adda[father];
 addb[son]+=addf[father];
 ```
 
-{% endfold %}
-
 其实我也不知道我上面在扯些啥，所以以下是代码~~，反正应该没人能看懂我的清奇写法（~~
-
-{% fold "Toggle Code" %}
 
 ```cpp
 #include<cstdio>
@@ -270,8 +264,6 @@ int main(){
 	return 0;
 }
 ```
-
-{% endfold %}
 
 大概是我太菜了不适合做这种毒瘤题吧qaq
 

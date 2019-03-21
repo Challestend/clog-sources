@@ -54,8 +54,6 @@ password:
 
 为了方便，我先放出我Splay的代码实现
 
-{% fold "Toggle Code" %}
-
 ```cpp
 struct SplayNode{
 	SplayNode *ftr,*ls,*rs;
@@ -129,8 +127,6 @@ inline void splay(re SplayNode* p){
 }
 ```
 
-{% endfold %}
-
 ### access
 
 首先我们有一个基本操作
@@ -173,8 +169,6 @@ void access(SplayNode*)
 
 代码实现：
 
-{% fold "Toggle Code" %}
-
 ```cpp
 inline void access(re SplayNode* p){
 	splay(p);
@@ -192,8 +186,6 @@ inline void access(re SplayNode* p){
 }
 ```
 
-{% endfold %}
-
 ### findRoot
 
 有了`access`，我们就可以随心所欲的瞎搞了。比如说
@@ -206,8 +198,6 @@ SplayNode* findRoot(SplayNode*)
 
 因为`access`的最后自带了一个`splay`，这个时候给定节点已经是Splay的根节点了，我们直接循环跳左儿子指针即可。
 
-{% fold "Toggle Code" %}
-
 ```cpp
 inline SplayNode* findRoot(re SplayNode* p){
 	access(p);
@@ -216,8 +206,6 @@ inline SplayNode* findRoot(re SplayNode* p){
 	return p;
 }
 ```
-
-{% endfold %}
 
 ### makeRoot && split
 
@@ -243,8 +231,6 @@ void split(SplayNode*,SplayNode*)
 
 抽出给定的两个节点之间的路径。不过虽然说模板题保证联通，还是有必要稍微考虑一下不连通的情况的。
 
-{% fold "Toggle Code" %}
-
 ```cpp
 inline void makeRoot(re SplayNode* p){
 	access(p);
@@ -256,8 +242,6 @@ inline void split(re SplayNode* p,re SplayNode* q){
 	access(q);
 }
 ```
-
-{% endfold %}
 
 ### link
 
@@ -271,8 +255,6 @@ void link(SplayNode*,SplayNode*)
 
 思路很简单。假设我们指定$x$和$y$两个节点，首先调用`makeRoot(x)`，然后检查`findRoot(y)`的返回值。如果不是$x$，说明两个节点不连通，将$x$的父指针指向$y$；否则，即`findRoot(y)==x`，说明两个节点联通，直接返回。
 
-{% fold "Toggle Code" %}
-
 ```cpp
 inline void link(re SplayNode* p,re SplayNode* q){
 	makeRoot(p);
@@ -280,8 +262,6 @@ inline void link(re SplayNode* p,re SplayNode* q){
 		p->ftr=q;
 }
 ```
-
-{% endfold %}
 
 ### cut
 
@@ -295,8 +275,6 @@ void cut(SplayNode*,SplayNode*)
 
 需要注意的是，两个节点$x$和$y$之间直接有边相连，不仅要求$x$与$y$联通，还要求它们在Splay中是相邻的两个节点。为了避免讨论深度的大小关系，我们先调用`makeRoot(x)`，此时$y$应该是$x$的右儿子，并且它不能有左儿子。
 
-{% fold "Toggle Code" %}
-
 ```cpp
 inline void cut(re SplayNode* p,re SplayNode* q){
 	makeRoot(p);
@@ -307,13 +285,9 @@ inline void cut(re SplayNode* p,re SplayNode* q){
 }
 ```
 
-{% endfold %}
-
 把上面这么一些东西写好之后，再根据题目要求搞一搞，您就可以切掉模板题了。
 
 完整板子：
-
-{% fold "Toggle Code" %}
 
 ```cpp
 #include<cstdio>
@@ -573,8 +547,6 @@ int main(){\
 	return 0;
 }
 ```
-
-{% endfold %}
 
 ~~是不是感觉很好写呢（~~
 

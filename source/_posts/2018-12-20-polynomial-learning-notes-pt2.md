@@ -180,8 +180,6 @@ G&\equiv G_{0}-\cfrac{A(G_{0})}{A{^\prime}(G_{0})}\\
 
 然后把以上提到的所有板子全都复制过来就行了（
 
-{% fold "Toggle Code" %}
-
 ```cpp
 #include<cstdio>
 #include<cstring>
@@ -347,8 +345,6 @@ int main(){
 	return 0;
 }
 ```
-
-{% endfold %}
 
 ### 多项式开平方根
 

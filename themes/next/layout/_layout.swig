@@ -118,10 +118,5 @@
   {% include '_third-party/copy-code.swig' %}
 
   <a href="https://github.com/Challestend"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
-  {% if theme.fireworks %}
-    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas>
-    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
-    <script type="text/javascript" src="/js/src/fireworks.js"></script>
-  {% endif %}
 </body>
 </html>

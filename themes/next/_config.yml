@@ -122,9 +122,7 @@ menu:
   archives: /archives/ || archive
   categories: /categories/ || th
   tags: /tags/ || tags
-  # schedule: /schedule/ || calendar
-  # sitemap: /sitemap.xml || sitemap
-  # commonweal: /404/ || heartbeat
+  chaoyu: /chaoyu/ || mars
   log: /log/ || book
 
 # Enable/Disable menu icons / item badges.
@@ -188,17 +186,17 @@ links_title: 以下全部都是大佬
 links_layout: block
 # links_layout: inline
 links:
-  asuldb(CNBlog): https://www.cnblogs.com/asuldb
-  ctz(GitHub): https://ctz45562.github.io/
-  feifanbaijun(CSDN): https://me.csdn.net/feifanbaijun
-  hachimanjy(GitHub): https://hachimanjy.github.io/
-  Juan_feng(Luogu): https://www.luogu.org/blog/66965/
-  rbzno1(GitHub): https://rbzno1.github.io/
-  shzr(CNBlog): http://www.cnblogs.com/shzr/
-  SnoWY(CNBlog): https://www.cnblogs.com/snowy2002
-  Steve_braveman(GitHub): https://stevebraveman.github.io/
-  SuperGoodGame(CNBlog): https://www.cnblogs.com/SuperGoodGame/
-  Taduro(GitHub): https://dftyem.github.io/
+  asuldb: https://www.cnblogs.com/asuldb
+  ctz: https://ctz45562.github.io/
+  feifanbaijun: https://me.csdn.net/feifanbaijun
+  hachimanjy: https://hachimanjy.github.io/
+  Juan_feng: https://www.luogu.org/blog/66965/
+  rbzno1: https://rbzno1.github.io/
+  shzr: http://www.cnblogs.com/shzr/
+  SnoWY: https://www.cnblogs.com/snowy2002
+  Steve_braveman: https://stevebraveman.github.io/
+  SuperGoodGame: https://www.cnblogs.com/SuperGoodGame/
+  Taduro: https://dftyem.github.io/
 
 # Sidebar Avatar
 avatar:
@@ -506,7 +504,7 @@ changyan:
 # You can get your appid and appkey from https://leancloud.cn
 # more info please open https://valine.js.org
 valine:
-  enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.
+  enable: false # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.
   appid: TtPyFgABDb2TgsRXSk8GnMw4-gzGzoHsz # your leancloud application appid
   appkey: AsC1KhMpJWDLQrvVAFKp50Tg # your leancloud application appkey
   notify: false # mail notifier , https://github.com/xCss/Valine/wiki
@@ -536,6 +534,15 @@ gitment:
   client_secret: # EITHER this or proxy_gateway, Github access secret token for the Gitment
   proxy_gateway: # Address of api proxy, See: https://github.com/aimingoo/intersect
   redirect_protocol: # Protocol of redirect_uri with force_redirect_protocol when mint enabled
+
+gitalk:
+  enable: true
+  clientID: 408bebf9cf98eab8ea73
+  clientSecret: 9b3b31b9d5fd446513513ec24291e0008ec20f06
+  repo: Challestend.github.io
+  owner: Challestend
+  admin: Challestend
+  pagerDirection: first
 
 # Baidu Share
 # Available value:
@@ -836,7 +843,13 @@ pace_theme: pace-theme-center-simple
 
 # Canvas-nest
 # Dependencies: https://github.com/theme-next/theme-next-canvas-nest
-canvas_nest: false
+canvas_nest:
+  enable: true
+  onmobile: true # display on mobile or not
+  color: '0,0,0' # RGB values, use ',' to separate
+  opacity: 10 # the opacity of line: 0~1
+  zIndex: -1 # z-index property of the background
+  count: 99 # the number of lines
 
 # JavaScript 3D library.
 # Dependencies: https://github.com/theme-next/theme-next-three
@@ -966,6 +979,3 @@ vendors:
 css: css
 js: js
 images: images
-
-# Fireworks
-fireworks: true

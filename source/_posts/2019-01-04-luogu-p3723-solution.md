@@ -56,8 +56,6 @@ $$\begin{aligned}
 
 以下是代码：
 
-{% fold "Toggle Code" %}
-
 ```cpp
 #include<cstdio>
 #include<cmath>
@@ -195,5 +193,3 @@ int main(){
 	return 0;
 }
 ```
-
-{% endfold %}

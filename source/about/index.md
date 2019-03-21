@@ -1,7 +1,7 @@
 ---
 title: 关于
 date: Undefined
-comments: false
+mathjax: true
 ---
 A juruo OIer from SD province.
 
@@ -13,5 +13,6 @@ Find me on
 - [LibreOJ](https://loj.ac/user/6666)
 - [UniversalOJ](http://uoj.ac/user/profile/Challestend)
 - [NowCoder](https://www.nowcoder.com/profile/514705863)
+- [51nod](https://www.51nod.com/User/Index.html#!#userId=182215)
 - [CodeForces](http://codeforces.com/profile/CLT)
 - [GitHub](https://github.com/Challestend)
