@@ -122,7 +122,6 @@ menu:
   archives: /archives/ || archive
   categories: /categories/ || th
   tags: /tags/ || tags
-  chaoyu: /chaoyu/ || mars
   log: /log/ || book
 
 # Enable/Disable menu icons / item badges.
@@ -236,7 +235,7 @@ sidebar:
   # If commented, will be default for:
   # Muse | Mist: 320
   # Pisces | Gemini: 240
-  width: 320
+  # width: 320
 
   # Sidebar Display, available value (only for Muse | Mist):
   #  - post    expand on posts automatically. Default.
