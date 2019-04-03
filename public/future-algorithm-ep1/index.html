@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-center-simple.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"fadeIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="分块天下第一！！！！！！！！！">
+<meta name="keywords" content="分块,树套树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「未来算法Episode I」严格根号分块实现树套树">
+<meta property="og:url" content="https://github.com/Challestend/future-algorithm-ep1/index.html">
+<meta property="og:site_name" content="Chromium">
+<meta property="og:description" content="分块天下第一！！！！！！！！！">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2018/12/08/5c0bb272768cf.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/08/5c0bb2c767fda.jpg">
+<meta property="og:updated_time" content="2019-03-25T11:06:01.295Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「未来算法Episode I」严格根号分块实现树套树">
+<meta name="twitter:description" content="分块天下第一！！！！！！！！！">
+<meta name="twitter:image" content="https://i.loli.net/2018/12/08/5c0bb272768cf.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Chromium" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://github.com/Challestend/future-algorithm-ep1/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>「未来算法Episode I」严格根号分块实现树套树 | Chromium</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chromium</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-id-card"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">34</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">7</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">50</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-log">
+    <a href="/log/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>更新日志</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Challestend/future-algorithm-ep1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Challestend Rehtorbegnaro">
+      <meta itemprop="description" content="A juruo OIer from SD province.">
+      <meta itemprop="image" content="/images/Remilia_.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chromium">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">「未来算法Episode I」严格根号分块实现树套树
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          
+
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-08 19:55:00" itemprop="dateCreated datePublished" datetime="2018-12-08T19:55:00+08:00">2018-12-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-25 19:06:01" itemprop="dateModified" datetime="2019-03-25T19:06:01+08:00">2019-03-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/未来算法/" itemprop="url" rel="index"><span itemprop="name">未来算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">13728</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">23 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>分块天下第一！！！！！！！！！</p>
+<a id="more"></a>
+<p>我也不知道我为什么要写这个玩意，大概是我真的被这个外挂一般的东西吓到了吧。</p>
+<p><a href="https://www.luogu.org/record/show?rid=14518116" target="_blank" rel="noopener"><img src="https://i.loli.net/2018/12/08/5c0bb272768cf.png" alt></a></p>
+<p><img src="https://i.loli.net/2018/12/08/5c0bb2c767fda.jpg" alt></p>
+<p>我们从头说起。点开上面的那个评测记录，我们可以看到一道树套树的模板题。</p>
+<p>先退一步来说，假如说我们去掉操作$3$，剩下的操作都可以用主席树来完成。</p>
+<p>然而麻烦的是，我们在树上存的是前缀和。想要修改的话，暴力的复杂度是单次$O(n\operatorname{log}n)$的。</p>
+<p>那我们就在外层套个树状数组，把修改$O(n\operatorname{log}n)$查询$O(\operatorname{log}n)$均摊成全部$O(\operatorname{log}^{2}n)$。</p>
+<p>然而，很遗憾，我不会树套树，一点都不会，就连上面的这段文字也是我瞎扯出来的。</p>
+<p>考虑<del>无敌的</del>分块。</p>
+<p>一般我们想到的分块就是在块内维护<code>std::set</code>。这样操作$3$可以做到$O(\operatorname{log}\sqrt{n})$，操作$1$、$4$、$5$可以做到$O(\sqrt{n}\operatorname{log}\sqrt{n})$。至于操作$2$，我们在外层套一个二分，然后检查二分到的数的排名是不是$k$，时间复杂度$O(\operatorname{log}10^{9}\sqrt{n}\operatorname{log}\sqrt{n})$。</p>
+<p>然而很明显的，这样做的效率十分低下，除了实现复杂度相对树套树小了一点以外没有任何优势。</p>
+<p>我们来看一下<a href="https://www.luogu.org/space/show?uid=56384" target="_blank" rel="noopener"><strong>Shadowice1984</strong></a>dalao在他的<a href="https://www.luogu.org/blog/ShadowassIIXVIIIIV/solution-p4119" target="_blank" rel="noopener">另一篇题解</a>中做出的评价：</p>
+<blockquote>
+<p>这其实是一个误区。主席树之所以采取了二分的思路来解决问题是因为我们要求回答单次询问做到$O(\operatorname{log}n)$的复杂度，这时候唯一的可行思路就是二分否则我们无法将复杂度控制在一个$\text{log}$之内。</p>
+<p>但是我们现在是使用分块解决问题。分块是有自己复杂度的，就是$O(\sqrt{n})$而不是$O(\operatorname{log}n)$，这意味着分块其实和$\text{log}$的数据结构以及二分法并不是很搭（因为分块的结构本质上就不支持二分）。如果我们需要强行嵌入$\text{log}$的数据结构的话在绝大部分情况下都会使复杂度凭空多出个$\text{log}$来，这在强调常数的根号算法中绝对是致命的。</p>
+</blockquote>
+<p>我也是从这位dalao的<a href="https://www.luogu.org/blog/ShadowassIIXVIIIIV/solution-p3380" target="_blank" rel="noopener">blog</a>里看到了严格根号分块实现树套树这种未来算法。</p>
+<p>主要思想其实不难理解，既然分块和$\text{log}$不适合放在一起，我们就再套个分块，或者说，把值域也分成块。</p>
+<p>定义<code>cnt1[i][j]</code>表示前$i$个块内有多少个元素的值在第$j$个块内，<code>cnt2[i][j]</code>表示前$i$个块内有多少个$j$（当然是离散化后的）。不难发现预处理出这两个数组的时间复杂度是$O((n+m)\sqrt{n})$的。</p>
+<p>然后我们来分析每个操作该怎么实现：</p>
+<ol>
+<li>首先考虑序列中的整块。从头开始扫一遍值域块，一直扫到给定数所在块的前一个块，然后再在给定数所在块内从头扫到给定数的前一个，查询扫过的值有多少落在这些整块内。剩下的边角块自然地暴力判断。</li>
+<li>还是从头扫一遍值域块，看看每个值域块内有多少数落在给定区间内，大概判断出答案在哪个值域块内。然后在这个值域块内再扫一遍即可。需要注意的是我们需要再开两个数组<code>tmp1</code>和<code>tmp2</code>来保存边角块的信息。</li>
+<li>直接$O(\sqrt{n})$暴力重构两个<code>cnt</code>就好。</li>
+<li>需要两个类似于操作$2$的临时数组，存储的信息也是类似的。首先在给定数所在值域块内<strong>从后往前扫</strong>，找到答案直接退出。否则还是<strong>从后往前扫所有值域块</strong>，找到第一个非空的块然后进去找。</li>
+<li>操作$4$换个方向即可。</li>
+</ol>
+<p>综上所述，该算法的时间复杂度为$O((n+m)\sqrt{n}+m\sqrt{n+m})$。当$n$，$m$取到极限值时，差不多是$38172068$，相比之下$O(m\operatorname{log}^{2}n)\approx 12183043$。看起来好像比不过树套树，实际上开个$\text{O}2$跑得比谁都快，正如一开始那张图所示。</p>
+<p>不过代码写出来有点长的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> re register</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 50000</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxm 50000</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxs 230</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> max(a,b) ((a)&gt;=(b)?(a):(b))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> min(a,b) ((a)&lt;=(b)?(a):(b))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lowbit(a) ((a)&amp;(-(a)))</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> cltstream&#123;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> size 1048576</span></span><br><span class="line">    <span class="keyword">char</span> cltin[size+<span class="number">1</span>],*ih=cltin,*it=cltin;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">char</span> <span class="title">gc</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">ifdef</span> ONLINE_JUDGE</span></span><br><span class="line">            <span class="keyword">if</span>(ih==it)&#123;</span><br><span class="line">                it=(ih=cltin)+fread(cltin,<span class="number">1</span>,size,<span class="built_in">stdin</span>);</span><br><span class="line">                <span class="keyword">if</span>(ih==it)</span><br><span class="line">                    <span class="keyword">return</span> EOF;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> *ih++;</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">            <span class="keyword">return</span> getchar();</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">char</span> cltout[size+<span class="number">1</span>],*oh=cltout,*ot=cltout+size;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pc</span><span class="params">(<span class="keyword">char</span> c)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(oh==ot)&#123;</span><br><span class="line">            fwrite(cltout,<span class="number">1</span>,size,<span class="built_in">stdout</span>);</span><br><span class="line">            oh=cltout;</span><br><span class="line">        &#125;</span><br><span class="line">        *oh++=c;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> clop() fwrite(cltstream::cltout,1,cltstream::oh-cltstream::cltout,stdout)</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">undef</span> size</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> _tp&gt;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(_tp&amp; x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sn=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">char</span> c=gc();</span><br><span class="line">        <span class="keyword">for</span>(;c!=<span class="number">45</span>&amp;&amp;(c&lt;<span class="number">48</span>||c&gt;<span class="number">57</span>)&amp;&amp;c!=EOF;c=gc());</span><br><span class="line">        <span class="keyword">if</span>(c==<span class="number">45</span>&amp;&amp;c!=EOF)</span><br><span class="line">            sn=<span class="number">-1</span>,c=gc();</span><br><span class="line">        <span class="keyword">for</span>(x=<span class="number">0</span>;c&gt;=<span class="number">48</span>&amp;&amp;c&lt;=<span class="number">57</span>&amp;&amp;c!=EOF;x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+(c^<span class="number">48</span>),c=gc());</span><br><span class="line">        x*=sn;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> _tp&gt;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(_tp x,<span class="keyword">char</span> text=<span class="number">-1</span>)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(x&lt;<span class="number">0</span>)</span><br><span class="line">            pc(<span class="number">45</span>),x=-x;</span><br><span class="line">        <span class="keyword">if</span>(!x)</span><br><span class="line">            pc(<span class="number">48</span>);</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">int</span> digit[<span class="number">22</span>];</span><br><span class="line">            <span class="keyword">for</span>(digit[<span class="number">0</span>]=<span class="number">0</span>;x;digit[++digit[<span class="number">0</span>]]=x%<span class="number">10</span>,x/=<span class="number">10</span>);</span><br><span class="line">            <span class="keyword">for</span>(;digit[<span class="number">0</span>];pc(digit[digit[<span class="number">0</span>]--]^<span class="number">48</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(text&gt;=<span class="number">0</span>)</span><br><span class="line">            pc(text);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m,sq1,sq2;</span><br><span class="line"><span class="keyword">int</span> id1[maxn+<span class="number">1</span>],id2[maxn+maxm+<span class="number">1</span>],p[maxn+maxm+<span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> a[maxn+<span class="number">1</span>],opt[maxm+<span class="number">1</span>][<span class="number">4</span>];</span><br><span class="line"><span class="keyword">int</span> cnt1[maxs+<span class="number">1</span>][(maxs&lt;&lt;<span class="number">1</span>)+<span class="number">1</span>],cnt2[maxs+<span class="number">1</span>][maxn+maxm+<span class="number">1</span>],tmp1[(maxs&lt;&lt;<span class="number">1</span>)+<span class="number">1</span>],tmp2[maxn+maxm+<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cltstream::read(n);</span><br><span class="line">    cltstream::read(m);</span><br><span class="line">    <span class="keyword">for</span>(;(sq1+<span class="number">1</span>)*(sq1+<span class="number">1</span>)&lt;=n;++sq1);</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        id1[i]=(i<span class="number">-1</span>)/sq1+<span class="number">1</span>;</span><br><span class="line">        cltstream::read(a[i]);</span><br><span class="line">        p[++p[<span class="number">0</span>]]=a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;++i)&#123;</span><br><span class="line">        cltstream::read(opt[i][<span class="number">0</span>]);</span><br><span class="line">        cltstream::read(opt[i][<span class="number">1</span>]);</span><br><span class="line">        cltstream::read(opt[i][<span class="number">2</span>]);</span><br><span class="line">        <span class="keyword">if</span>(opt[i][<span class="number">0</span>]!=<span class="number">3</span>)</span><br><span class="line">            cltstream::read(opt[i][<span class="number">3</span>]);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            p[++p[<span class="number">0</span>]]=opt[i][<span class="number">2</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">std</span>::sort(p+<span class="number">1</span>,p+p[<span class="number">0</span>]+<span class="number">1</span>);</span><br><span class="line">    p[<span class="number">0</span>]=<span class="built_in">std</span>::unique(p+<span class="number">1</span>,p+p[<span class="number">0</span>]+<span class="number">1</span>)-p<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;(sq2+<span class="number">1</span>)*(sq2+<span class="number">1</span>)&lt;=p[<span class="number">0</span>];++sq2);</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=p[<span class="number">0</span>];++i)</span><br><span class="line">        id2[i]=(i<span class="number">-1</span>)/sq2+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        a[i]=<span class="built_in">std</span>::lower_bound(p+<span class="number">1</span>,p+p[<span class="number">0</span>]+<span class="number">1</span>,a[i])-p;</span><br><span class="line">        ++cnt1[id1[i]][id2[a[i]]];</span><br><span class="line">        ++cnt2[id1[i]][a[i]];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=id1[n];++i)&#123;</span><br><span class="line">        <span class="keyword">for</span>(re <span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=id2[p[<span class="number">0</span>]];++j)</span><br><span class="line">            cnt1[i][j]+=cnt1[i<span class="number">-1</span>][j];</span><br><span class="line">        <span class="keyword">for</span>(re <span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=p[<span class="number">0</span>];++j)</span><br><span class="line">            cnt2[i][j]+=cnt2[i<span class="number">-1</span>][j];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;++i)&#123;</span><br><span class="line">        re <span class="keyword">int</span> l,r,x,ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">switch</span>(opt[i][<span class="number">0</span>])&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                l=opt[i][<span class="number">1</span>],r=opt[i][<span class="number">2</span>],x=<span class="built_in">std</span>::lower_bound(p+<span class="number">1</span>,p+p[<span class="number">0</span>]+<span class="number">1</span>,opt[i][<span class="number">3</span>])-p;</span><br><span class="line">                <span class="keyword">if</span>(id1[l]&lt;id1[r])&#123;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=l;j&lt;=id1[l]*sq1;++j)</span><br><span class="line">                        ans+=(a[j]&lt;x);</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=(id1[r]<span class="number">-1</span>)*sq1+<span class="number">1</span>;j&lt;=r;++j)</span><br><span class="line">                        ans+=(a[j]&lt;x);</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=<span class="number">1</span>;j&lt;id2[x];++j)</span><br><span class="line">                        ans+=cnt1[id1[r]<span class="number">-1</span>][j]-cnt1[id1[l]][j];</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=(id2[x]<span class="number">-1</span>)*sq2+<span class="number">1</span>;j&lt;x;++j)</span><br><span class="line">                        ans+=cnt2[id1[r]<span class="number">-1</span>][j]-cnt2[id1[l]][j];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=l;j&lt;=r;++j)</span><br><span class="line">                        ans+=(a[j]&lt;x);</span><br><span class="line">                cltstream::write(ans+<span class="number">1</span>,<span class="number">10</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">                l=opt[i][<span class="number">1</span>],r=opt[i][<span class="number">2</span>],x=opt[i][<span class="number">3</span>];</span><br><span class="line">                <span class="keyword">if</span>(id1[l]&lt;id1[r])&#123;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=l;j&lt;=id1[l]*sq1;++j)&#123;</span><br><span class="line">                        ++tmp1[id2[a[j]]];</span><br><span class="line">                        ++tmp2[a[j]];</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=(id1[r]<span class="number">-1</span>)*sq1+<span class="number">1</span>;j&lt;=r;++j)&#123;</span><br><span class="line">                        ++tmp1[id2[a[j]]];</span><br><span class="line">                        ++tmp2[a[j]];</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=<span class="number">1</span>;;++j)</span><br><span class="line">                        <span class="keyword">if</span>(x&gt;cnt1[id1[r]<span class="number">-1</span>][j]-cnt1[id1[l]][j]+tmp1[j])</span><br><span class="line">                            x-=cnt1[id1[r]<span class="number">-1</span>][j]-cnt1[id1[l]][j]+tmp1[j];</span><br><span class="line">                        <span class="keyword">else</span>&#123;</span><br><span class="line">                            <span class="keyword">for</span>(re <span class="keyword">int</span> k=(j<span class="number">-1</span>)*sq2+<span class="number">1</span>;k&lt;=j*sq2;++k)</span><br><span class="line">                                <span class="keyword">if</span>(x&gt;cnt2[id1[r]<span class="number">-1</span>][k]-cnt2[id1[l]][k]+tmp2[k])</span><br><span class="line">                                    x-=cnt2[id1[r]<span class="number">-1</span>][k]-cnt2[id1[l]][k]+tmp2[k];</span><br><span class="line">                                <span class="keyword">else</span>&#123;</span><br><span class="line">                                    cltstream::write(p[k],<span class="number">10</span>);</span><br><span class="line">                                    <span class="keyword">break</span>;</span><br><span class="line">                                &#125;</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=l;j&lt;=id1[l]*sq1;++j)&#123;</span><br><span class="line">                        --tmp1[id2[a[j]]];</span><br><span class="line">                        --tmp2[a[j]];</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=(id1[r]<span class="number">-1</span>)*sq1+<span class="number">1</span>;j&lt;=r;++j)&#123;</span><br><span class="line">                        --tmp1[id2[a[j]]];</span><br><span class="line">                        --tmp2[a[j]];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=l;j&lt;=r;++j)&#123;</span><br><span class="line">                        ++tmp1[id2[a[j]]];</span><br><span class="line">                        ++tmp2[a[j]];</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=<span class="number">1</span>;;++j)</span><br><span class="line">                        <span class="keyword">if</span>(x&gt;tmp1[j])</span><br><span class="line">                            x-=tmp1[j];</span><br><span class="line">                        <span class="keyword">else</span>&#123;</span><br><span class="line">                            <span class="keyword">for</span>(re <span class="keyword">int</span> k=(j<span class="number">-1</span>)*sq2+<span class="number">1</span>;k&lt;=j*sq2;++k)</span><br><span class="line">                                <span class="keyword">if</span>(x&gt;tmp2[k])</span><br><span class="line">                                    x-=tmp2[k];</span><br><span class="line">                                <span class="keyword">else</span>&#123;</span><br><span class="line">                                    cltstream::write(p[k],<span class="number">10</span>);</span><br><span class="line">                                    <span class="keyword">break</span>;</span><br><span class="line">                                &#125;</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=l;j&lt;=r;++j)&#123;</span><br><span class="line">                        --tmp1[id2[a[j]]];</span><br><span class="line">                        --tmp2[a[j]];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">                l=opt[i][<span class="number">1</span>],x=<span class="built_in">std</span>::lower_bound(p+<span class="number">1</span>,p+p[<span class="number">0</span>]+<span class="number">1</span>,opt[i][<span class="number">2</span>])-p;</span><br><span class="line">                <span class="keyword">for</span>(re <span class="keyword">int</span> j=id1[l];j&lt;=id1[n];++j)&#123;</span><br><span class="line">                    --cnt1[j][id2[a[l]]];</span><br><span class="line">                    ++cnt1[j][id2[x]];</span><br><span class="line">                    --cnt2[j][a[l]];</span><br><span class="line">                    ++cnt2[j][x];</span><br><span class="line">                &#125;</span><br><span class="line">                a[l]=x;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">                l=opt[i][<span class="number">1</span>],r=opt[i][<span class="number">2</span>],x=<span class="built_in">std</span>::lower_bound(p+<span class="number">1</span>,p+p[<span class="number">0</span>]+<span class="number">1</span>,opt[i][<span class="number">3</span>])-p;</span><br><span class="line">                <span class="keyword">if</span>(id1[l]&lt;id1[r])&#123;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=l;j&lt;=id1[l]*sq1;++j)&#123;</span><br><span class="line">                        ++tmp1[id2[a[j]]];</span><br><span class="line">                        ++tmp2[a[j]];</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=(id1[r]<span class="number">-1</span>)*sq1+<span class="number">1</span>;j&lt;=r;++j)&#123;</span><br><span class="line">                        ++tmp1[id2[a[j]]];</span><br><span class="line">                        ++tmp2[a[j]];</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=x<span class="number">-1</span>;j&gt;=(id2[x]<span class="number">-1</span>)*sq2+<span class="number">1</span>&amp;&amp;!ans;--j)</span><br><span class="line">                        <span class="keyword">if</span>(cnt2[id1[r]<span class="number">-1</span>][j]-cnt2[id1[l]][j]+tmp2[j])</span><br><span class="line">                            ans=j;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=id2[x]<span class="number">-1</span>;j&gt;=<span class="number">1</span>&amp;&amp;!ans;--j)</span><br><span class="line">                        <span class="keyword">if</span>(cnt1[id1[r]<span class="number">-1</span>][j]-cnt1[id1[l]][j]+tmp1[j])</span><br><span class="line">                            <span class="keyword">for</span>(re <span class="keyword">int</span> k=j*sq2;k&gt;=(j<span class="number">-1</span>)*sq2+<span class="number">1</span>&amp;&amp;!ans;--k)</span><br><span class="line">                                <span class="keyword">if</span>(cnt2[id1[r]<span class="number">-1</span>][k]-cnt2[id1[l]][k]+tmp2[k])</span><br><span class="line">                                    ans=k;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=l;j&lt;=id1[l]*sq1;++j)&#123;</span><br><span class="line">                        --tmp1[id2[a[j]]];</span><br><span class="line">                        --tmp2[a[j]];</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=(id1[r]<span class="number">-1</span>)*sq1+<span class="number">1</span>;j&lt;=r;++j)&#123;</span><br><span class="line">                        --tmp1[id2[a[j]]];</span><br><span class="line">                        --tmp2[a[j]];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=l;j&lt;=r;++j)&#123;</span><br><span class="line">                        ++tmp1[id2[a[j]]];</span><br><span class="line">                        ++tmp2[a[j]];</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=x<span class="number">-1</span>;j&gt;=(id2[x]<span class="number">-1</span>)*sq2+<span class="number">1</span>&amp;&amp;!ans;--j)</span><br><span class="line">                        <span class="keyword">if</span>(tmp2[j])</span><br><span class="line">                            ans=j;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=id2[x]<span class="number">-1</span>;j&gt;=<span class="number">1</span>&amp;&amp;!ans;--j)</span><br><span class="line">                        <span class="keyword">if</span>(tmp1[j])</span><br><span class="line">                            <span class="keyword">for</span>(re <span class="keyword">int</span> k=j*sq2;k&gt;=(j<span class="number">-1</span>)*sq2+<span class="number">1</span>&amp;&amp;!ans;--k)</span><br><span class="line">                                <span class="keyword">if</span>(tmp2[k])</span><br><span class="line">                                    ans=k;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=l;j&lt;=r;++j)&#123;</span><br><span class="line">                        --tmp1[id2[a[j]]];</span><br><span class="line">                        --tmp2[a[j]];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                cltstream::write(ans?p[ans]:<span class="number">-2147483647</span>,<span class="number">10</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">                l=opt[i][<span class="number">1</span>],r=opt[i][<span class="number">2</span>],x=<span class="built_in">std</span>::upper_bound(p+<span class="number">1</span>,p+p[<span class="number">0</span>]+<span class="number">1</span>,opt[i][<span class="number">3</span>])-p<span class="number">-1</span>;</span><br><span class="line">                <span class="keyword">if</span>(id1[l]&lt;id1[r])&#123;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=l;j&lt;=id1[l]*sq1;++j)&#123;</span><br><span class="line">                        ++tmp1[id2[a[j]]];</span><br><span class="line">                        ++tmp2[a[j]];</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=(id1[r]<span class="number">-1</span>)*sq1+<span class="number">1</span>;j&lt;=r;++j)&#123;</span><br><span class="line">                        ++tmp1[id2[a[j]]];</span><br><span class="line">                        ++tmp2[a[j]];</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=x+<span class="number">1</span>;j&lt;=id2[x]*sq2&amp;&amp;!ans;++j)</span><br><span class="line">                        <span class="keyword">if</span>(cnt2[id1[r]<span class="number">-1</span>][j]-cnt2[id1[l]][j]+tmp2[j])</span><br><span class="line">                            ans=j;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=id2[x]+<span class="number">1</span>;j&lt;=id2[p[<span class="number">0</span>]]&amp;&amp;!ans;++j)</span><br><span class="line">                        <span class="keyword">if</span>(cnt1[id1[r]<span class="number">-1</span>][j]-cnt1[id1[l]][j]+tmp1[j])</span><br><span class="line">                            <span class="keyword">for</span>(re <span class="keyword">int</span> k=(j<span class="number">-1</span>)*sq2+<span class="number">1</span>;k&lt;=j*sq2&amp;&amp;!ans;++k)</span><br><span class="line">                                <span class="keyword">if</span>(cnt2[id1[r]<span class="number">-1</span>][k]-cnt2[id1[l]][k]+tmp2[k])</span><br><span class="line">                                    ans=k;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=l;j&lt;=id1[l]*sq1;++j)&#123;</span><br><span class="line">                        --tmp1[id2[a[j]]];</span><br><span class="line">                        --tmp2[a[j]];</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=(id1[r]<span class="number">-1</span>)*sq1+<span class="number">1</span>;j&lt;=r;++j)&#123;</span><br><span class="line">                        --tmp1[id2[a[j]]];</span><br><span class="line">                        --tmp2[a[j]];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=l;j&lt;=r;++j)&#123;</span><br><span class="line">                        ++tmp1[id2[a[j]]];</span><br><span class="line">                        ++tmp2[a[j]];</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=x+<span class="number">1</span>;j&lt;=id2[x]*sq2&amp;&amp;!ans;++j)</span><br><span class="line">                        <span class="keyword">if</span>(tmp2[j])</span><br><span class="line">                            ans=j;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=id2[x]+<span class="number">1</span>;j&lt;=id2[p[<span class="number">0</span>]]&amp;&amp;!ans;++j)</span><br><span class="line">                        <span class="keyword">if</span>(tmp1[j])</span><br><span class="line">                            <span class="keyword">for</span>(re <span class="keyword">int</span> k=(j<span class="number">-1</span>)*sq2+<span class="number">1</span>;k&lt;=j*sq2&amp;&amp;!ans;++k)</span><br><span class="line">                                <span class="keyword">if</span>(tmp2[k])</span><br><span class="line">                                    ans=k;</span><br><span class="line">                    <span class="keyword">for</span>(re <span class="keyword">int</span> j=l;j&lt;=r;++j)&#123;</span><br><span class="line">                        --tmp1[id2[a[j]]];</span><br><span class="line">                        --tmp2[a[j]];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                cltstream::write(ans?p[ans]:<span class="number">2147483647</span>,<span class="number">10</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    clop();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我还没写啥呢咋就$12\text{KB}$了（</p>
+<p>这大概会成为一个系列，名字就叫做「未来算法」（Future Algorithm），不过也说不定，会不会以后哪天突然蹦出来个「未来算法Episode II」也说不定（</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/分块/" rel="tag"># 分块</a>
+          
+            <a href="/tags/树套树/" rel="tag"># 树套树</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/number-theory-learning-notes/" rel="next" title="一些乱七八糟的数论">
+                <i class="fa fa-chevron-left"></i> 一些乱七八糟的数论
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/sqrt-decomposition-complexity-optimization/" rel="prev" title="关于最优化分块时间复杂度的研究报告">
+                关于最优化分块时间复杂度的研究报告 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+  
+
+
+
+        </div>
+        
+          
+  
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+
+    
+
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Remilia_.png" alt="Challestend Rehtorbegnaro">
+            
+              <p class="site-author-name" itemprop="name">Challestend Rehtorbegnaro</p>
+              <p class="site-description motion-element" itemprop="description">A juruo OIer from SD province.</p>
+          </div>
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                以下全部都是大佬
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cnblogs.com/asuldb" title="asuldb" target="_blank">asuldb</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ctz45562.github.io/" title="ctz" target="_blank">ctz</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://me.csdn.net/feifanbaijun" title="feifanbaijun" target="_blank">feifanbaijun</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hachimanjy.github.io/" title="hachimanjy" target="_blank">hachimanjy</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.luogu.org/blog/66965/" title="Juan_feng" target="_blank">Juan_feng</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://rbzno1.github.io/" title="rbzno1" target="_blank">rbzno1</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/shzr/" title="shzr" target="_blank">shzr</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cnblogs.com/snowy2002" title="SnoWY" target="_blank">SnoWY</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://stevebraveman.github.io/" title="Steve_braveman" target="_blank">Steve_braveman</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cnblogs.com/SuperGoodGame/" title="SuperGoodGame" target="_blank">SuperGoodGame</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://dftyem.github.io/" title="Taduro" target="_blank">Taduro</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Challestend Rehtorbegnaro</span>
+</div>
+
+<div class="copyright">
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">188504</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">314 分钟</span>
+  
+
+  <span class="post-meta-divider">|</span>
+  <span class="post-meta-item-icon">
+    <i class="fa fa-users"></i>
+  </span>
+  <span id="busuanzi_container_site_uv">
+    站点访客数： <span id="busuanzi_value_site_uv"></span> 人次
+  </span>
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+	
+		
+			<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+			<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+			<script type="text/javascript">
+			const gitalk = new Gitalk({
+			clientID: '408bebf9cf98eab8ea73',
+			clientSecret: '9b3b31b9d5fd446513513ec24291e0008ec20f06',
+			repo: 'Challestend.github.io',
+			owner: 'Challestend',
+			admin: 'Challestend'.split(','),
+			pagerDirection: 'first',
+			id: md5(window.location.pathname),
+			distractionFreeMode: false
+			})
+			gitalk.render('gitalk-container')
+			</script>
+		
+	
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('-1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'manual') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script type="text/javascript">
+  
+    bookmark.scrollToMark('manual', "#更多");
+  
+  </script>
+
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+
+  <a href="https://github.com/Challestend"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
