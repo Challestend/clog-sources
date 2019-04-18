@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-center-simple.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"fadeIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="最近在洛谷日报的待审核列表里翻到了杜教筛的相关内容，打算连着之前的卷积反演啥的一起复习一下。 抄袭来源参考文献：  铃悬的数学小讲堂——狄利克雷卷积与莫比乌斯反演 浅谈杜教筛 铃悬的数学小讲堂——杜教筛">
+<meta name="keywords" content="数论,杜教筛">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一些乱七八糟的数论">
+<meta property="og:url" content="https://github.com/Challestend/number-theory-learning-notes/index.html">
+<meta property="og:site_name" content="Chromium">
+<meta property="og:description" content="最近在洛谷日报的待审核列表里翻到了杜教筛的相关内容，打算连着之前的卷积反演啥的一起复习一下。 抄袭来源参考文献：  铃悬的数学小讲堂——狄利克雷卷积与莫比乌斯反演 浅谈杜教筛 铃悬的数学小讲堂——杜教筛">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-25T11:06:01.295Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一些乱七八糟的数论">
+<meta name="twitter:description" content="最近在洛谷日报的待审核列表里翻到了杜教筛的相关内容，打算连着之前的卷积反演啥的一起复习一下。 抄袭来源参考文献：  铃悬的数学小讲堂——狄利克雷卷积与莫比乌斯反演 浅谈杜教筛 铃悬的数学小讲堂——杜教筛">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Chromium" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://github.com/Challestend/number-theory-learning-notes/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>一些乱七八糟的数论 | Chromium</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chromium</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-id-card"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">37</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">7</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">52</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-log">
+    <a href="/log/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>更新日志</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Challestend/number-theory-learning-notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Challestend Rehtorbegnaro">
+      <meta itemprop="description" content="A juruo OIer from SD province.">
+      <meta itemprop="image" content="/images/Remilia_.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chromium">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">一些乱七八糟的数论
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          
+
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-29 14:41:17" itemprop="dateCreated datePublished" datetime="2018-11-29T14:41:17+08:00">2018-11-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-25 19:06:01" itemprop="dateModified" datetime="2019-03-25T19:06:01+08:00">2019-03-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">10573</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">18 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近在洛谷日报的待审核列表里翻到了杜教筛的相关内容，打算连着之前的卷积反演啥的一起复习一下。</p>
+<p><del>抄袭来源</del>参考文献：</p>
+<ul>
+<li><a href="https://lx-2003.blog.luogu.org/mobius-inversion" target="_blank" rel="noopener">铃悬的数学小讲堂——狄利克雷卷积与莫比乌斯反演</a></li>
+<li><a href="https://www.luogu.org/blog/54745/dls-tql" target="_blank" rel="noopener">浅谈杜教筛</a></li>
+<li><a href="https://lx-2003.blog.luogu.org/dujiao-sieve" target="_blank" rel="noopener">铃悬的数学小讲堂——杜教筛</a></li>
+</ul>
+<a id="more"></a>
+<h1 id="数论函数"><a href="#数论函数" class="headerlink" title="数论函数"></a>数论函数</h1><h2 id="定义与相关性质"><a href="#定义与相关性质" class="headerlink" title="定义与相关性质"></a>定义与相关性质</h2><p>数论函数就是定义域为$\mathbb{N}^{+}$的函数。</p>
+<p>两个数论函数相加，就是简单地把函数值相加。</p>
+<script type="math/tex; mode=display">(f+g)(n)=f(n)+g(n)</script><p>数乘也是类似的。</p>
+<script type="math/tex; mode=display">(\alpha f)(n)=\alpha f(n)</script><p>点积也是类似的。</p>
+<script type="math/tex; mode=display">(f\cdot g)(n)=f(n)g(n)</script><p><del>好像没啥用。</del></p>
+<p>在数论函数相关的运算中，一个非常重要的运算是狄利克雷卷积。两个数论函数的狄利克雷卷积是这样定义的：</p>
+<script type="math/tex; mode=display">(f\times g)(n)=\sum\limits_{i\mid n}f(i)g(\cfrac{n}{i})</script><p>或者说：</p>
+<script type="math/tex; mode=display">(f\times g)(n)=\sum\limits_{ij=n}f(i)g(j)</script><p>它具有以下的一些性质：</p>
+<p>交换律，即$f\times g=g\times f$。</p>
+<p>这很明显。</p>
+<p>结合律，即$(f\times g)\times h=f\times(g\times h)$。</p>
+<script type="math/tex; mode=display">\begin{aligned}
+((f\times g)\times h)(n)&=\sum\limits_{ij=n}(\sum\limits_{kl=i}f(k)g(l))h(j)\\
+&=\sum\limits_{ijk=n}f(i)g(j)h(k)
+\end{aligned}</script><script type="math/tex; mode=display">\begin{aligned}
+(f\times(g\times h))(n)&=\sum\limits_{ij=n}f(i)(\sum\limits_{kl=j}g(k)h(l))\\
+&=\sum\limits_{ijk=n}f(i)g(j)h(k)
+\end{aligned}</script><p>分配率，即$(f+g)\times h=f\times h+g\times h$。</p>
+<script type="math/tex; mode=display">\begin{aligned}
+((f+g)\times h)(n)&=\sum\limits_{ij=n}(f+g)(i)h(j)\\
+&=\sum\limits_{ij=n}f(i)h(j)+g(i)h(j)\\
+&=(f\times h)(n)+(g\times h)(n)
+\end{aligned}</script><p>单位元为$\epsilon(n)=[n=1]$，$f\times\epsilon =f$。</p>
+<p>这也很明显。</p>
+<p>对于任意一个满足$f(1)\neq 0$的函数$f$，都存在唯一的一个函数$g$使得$f\times g=\epsilon$。这时我们称$g$是$f$的逆。</p>
+<p>我们可以这样定义一个函数的逆：</p>
+<script type="math/tex; mode=display">g(n)=\cfrac{\epsilon(n)-\sum\limits_{i\mid n,i\neq 1}f(i)g(\cfrac{n}{i})}{f(1)}</script><p>这样我们就有</p>
+<script type="math/tex; mode=display">\begin{aligned}
+(f\times g)(n)&=\sum_{i\mid n}f(i)g(\cfrac{n}{i})\\
+&=f(1)g(n)+\sum_{i\mid n,i\neq 1}f(i)g(\cfrac{n}{i})\\
+&=\epsilon(n)-\sum\limits_{i\mid n,i\neq 1}f(i)g(\cfrac{n}{i})+\sum_{i\mid n,i\neq 1}f(i)g(\cfrac{n}{i})\\
+&=\epsilon(n)
+\end{aligned}</script><h2 id="积性函数与完全积性函数"><a href="#积性函数与完全积性函数" class="headerlink" title="积性函数与完全积性函数"></a>积性函数与完全积性函数</h2><p>如果一个数论函数$f$满足</p>
+<script type="math/tex; mode=display">\forall x,y\in\mathbb{N}^{+}\wedge x\perp y\;\;f(xy)=f(x)f(y)</script><p>我们就说$f$是一个积性函数。</p>
+<p>特别的，如果上式去掉$x\perp y$仍成立，则称$f$是一个完全积性函数。</p>
+<p>很明显地，任意一个积性函数$f$一定有$f(1)=1$，这样才能有$f(1\times n)=f(1)\times f(n)=f(n)$。</p>
+<p>常见的完全积性函数有$\epsilon,id^{k}$。$\epsilon$在上文已经提到过。$id^{k}(n)=n^k$。这两个函数的完全积性十分明显。</p>
+<p>常见的积性函数有$\varphi,d,\sigma$。$\varphi(n)$的值等于小于等于$n$且与$n$互质的正整数的数量。$d(n)$和$\sigma(n)$的值分别等于$n$的约数个数和约数和。</p>
+<p>关于$\varphi$的积性，我并不会证（</p>
+<p>我们来分析$d$的积性。首先，根据唯一分解定理，$n$的每个因数都可以唯一地分解成$n$所有质因子的非负整数次幂乘积。不妨设</p>
+<script type="math/tex; mode=display">n=\prod\limits_{i=1}^{N}p_{i}^{r_{i}}</script><p>其中$p_{i}$都是质数，所有$r_{i}$都是正整数。对于每一个$p_{i}$，它的指数有$(r_{i}+1)$种取值，因而我们有</p>
+<script type="math/tex; mode=display">d(n)=\prod\limits_{i=1}^{N}(r_{i}+1)</script><p>我们再假设有一个$m$，且</p>
+<script type="math/tex; mode=display">m=\prod\limits_{i=1}^{M}q_{i}^{s_{i}}</script><p>如果说$n\perp m$，肯定有</p>
+<script type="math/tex; mode=display">\forall i\in [1,N]\cap\mathbb{Z},j\in [1,M]\cap\mathbb{Z}\;\;p_{i}\neq q_{j}</script><p>于是我们就有</p>
+<script type="math/tex; mode=display">nm=(\prod\limits_{i=1}^{N}p_{i}^{r_{i}})(\prod\limits_{j=1}^{M}q_{j}^{s_{j}})</script><script type="math/tex; mode=display">\begin{aligned}
+d(nm)&=(\prod\limits_{i=1}^{N}(r_{i}+1))(\prod\limits_{j=1}^{M}(s_{j}+1))\\
+&=d(n)d(m)
+\end{aligned}</script><p>不妨再反过来考虑。如果说$n\not\perp m$，那么一定存在一对$(i,j)(i\in [1,N]\cap\mathbb{Z},j\in [1,M]\cap\mathbb{Z})$，使得$p_{i}=q_{j}$。那么$d(n)d(m)$就会有一个因子是$(r_{i}+1)(s_{j}+1)=r_{i}s_{j}+r_{i}+s_{j}+1$。但是仔细思考我们会发现，$d(nm)$中对应的项应该是$r_{i}+s_{j}+1$。因而此时$d(nm)\neq d(n)d(m)$。</p>
+<p>我们再来分析$\sigma$的积性。还是设</p>
+<script type="math/tex; mode=display">n=\prod\limits_{i=1}^{N}p_{i}^{r_{i}}</script><p>其中$p_{i}$都是质数，所有$r_{i}$都是正整数。与$d$不同的是，现在我们是要用$p_{i}$乘出$n$的因数，$p_{i}$在此过程中可以产生的贡献为$p_{i}^x(x\in [0,r_{i}]\cap\mathbb{Z})$。我们可以把这想象成一个$N$个数组，第$i$个数组的长度为$r_{i}+1$，第$j$个元素为$p_{i}^{j-1}$。现在我们每次从每个数组里选出恰好一个元素相乘，要求所有方案的乘积之和。我们知道，这个问题的答案就是</p>
+<script type="math/tex; mode=display">\prod\limits_{i=1}^{N}\sum\limits_{j=0}^{r_{i}}p_{i}^{j}</script><p>这正是$\sigma(n)$的值。</p>
+<p>接下来的过程就与上文证明$d$的积性如出一辙了，在此不再重复。</p>
+<p>现在我们来分析，两个积性函数的卷积是否也是积性函数。<del>虽然说都这么问了肯定就是了。</del></p>
+<script type="math/tex; mode=display">\begin{aligned}
+(f\times g)(n)(f\times g)(m)&=(\sum\limits_{i\mid n}f(i)g(\cfrac{n}{i}))(\sum\limits_{j\mid m}f(j)g(\cfrac{m}{j}))\\
+&=\sum\limits_{i\mid n}\sum\limits_{j\mid m}f(i)g(\cfrac{n}{i})f(j)g(\cfrac{m}{j})\\
+&=\sum\limits_{i\mid n}\sum\limits_{j\mid m}f(ij)g(\cfrac{nm}{ij})\\
+&=\sum\limits_{k\mid nm}f(k)g(\cfrac{nm}{k})\\
+&=(f\times g)(nm)
+\end{aligned}</script><p>关于上面的第四个等号。时刻注意$n\perp m$，在这种前提下，我们枚举到的$i$和$j$一定也是互质的，那么$ij$的所有值一定是互不相同的。这从$d(nm)=d(n)d(m)$这一等式中也能看出。</p>
+<p>再接下来，我们来分析一下一个积性函数的逆是否也是积性函数。</p>
+<p>设有一个积性函数$f$，它的逆是$g$。</p>
+<p>当$nm=1$时，$g(1)=1$。</p>
+<p>当$nm&gt;1$时，我们假设对于任意$n^{\prime}m^{\prime}&lt;nm$，都有$g(n^{\prime}m^{\prime})=g(n^{\prime})g(m^{\prime})$。此时</p>
+<script type="math/tex; mode=display">\begin{aligned}
+g(nm)&=-\sum\limits_{k\mid nm,k\neq 1}f(k)g(\cfrac{nm}{k})\\
+&=-\sum\limits_{i\mid n,j\mid m,ij\neq 1}f(i)f(j)g(\cfrac{n}{i})g(\cfrac{m}{j})\\
+&=g(n)g(m)-\sum\limits_{i\mid n,j\mid m}f(i)f(j)g(\cfrac{n}{i})g(\cfrac{m}{j})\\
+&=g(n)g(m)-(\sum\limits_{i\mid n}f(i)g(\cfrac{n}{i}))(\sum\limits_{j\mid m}f(j)g(\cfrac{m}{j}))\\
+&=g(n)g(m)-\epsilon(n)\epsilon(m)\\
+&=g(n)g(m)
+\end{aligned}</script><p><del>其实上面这些全都是抄来的（</del></p>
+<h1 id="莫比乌斯反演"><a href="#莫比乌斯反演" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h1><h2 id="正向反演"><a href="#正向反演" class="headerlink" title="正向反演"></a>正向反演</h2><p>定义$\mu$为$1$的逆。也就是说，$\mu\times 1=\epsilon$。</p>
+<p>如果您看过其他的一些关于莫比乌斯反演的学习笔记的话，您可能会看到如下的定义：</p>
+<blockquote>
+<p>首先地，$\mu(1)=1$。当$n&gt;1$时，如果$n$的所有质因子互不相同，设其有$k$个质因子，那么$\mu(n)=(-1)^{k}$。否则，$\mu(n)=0$。</p>
+</blockquote>
+<p>那么，这两种定义等价吗？</p>
+<p>考虑到$\mu$是一个积性函数，对于任意一个$n&gt;1$，如果我们把它分解成</p>
+<script type="math/tex; mode=display">n=\prod\limits_{i=1}^{N}p_{i}^{r_{i}}</script><p>我们就有</p>
+<script type="math/tex; mode=display">\mu(n)=\prod\limits_{i=1}^{N}\mu(p_{i}^{r_{i}})</script><p>因此，确定一个积性函数的函数值的关键在于确定其在质数的非负整数次幂上的取值。</p>
+<p>设有一个质数$p$。不难发现</p>
+<script type="math/tex; mode=display">\mu(p)=-\mu(1)=-1</script><script type="math/tex; mode=display">\mu(p^{2})=-\mu(1)-\mu(p)=-1+1=0</script><script type="math/tex; mode=display">\mu(p^{3})=-\mu(1)-\mu(p)-\mu(p^{2})=-1+1+0=0</script><script type="math/tex; mode=display">\vdots</script><p>至此，不难看出上文给出的两种定义是等价的。</p>
+<p>那么这个东西有什么用呢？</p>
+<p>我们设</p>
+<script type="math/tex; mode=display">F(n)=\sum\limits_{i\mid n}f(i)</script><p>或者等价地说，$F=f\times 1$。我们可以得到</p>
+<script type="math/tex; mode=display">\begin{aligned}
+F&=f\times 1\\
+F\times\mu&=f\times 1\times\mu\\
+F\times\mu&=f
+\end{aligned}</script><p>像这样，如果说$F$相对好求，而$f$相对难求，我们就可以通过上式来减小我们求解$f$的难度。具体地说</p>
+<script type="math/tex; mode=display">f(n)=\sum\limits_{i\mid n}F(i)\mu(\cfrac{n}{i})</script><h2 id="反向反演"><a href="#反向反演" class="headerlink" title="反向反演"></a>反向反演</h2><p>有些时候我们还需要用到像下面这样反过来的莫比乌斯反演</p>
+<script type="math/tex; mode=display">F(n)=\sum\limits_{n\mid d}f(d)⇔f(n)=\sum\limits_{n\mid d}F(d)\mu(\cfrac{d}{n})</script><p>我们可以定义一种新的运算</p>
+<script type="math/tex; mode=display">(f\otimes g)(n)=\sum\limits_{n\mid d}f(d)g(\cfrac{d}{n})</script><p>我们不难证明出它具有结合律。具体过程与上文证明狄利克雷卷积的结合律的过程基本重复。那么我们就有</p>
+<script type="math/tex; mode=display">F=f\otimes 1⇔F\otimes\mu=f</script><p>于是就有了上面的反向反演。</p>
+<blockquote>
+<p>Updated on 2018-12-03</p>
+<p>例题……还是算了吧（</p>
+<p>发现反演常用的套路都忘的差不多了，还是别丢人了（</p>
+</blockquote>
+<h1 id="杜教筛"><a href="#杜教筛" class="headerlink" title="杜教筛"></a>杜教筛</h1><h2 id="实现与模板题"><a href="#实现与模板题" class="headerlink" title="实现与模板题"></a>实现与模板题</h2><p>接下来才是主要内容。</p>
+<p>现在，我们要求一个积性函数的前$n$项和。$n\leqslant 10^{10}$。</p>
+<p>我们定义</p>
+<script type="math/tex; mode=display">S(n)=\sum\limits_{i=1}^{n}f(i)</script><p>再拿来一个积性函数$g$，然后把它与$f$卷积并求前缀和。</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\sum_{i=1}^{n}(f\times g)(i)&=\sum_{i=1}^{n}\sum_{j\mid i}f(j)g(\cfrac{i}{j})\\
+&=\sum_{i=1}^{n}g(i)\sum_{j=1}^{\lfloor\frac{n}{i}\rfloor}f(j)\\
+&=\sum_{i=1}^{n}g(i)S(\lfloor\cfrac{n}{i}\rfloor)
+\end{aligned}</script><p>然而我的语文实在是太菜了，大概说也说不明白，自行理解吧（</p>
+<p>因为$g$也是积性函数，有$g(1)=1$，所以</p>
+<script type="math/tex; mode=display">\begin{aligned}
+S(n)&=g(1)S(n)\\
+&=\sum_{i=1}^{n}g(i)S(\lfloor\cfrac{n}{i}\rfloor)-\sum_{i=2}^{n}g(i)S(\lfloor\cfrac{n}{i}\rfloor)\\
+&=\sum_{i=1}^{n}(f\times g)(i)-\sum_{i=2}^{n}g(i)S(\lfloor\cfrac{n}{i}\rfloor)
+\end{aligned}</script><p>就是说从第一项开始的前缀和减去从第二项开始的前缀和等于第一项本身。</p>
+<p>如果说我们选择的$g$可以让我们迅速地求出$f\times g$和$g$的前缀和，我们就可以做到快速求$f$的前缀和了。</p>
+<p>关于后面的$g(i)S(\lfloor\cfrac{n}{i}\rfloor)$，如果直接暴力算复杂度会是$O(n)$的，在大部分情况下，这是无法接受的。</p>
+<p>我们来分析一下$\lfloor\cfrac{n}{i}\rfloor$。如果$1\leqslant i\leqslant\sqrt{n}$，因为$i$只有$\sqrt{n}$种不同的取值，$\lfloor\cfrac{n}{i}\rfloor$同样也只有$\sqrt{n}$种不同的取值。如果$\sqrt{n}&lt;i\leqslant n$，$1\leqslant\lfloor\cfrac{n}{i}\rfloor&lt;\sqrt{n}$，又因为要向下取整，自然也只有$\sqrt{n}$种不同的取值。如果我们能够把$\lfloor\cfrac{n}{i}\rfloor$相同的$i$一起计算，就能够将时间杂度优化到$O(\sqrt{n})$。</p>
+<p>大体代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(re <span class="keyword">int</span> l=<span class="number">1</span>,r;l&lt;=n;l=r+<span class="number">1</span>)&#123;</span><br><span class="line">    r=n/(n/l);</span><br><span class="line">    <span class="comment">//......</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>关于$r$的这个上界是怎么来的，我并不会证（</p>
+<p>这样一来，要计算$S(n)$，我们需要调用所有的$\lfloor\cfrac{n}{x}\rfloor$，分别是$\lfloor\cfrac{n}{1}\rfloor,\lfloor\cfrac{n}{2}\rfloor,\cdots,\lfloor\cfrac{n}{\sqrt{n}}\rfloor,\sqrt{n},\sqrt{n}-1,\cdots,1$。单独计算一个$S(n)$的时间复杂度很明显是$O(\sqrt{n})$的。那么这样一来，总体的时间复杂度就是</p>
+<script type="math/tex; mode=display">\begin{aligned}
+O(\sum\limits_{i=1}^{\sqrt{n}}\sqrt{i}+\sqrt{\lfloor\cfrac{n}{i}\rfloor})&=O(\sum\limits_{i=1}^{\sqrt{n}}\sqrt{\lfloor\cfrac{n}{i}\rfloor})\\
+&=O(\int\limits_{1}^{\sqrt{n}}\sqrt{\lfloor\cfrac{n}{x}\rfloor}dx)\\
+&=O(\int\limits_{1}^{\sqrt{n}}\sqrt{\cfrac{n}{x}}dx)\\
+&=O(2n^{\frac{1}{2}}(n^{\frac{1}{4}}-1))\\
+&=O(n^{\frac{3}{4}})
+\end{aligned}</script><p>因为相比之下$\sqrt{\lfloor\cfrac{n}{i}\rfloor}$很明显要大一些，我们就可以将$\sqrt{i}$舍去。然后去掉取整符号并用积分近似。</p>
+<p>这个实现方法还可以优化。具体来讲，我们先线性筛出前$m$项，然后再用杜教筛。这么做的时间复杂度是$O(m+\cfrac{n}{\sqrt{m}})$，当$m=n^{\frac{2}{3}}$时取得最小值$O(n^{\frac{2}{3}})$。</p>
+<p>举个例子，就比如说我们要求</p>
+<script type="math/tex; mode=display">\sum\limits_{i=1}^{n}\varphi(i)</script><p>我们取$f=\varphi,g=1$，这样根据$\varphi$的性质，$f\times g=id$。不难看出$g$与$f\times g$的前缀和都可以$O(1)$求。具体的代码实现差不多长这样：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">getSum</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=maxn)</span><br><span class="line">        <span class="keyword">return</span> phi[n];</span><br><span class="line">    <span class="comment">//phi是提前线性筛好的前缀和</span></span><br><span class="line">    <span class="keyword">if</span>(ans.count(n))</span><br><span class="line">        <span class="keyword">return</span> ans[n];</span><br><span class="line">    <span class="comment">//ans用来实现记忆化的哈希表，比如说unordered_map</span></span><br><span class="line">    re <span class="keyword">long</span> <span class="keyword">long</span> res=<span class="number">1L</span>L*n*(n+<span class="number">1</span>)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="comment">//f*g的前缀和</span></span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> l=<span class="number">2</span>,r;l&lt;=n;l=r+<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="comment">//注意要从2开始</span></span><br><span class="line">        r=n/(n/l);</span><br><span class="line">        res-=(r-l+<span class="number">1</span>)*getSum(n/l);</span><br><span class="line">        <span class="comment">//r-l+1是g的前缀和</span></span><br><span class="line">        <span class="comment">//像这样递归+记忆化求解f的前缀和</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans[n]=res;</span><br><span class="line">    <span class="comment">//返回的时候不要忘记存一下</span></span><br><span class="line">    <span class="comment">//就比如说我就忘过一次（</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以及，不用哈希表也是可以的。因为我们查询的数都是形如$\lfloor\cfrac{n}{x}\rfloor$的，当这个值大于$n^{\frac{2}{3}}$，即$x&lt;n^{\frac{1}{3}}$时，我们才会到哈希表里查询。因此我们可以令<code>ans[x]</code>表示$S(\lfloor\cfrac{n}{x}\rfloor)$。具体代码我就不写了（</p>
+<p>再举个例子，求</p>
+<script type="math/tex; mode=display">\sum\limits_{i=1}^{n}\mu(i)</script><p>取$f=\mu,g=1,f\times g=\epsilon$。代码和上面差不多。</p>
+<p>如果您理解了上面两个函数，这道<a href="https://www.luogu.org/problemnew/show/P4213" target="_blank" rel="noopener">模板题</a>您就可以切了。</p>
+<h2 id="其他题"><a href="#其他题" class="headerlink" title="其他题"></a>其他题</h2><h3 id="「Luogu-P3768」简单的数学题"><a href="#「Luogu-P3768」简单的数学题" class="headerlink" title="「Luogu-P3768」简单的数学题"></a><a href="https://www.luogu.org/problemnew/show/P3768" target="_blank" rel="noopener">「Luogu-P3768」简单的数学题</a></h3><p>快乐地推式子：</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\sum\limits_{i=1}^{n}i\sum\limits_{j=1}^{n}j\text{gcd}(i,j)&=\sum\limits_{d=1}^{n}d^{3}\sum\limits_{i=1}^{\lfloor\frac{n}{d}\rfloor}i\sum\limits_{j=1}^{\lfloor\frac{n}{d}\rfloor}j[i\perp j]\\
+&=\sum\limits_{d=1}^{n}d^{3}\sum\limits_{i=1}^{\lfloor\frac{n}{d}\rfloor}i\sum\limits_{j=1}^{\lfloor\frac{n}{d}\rfloor}j\sum\limits_{x\mid i,x\mid j}\mu(x)\\
+&=\sum\limits_{d=1}^{n}d^{3}\sum\limits_{x=1}^{\lfloor\frac{n}{d}\rfloor}x^{2}\mu(x)\text{Sum}^{2}(\lfloor\cfrac{n}{dx}\rfloor)\\
+&=\sum\limits_{i=1}^{n}\text{Sum}^{2}(\lfloor\cfrac{n}{i}\rfloor)i^{2}\sum\limits_{j\mid i}j\mu(\cfrac{i}{j})\\
+&=\sum\limits_{i=1}^{n}\text{Sum}^{2}(\lfloor\cfrac{n}{i}\rfloor)i^{2}\varphi(i)
+\end{aligned}</script><p>其中</p>
+<script type="math/tex; mode=display">\text{Sum}(n)=\sum\limits_{i=1}^{n}i</script><p>最后一步是因为</p>
+<script type="math/tex; mode=display">\begin{aligned}
+id\times\mu&=\varphi\times 1\times\mu\\
+&=\varphi\times\epsilon\\
+&=\varphi
+\end{aligned}</script><p>理解不了上面的式子的话就多看看吧（</p>
+<p>不难发现我们是要求$f(n)=n^{2}\varphi(n)$的前缀和，那么，我们该怎么选取$g$呢？</p>
+<p><del>枚举瞎蒙（</del></p>
+<p>考虑$g(n)=n^{2}$。</p>
+<script type="math/tex; mode=display">\begin{aligned}
+(f\times g)(n)&=\sum\limits_{i\mid n}f(i)g(\cfrac{n}{i})\\
+&=\sum\limits_{i\mid n}i^{2}\varphi(i)\cfrac{n^{2}}{i^{2}}\\
+&=n^{2}\sum\limits_{i\mid n}\varphi(i)\\
+&=n^{3}
+\end{aligned}</script><p><del>其实我都不知道我当时是怎么想到这种操作的（</del></p>
+<p>然后就和上面一样了。</p>
+<h3 id="「Luogu-U18201」分析矿洞"><a href="#「Luogu-U18201」分析矿洞" class="headerlink" title="「Luogu-U18201」分析矿洞"></a><a href="https://www.luogu.org/problemnew/show/U18201" target="_blank" rel="noopener">「Luogu-U18201」分析矿洞</a></h3><p>不知道从哪翻出来的题（</p>
+<p>是某场个人邀请赛的$\text{T}1$<del>，从某种意义上也能看出那场比赛有多么神仙</del>。</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{n}\varphi(\text{gcd}^{2}(i,j))&=\sum\limits_{d=1}^{n}\varphi(d^{2})\sum\limits_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum\limits_{j=1}^{\lfloor\frac{n}{d}\rfloor}[i\perp j]\\
+&=\sum\limits_{d=1}^{n}\varphi(d^{2})\sum\limits_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum\limits_{j=1}^{\lfloor\frac{n}{d}\rfloor}\sum\limits_{x\mid i,x\mid j}\mu(x)\\
+&=\sum\limits_{d=1}^{n}\varphi(d^{2})\sum\limits_{x=1}^{\lfloor\frac{n}{d}\rfloor}\mu(x)\lfloor\cfrac{n}{dx}\rfloor^{2}\\
+&=\sum\limits_{i=1}^{n}\lfloor\cfrac{n}{i}\rfloor^{2}\sum\limits_{j\mid i}\varphi(j^{2})\mu(\cfrac{i}{j})\\
+&=\sum\limits_{i=1}^{n}\lfloor\cfrac{n}{i}\rfloor^{2}\sum\limits_{j\mid i}j\varphi(j)\mu(\cfrac{i}{j})
+\end{aligned}</script><p>设$f_1(n)=n\varphi(n),f_2(n)=\mu(n)$，考虑筛$f=f_1\times f_2$的前缀和。然而，与上面的其它题不同，并不存在一个$g$使我们能够$O(1)$地求出$g$和$f\times g$的前缀和。一种较优的方案是，令$g=1$，$f\times g=(id\cdot\varphi)\times\mu\times 1=id\cdot\varphi$，这样，我们还需要筛出$f_1(n)=n\varphi(n)$的前缀和。</p>
+<p>怎么办？</p>
+<p>再套一层杜教筛！</p>
+<p>然而可能是常数会有些大也可能是我太菜了自带大常数，好像会跑的很慢（</p>
+<p>以及，像这种$n$爆了<code>int</code>的，一定要注意经常取模。<del>因为这个WA了好几次（</del></p>
+<p>最后，源文件$17\text{KB}​$祭，blog翻页祭。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数论/" rel="tag"># 数论</a>
+          
+            <a href="/tags/杜教筛/" rel="tag"># 杜教筛</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/noip-2018-notes/" rel="next" title="「NOIp2018游记」夢の終わるところ">
+                <i class="fa fa-chevron-left"></i> 「NOIp2018游记」夢の終わるところ
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/future-algorithm-ep1/" rel="prev" title="「未来算法Episode I」严格根号分块实现树套树">
+                「未来算法Episode I」严格根号分块实现树套树 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+  
+
+
+
+        </div>
+        
+          
+  
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+
+    
+
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Remilia_.png" alt="Challestend Rehtorbegnaro">
+            
+              <p class="site-author-name" itemprop="name">Challestend Rehtorbegnaro</p>
+              <p class="site-description motion-element" itemprop="description">A juruo OIer from SD province.</p>
+          </div>
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                以下全部都是大佬
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cnblogs.com/asuldb" title="asuldb" target="_blank">asuldb</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ctz45562.github.io/" title="ctz" target="_blank">ctz</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://me.csdn.net/feifanbaijun" title="feifanbaijun" target="_blank">feifanbaijun</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hachimanjy.github.io/" title="hachimanjy" target="_blank">hachimanjy</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.luogu.org/blog/66965/" title="Juan_feng" target="_blank">Juan_feng</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://rbzno1.github.io/" title="rbzno1" target="_blank">rbzno1</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/shzr/" title="shzr" target="_blank">shzr</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cnblogs.com/snowy2002" title="SnoWY" target="_blank">SnoWY</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://stevebraveman.github.io/" title="Steve_braveman" target="_blank">Steve_braveman</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cnblogs.com/SuperGoodGame/" title="SuperGoodGame" target="_blank">SuperGoodGame</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://dftyem.github.io/" title="Taduro" target="_blank">Taduro</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数论函数"><span class="nav-number">1.</span> <span class="nav-text">数论函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义与相关性质"><span class="nav-number">1.1.</span> <span class="nav-text">定义与相关性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#积性函数与完全积性函数"><span class="nav-number">1.2.</span> <span class="nav-text">积性函数与完全积性函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#莫比乌斯反演"><span class="nav-number">2.</span> <span class="nav-text">莫比乌斯反演</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#正向反演"><span class="nav-number">2.1.</span> <span class="nav-text">正向反演</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反向反演"><span class="nav-number">2.2.</span> <span class="nav-text">反向反演</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#杜教筛"><span class="nav-number">3.</span> <span class="nav-text">杜教筛</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实现与模板题"><span class="nav-number">3.1.</span> <span class="nav-text">实现与模板题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他题"><span class="nav-number">3.2.</span> <span class="nav-text">其他题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#「Luogu-P3768」简单的数学题"><span class="nav-number">3.2.1.</span> <span class="nav-text">「Luogu-P3768」简单的数学题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#「Luogu-U18201」分析矿洞"><span class="nav-number">3.2.2.</span> <span class="nav-text">「Luogu-U18201」分析矿洞</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Challestend Rehtorbegnaro</span>
+</div>
+
+<div class="copyright">
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">205693</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">343 分钟</span>
+  
+
+  <span class="post-meta-divider">|</span>
+  <span class="post-meta-item-icon">
+    <i class="fa fa-users"></i>
+  </span>
+  <span id="busuanzi_container_site_uv">
+    站点访客数： <span id="busuanzi_value_site_uv"></span> 人次
+  </span>
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+	
+		
+			<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+			<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+			<script type="text/javascript">
+			const gitalk = new Gitalk({
+			clientID: '408bebf9cf98eab8ea73',
+			clientSecret: '9b3b31b9d5fd446513513ec24291e0008ec20f06',
+			repo: 'Challestend.github.io',
+			owner: 'Challestend',
+			admin: 'Challestend'.split(','),
+			pagerDirection: 'first',
+			id: md5(window.location.pathname),
+			distractionFreeMode: false
+			})
+			gitalk.render('gitalk-container')
+			</script>
+		
+	
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('-1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'manual') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script type="text/javascript">
+  
+    bookmark.scrollToMark('manual', "#更多");
+  
+  </script>
+
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+
+  <a href="https://github.com/Challestend"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

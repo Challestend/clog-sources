@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-center-simple.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"fadeIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="最近正好月考，然而并不想去月考，于是来颓blog吧。">
+<meta name="keywords" content="NTT,FFT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「多项式学习笔记Part I」最基本的多项式乘法">
+<meta property="og:url" content="https://github.com/Challestend/polynomial-learning-notes-pt1/index.html">
+<meta property="og:site_name" content="Chromium">
+<meta property="og:description" content="最近正好月考，然而并不想去月考，于是来颓blog吧。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2018/12/19/5c1a46b4d785b.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/20/5c1b06e5602fa.png">
+<meta property="og:updated_time" content="2019-03-27T03:38:27.672Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「多项式学习笔记Part I」最基本的多项式乘法">
+<meta name="twitter:description" content="最近正好月考，然而并不想去月考，于是来颓blog吧。">
+<meta name="twitter:image" content="https://i.loli.net/2018/12/19/5c1a46b4d785b.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Chromium" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://github.com/Challestend/polynomial-learning-notes-pt1/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>「多项式学习笔记Part I」最基本的多项式乘法 | Chromium</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chromium</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-id-card"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">37</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">7</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">52</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-log">
+    <a href="/log/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>更新日志</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Challestend/polynomial-learning-notes-pt1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Challestend Rehtorbegnaro">
+      <meta itemprop="description" content="A juruo OIer from SD province.">
+      <meta itemprop="image" content="/images/Remilia_.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chromium">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">「多项式学习笔记Part I」最基本的多项式乘法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          
+
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-19 20:23:01" itemprop="dateCreated datePublished" datetime="2018-12-19T20:23:01+08:00">2018-12-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-27 11:38:27" itemprop="dateModified" datetime="2019-03-27T11:38:27+08:00">2019-03-27</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">332</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近正好月考，然而并不想去月考，于是来颓blog吧。</p>
+<a id="more"></a>
+<p>给你一个$n-1$次多项式$F(x)$和一个$m-1$次多项式$G(x)$，让你求$(F\times G)(x)$的各项系数。$n,m\leqslant 10^{6}$。</p>
+<p>我们不妨将$F(x)$的$i$次项系数记为$F[i]$</p>
+<script type="math/tex; mode=display">F(x)=\sum\limits_{i=0}^{n-1}F[i]x^{i}</script><script type="math/tex; mode=display">G(x)=\sum\limits_{i=0}^{m-1}G[i]x^{i}</script><script type="math/tex; mode=display">(F\times G)(x)=\sum\limits_{i=0}^{n-1}\sum\limits_{j=0}^{m-1}F[i]G[j]x^{i+j}</script><script type="math/tex; mode=display">(F\times G)[k]=\sum\limits_{0\leqslant i<n,0\leqslant j<m,i+j=k}F[i]G[j]</script><p>不难发现直接暴力算是$O(n^{2})$的，因此我们需要优化。</p>
+<p>不过为了优化，我们得先扯远点。</p>
+<h1 id="点值表达"><a href="#点值表达" class="headerlink" title="点值表达"></a>点值表达</h1><p>如果我们选取$n$个点$(x_{0},y_{0}),(x_{1},y_{1}),\cdots,(x_{n-1},y_{n-1})$，并且其中$x_{i}$两两不同，我们就可以唯一地确定出一个$n-1$次多项式。</p>
+<p>就比如说</p>
+<script type="math/tex; mode=display">(0,2),(1,7),(2,4)</script><p><del>瞎写的（</del></p>
+<p>我们可以列出如下的三元一次方程组：</p>
+<script type="math/tex; mode=display">\begin{cases}
+&\text{C}=2\\
+&\text{A}+\text{B}+\text{C}=7\\
+&4\text{A}+2\text{B}+\text{C}=4
+\end{cases}</script><p>解得</p>
+<script type="math/tex; mode=display">\begin{cases}
+&\text{A}=-4\\
+&\text{B}=9\\
+&\text{C}=2
+\end{cases}</script><p>注意到$(F\times G)(x)=F(x)G(x)$<del>（废话）</del>，我们只要知道了$F(x)$和$G(x)$的点值表达，就可以$O(n)$的计算出$(F\times G)(x)$的点值表达了。因为$(F\times G)(x)$的次数是$n+m-2$，我们选出前$n+m-1$个自然数即可。</p>
+<p>但是这还不够。注意到，如果我们选取的点的横坐标如果很普通，我们首先需要$O(n^{2})$转成点值表达，乘完之后又要转回系数表达，效率甚至不如暴力（</p>
+<p>于是我们还需要优化，于是我们还需要再扯远一点。</p>
+<h1 id="复数"><a href="#复数" class="headerlink" title="复数"></a>复数</h1><p>对，你没看错，扯到复数了。</p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>根据初中学习的数学知识，我们知道有些一元二次方程是没有实数根的。就比如说</p>
+<script type="math/tex; mode=display">x^{2}+1=0</script><p>我们知道，它的判别式是$\Delta=b^{2}-4ac=-4\lt 0$，因此它没有实数根。</p>
+<p>于是我们就定义了虚数单位$i$，并规定$i^{2}=-1$。形如$x+yi$这样的数被称为复数。它的模长被定义为它到原点的距离，即$\sqrt{x^{2}+y^{2}}$；幅角被定义为与$x$轴正半轴的夹角，即$\operatorname{tan}^{-1}\cfrac{y}{x}$。</p>
+<p>因为$i$不是实数，它不能被画在我们现有的数轴上。那我们就再拿来一条数轴，将两条数轴垂直放置，垂足为原点。或者说，我们可以将这理解成平面直角坐标系，$x$就是实轴，$y$轴就是虚轴，$x+yi$就对应了点$(x,y)$。</p>
+<p><img src="https://i.loli.net/2018/12/19/5c1a46b4d785b.png" alt></p>
+<p>上图展示了$4+i$和$3+4i$。</p>
+<p>复数的运算其实没什么出乎意料的：</p>
+<script type="math/tex; mode=display">(x_{1}+y_{1}i)+(x_{2}+y_{2}i)=(x_{1}+x_{2})+(y_{1}+y_{2})i</script><script type="math/tex; mode=display">(x_{1}+y_{1}i)-(x_{2}+y_{2}i)=(x_{1}-x_{2})+(y_{1}-y_{2})i</script><script type="math/tex; mode=display">(x_{1}+y_{1}i)(x_{2}+y_{2}i)=(x_{1}x_{2}-y_{1}y_{2})+(x_{1}y_{2}+x_{2}y_{1})i</script><script type="math/tex; mode=display">\begin{aligned}
+\cfrac{x_{1}+y_{1}i}{x_{2}+y_{2}i}&=\cfrac{(x_{1}+y_{1}i)(x_{2}-y_{2}i)}{(x_{2}+y_{2}i)(x_{2}-y_{2}i)}\\
+&=\cfrac{(x_{1}x_{2}+y_{1}y_{2})+(x_{2}y_{1}-x_{1}y_{2})i}{x_{2}^{2}+y_{2}^{2}}\\
+&=\cfrac{x_{1}x_{2}+y_{1}y_{2}}{x_{2}^{2}+y_{2}^{2}}+\cfrac{x_{2}y_{1}-x_{1}y_{2}}{x_{2}^{2}+y_{2}^{2}}i
+\end{aligned}</script><p>我们来单独考虑一下复数相乘的几何意义。</p>
+<p>假设我们有两个复数$c_{1}$，$c_{2}$，它们的模长分别是$r_{1}$，$r_{2}$，幅角分别是$\alpha_{1}$，$\alpha_{2}$。不难发现我们有</p>
+<script type="math/tex; mode=display">c_{1}=r_{1}(\operatorname{cos}\alpha_{1}+i\operatorname{sin}\alpha_{1})</script><script type="math/tex; mode=display">c_{2}=r_{2}(\operatorname{cos}\alpha_{2}+i\operatorname{sin}\alpha_{2})</script><script type="math/tex; mode=display">\begin{aligned}
+c_{1}c_{2}&=r_{1}r_{2}(\cos\alpha_{1}+i\sin\alpha_{1})(\cos\alpha_{2}+i\sin\alpha_{2})\\
+&=r_{1}r_{2}(\cos\alpha_{1}\cos\alpha_{2}+i\cos\alpha_{1}\sin\alpha_{2}+i\sin\alpha_{1}\cos\alpha_{2}-\sin\alpha_{1}\sin\alpha_{2})\\
+&=r_{1}r_{2}[\cos(\alpha_{1}+\alpha_{2})+i\sin(\alpha_{1}+\alpha_{2})]
+\end{aligned}</script><p>总结成一句话，就是「模长相乘，幅角相加」。</p>
+<h2 id="单位圆与单位根"><a href="#单位圆与单位根" class="headerlink" title="单位圆与单位根"></a>单位圆与单位根</h2><p>单位圆就是指半径为$1$的圆。不过一般我们都是把它画在原点的。</p>
+<p><img src="https://i.loli.net/2018/12/20/5c1b06e5602fa.png" alt></p>
+<p>考虑这么一个方程</p>
+<script type="math/tex; mode=display">x^{n}=1</script><p>它的所有复数根。</p>
+<p>因为复数相乘意味着模长相乘，如果一个复数的$n$次方等于$1$，它自身的模长也应该是$1$。如果它的幅角是$a$，我们应该有</p>
+<script type="math/tex; mode=display">2\pi\mid na</script><script type="math/tex; mode=display">\cfrac{2\pi}{n}\mid a</script><p>不难想象出我们有$n$个这样的复数，它们的幅角通式是$\cfrac{2k\pi}{n}(k\in[0,n)\cap\mathbb{Z})$。我们称其中幅角等于$\cfrac{2\pi}{n}$的复数，即$\cos\cfrac{2\pi}{n}+i\sin\cfrac{2\pi}{n}$为$n$次单位根$\omega_{n}$，我们就可以把这$n$个复数表示为$\omega_{n}^{k}(k\in[0,n)\cap\mathbb{Z})$。</p>
+<p>它有如下的一些性质</p>
+<script type="math/tex; mode=display">\omega_{2n}^{2k}=\omega_{n}^{k}</script><p>因为它们的模长都是$1$，幅角相等就相等了。</p>
+<p>然后就没了，读者自证不难（</p>
+<script type="math/tex; mode=display">\omega_{n}^{k+\frac{n}{2}}=-\omega_{n}^{k}</script><p>因为$\omega_{n}^{\frac{n}{2}}$的幅角是$\cfrac{2\times\frac{n}{2}\pi}{n}=\pi$，不难发现它就是$-1$了。</p>
+<h1 id="快速傅里叶变换（Fast-Fourier-Transformation）"><a href="#快速傅里叶变换（Fast-Fourier-Transformation）" class="headerlink" title="快速傅里叶变换（Fast Fourier Transformation）"></a>快速傅里叶变换（Fast Fourier Transformation）</h1><h2 id="运行过程"><a href="#运行过程" class="headerlink" title="运行过程"></a>运行过程</h2><p>那么问题来了，我们刚才扯了这么些，有什么用呢？</p>
+<p>就是说，有个叫「让·巴普蒂斯·约瑟夫·傅里叶」（Jean Baptiste Joseph Fourier）的神仙有一天大开脑洞，掏出$n$次单位根想要求点值表达。</p>
+<p>首先，我们通过在高次补$0$的方式，将这个多项式的项数（也就是次数$+1$）补到$2$的非负整数次幂。</p>
+<p>然后一巴掌把这个多项式拍成两半，按奇偶性拼成两个多项式：</p>
+<script type="math/tex; mode=display">\begin{aligned}
+F_{1}(x)&=\sum\limits_{i=0}^{\frac{n}{2}-1}F[2i]x^{i}\\
+&=F[0]x^{0}+F[2]x^{1}+\cdots+F[n-2]x^{\frac{n}{2}-1}
+\end{aligned}</script><script type="math/tex; mode=display">\begin{aligned}
+F_{2}(x)&=\sum\limits_{i=0}^{\frac{n}{2}-1}F[2i+1]x^{i}\\
+&=F[1]x^{0}+F[3]x^{1}+\cdots+F[n-1]x^{\frac{n}{2}-1}
+\end{aligned}</script><p>于是我们有</p>
+<script type="math/tex; mode=display">F(x)=F_{1}(x^{2})+xF_{2}(x^{2})</script><p>现在我们假设$0\leqslant k&lt;\cfrac{n}{2}$，将$x=\omega_{n}^{k}$和$x=\omega_{n}^{k+\frac{n}{2}}$代入</p>
+<script type="math/tex; mode=display">\begin{aligned}
+F(\omega_{n}^{k})&=F_{1}(\omega_{n}^{2k})+\omega_{n}^{k}F_{2}(\omega_{n}^{2k})\\
+&=F_{1}(\omega_{\frac{n}{2}}^{k})+\omega_{n}^{k}F_{2}(\omega_{\frac{n}{2}}^{k})
+\end{aligned}</script><script type="math/tex; mode=display">\begin{aligned}
+F(\omega_{n}^{k+\frac{n}{2}})&=F_{1}(\omega_{n}^{2k+n})+\omega_{n}^{k+\frac{n}{2}}F_{2}(\omega_{n}^{2k+n})\\
+&=F_{1}(\omega_{n}^{2k})-\omega_{n}^{k}F_{2}(\omega_{n}^{2k})\\
+&=F_{1}(\omega_{\frac{n}{2}}^{k})-\omega_{n}^{k}F_{2}(\omega_{\frac{n}{2}}^{k})
+\end{aligned}</script><p>我们注意到，如果说我们求出了$F_{1}(x)$和$F_{2}(x)$的点值表达，我们就能够$O(n)$地求出$F(x)$的点值表达了。至此，我们不难想到分治，边界条件就是$n=1$，这时什么也不用做直接返回即可。</p>
+<p>简单地贴一下代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">(<span class="keyword">complex</span>* F,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">complex</span> F1[n&gt;&gt;<span class="number">1</span>],F2[n&gt;&gt;<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i+=<span class="number">2</span>)&#123;</span><br><span class="line">    	F1[i]=F[<span class="number">2</span>*i];</span><br><span class="line">        F2[i]=F[<span class="number">2</span>*i+<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    work(F1,n&gt;&gt;<span class="number">1</span>);</span><br><span class="line">    work(F2,n&gt;&gt;<span class="number">1</span>);</span><br><span class="line">    complex unit(cos(2*Pi/n),sin(2*Pi/n)),tmp=1;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;(n&gt;&gt;<span class="number">1</span>);++i,tmp=tmp*unit)&#123;</span><br><span class="line">    	<span class="keyword">complex</span> w=F2[i+(n&gt;&gt;<span class="number">1</span>)]*tmp;</span><br><span class="line">        F[i]=F1[i]+w;</span><br><span class="line">        F[i+(n&gt;&gt;<span class="number">1</span>)]=F1[i]-w;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不过，以上代码是我现写出来的，<del>保证其不正确性</del>不保证其正确性。</p>
+<p>不过，这样递归运算效率还是太低了。我们来考虑一下，递归到底层后，<code>F</code>数组的每一个位置上实际存的是几次项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">0 1 2 3 4 5 6 7</span><br><span class="line">0 2 4 6|1 3 5 7</span><br><span class="line">0 4|2 6|1 5|3 7</span><br><span class="line">0|4|2|6|1|5|3|7</span><br></pre></td></tr></table></figure>
+<p>写成二进制看看：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">位置（十进制）</th>
+<th style="text-align:center">位置（二进制）</th>
+<th style="text-align:center">次数（十进制）</th>
+<th style="text-align:center">次数（二进制）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$000$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$000$</td>
+</tr>
+<tr>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$001$</td>
+<td style="text-align:center">$4$</td>
+<td style="text-align:center">$100$</td>
+</tr>
+<tr>
+<td style="text-align:center">$2$</td>
+<td style="text-align:center">$010$</td>
+<td style="text-align:center">$2$</td>
+<td style="text-align:center">$010$</td>
+</tr>
+<tr>
+<td style="text-align:center">$3$</td>
+<td style="text-align:center">$011$</td>
+<td style="text-align:center">$6$</td>
+<td style="text-align:center">$110$</td>
+</tr>
+<tr>
+<td style="text-align:center">$4$</td>
+<td style="text-align:center">$100$</td>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$001$</td>
+</tr>
+<tr>
+<td style="text-align:center">$5$</td>
+<td style="text-align:center">$101$</td>
+<td style="text-align:center">$5$</td>
+<td style="text-align:center">$101$</td>
+</tr>
+<tr>
+<td style="text-align:center">$6$</td>
+<td style="text-align:center">$110$</td>
+<td style="text-align:center">$3$</td>
+<td style="text-align:center">$011$</td>
+</tr>
+<tr>
+<td style="text-align:center">$7$</td>
+<td style="text-align:center">$111$</td>
+<td style="text-align:center">$7$</td>
+<td style="text-align:center">$111$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>注意到两边的数字的二进制是镜像的。也就是说，我们只要把位置编号的二进制位的最后$\operatorname{log}n$位左右镜像过来，就可以得到递归到最底层后，这个位置上的系数所对应的项的次数了。</p>
+<p>我们可以$O(n)$地处理处每个数的镜像：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)</span><br><span class="line">    rev[i]=(rev[i&gt;&gt;<span class="number">1</span>]&gt;&gt;<span class="number">1</span>)|((i&amp;<span class="number">1</span>)?(n&gt;&gt;<span class="number">1</span>):<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p>中间有一个位或运算符，我们以它为分界线，将上面这行代码分成左右两部分。左边就是$i$这个数除了最后一位以外的所有位的镜像；右边特判了一下$i$的最后一位是否为$1$，如果是的话，就在最高位补一个$1$。</p>
+<p>接下来的步骤我不是很能解释得清楚，因为我也是背的板子。总之这个东西写出来差不多长这样：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">(<span class="keyword">complex</span>* F,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)</span><br><span class="line">        <span class="keyword">if</span>(i&lt;rev[i])</span><br><span class="line">            swap(F[i],F[rev[i]]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> len=<span class="number">2</span>,p=<span class="number">1</span>;len&lt;=n;len&lt;&lt;=<span class="number">1</span>,p&lt;&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">        complex unit(cos(Pi/p),sin(Pi/p));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i+=len)&#123;</span><br><span class="line">            <span class="function"><span class="keyword">complex</span> <span class="title">cur</span><span class="params">(<span class="number">1</span>,<span class="number">0</span>)</span></span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i;j&lt;i+p;++j)&#123;</span><br><span class="line">                <span class="keyword">complex</span> tmp=F[j+p]*cur;</span><br><span class="line">                F[j+p]=F[j]-tmp;</span><br><span class="line">                F[j]=F[j]+tmp;</span><br><span class="line">                cur=cur*unit;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那么现在还差最后一步，将点值表达转回系数表达。我们将$F(\omega_{n}^{0}),F(\omega_{n}^{1}),\cdots,F(\omega_{n}^{n-1})$分别记为$y_{0},y_{1},\cdots,y_{n-1}$，我们求点值的过程可以用矩阵表达成这样：</p>
+<script type="math/tex; mode=display">\begin{bmatrix}
+&(\omega_{n}^{0})^{0}&(\omega_{n}^{0})^{1}&\cdots&(\omega_{n}^{0})^{n-1}&\\
+&(\omega_{n}^{1})^{0}&(\omega_{n}^{1})^{1}&\cdots&(\omega_{n}^{1})^{n-1}\\
+&\vdots&\vdots&\ddots&\vdots\\
+&(\omega_{n}^{n-1})^{0}&(\omega_{n}^{n-1})^{1}&\cdots&(\omega_{n}^{n-1})^{n-1}\\
+\end{bmatrix}
+\begin{bmatrix}
+&F[0]&\\
+&F[1]\\
+&\vdots\\
+&F[n-1]
+\end{bmatrix}
+=\begin{bmatrix}
+&y_{0}&\\
+&y_{1}\\
+&\vdots\\
+&y_{n-1}
+\end{bmatrix}</script><p>我们可以试图寻找左边那个矩阵的逆矩阵。直接摆结论的话，它差不多长这样：</p>
+<script type="math/tex; mode=display">\begin{bmatrix}
+&\frac{1}{n}(\omega_{n}^{0})^{0}&\frac{1}{n}(\omega_{n}^{0})^{1}&\cdots&\frac{1}{n}(\omega_{n}^{0})^{n-1}&\\
+&\frac{1}{n}(\omega_{n}^{-1})^{0}&\frac{1}{n}(\omega_{n}^{-1})^{1}&\cdots&\frac{1}{n}(\omega_{n}^{-1})^{n-1}\\
+&\vdots&\vdots&\ddots&\vdots\\
+&\frac{1}{n}(\omega_{n}^{-n+1})^{0}&\frac{1}{n}(\omega_{n}^{-n+1})^{1}&\cdots&\frac{1}{n}(\omega_{n}^{-n+1})^{n-1}\\
+\end{bmatrix}</script><p>现在我们要证明这两个矩阵乘起来是单位矩阵。令第一个矩阵为$A$，第二个矩阵为$B$，$A\times B=C$。不难发现$A[i][j]=\omega_{n}^{ij}$，$B[i][j]=\cfrac{1}{n}\omega_{n}^{-ij}$，我们有</p>
+<script type="math/tex; mode=display">\begin{aligned}
+C[i][j]&=\sum\limits_{k=0}^{n-1}A[i][k]B[k][j]\\
+&=\sum\limits_{k=0}^{n-1}\cfrac{1}{n}\omega_{n}^{ik-kj}
+\end{aligned}</script><p>若$i=j$，不难发现此时$C[i][j]=1$。</p>
+<p>否则，即$i\neq j$，设$i-j=l$，我们有</p>
+<script type="math/tex; mode=display">\begin{aligned}
+C[i][j]&=\sum\limits_{k=0}^{n-1}\cfrac{1}{n}\omega_{n}^{lk}\\
+&=\cfrac{\omega_{n}^{ln}-1}{n(\omega_{n}^{l}-1)}\\
+&=\cfrac{1-1}{n(\omega_{n}^{l}-1)}\\
+&=0
+\end{aligned}</script><p>综上所述，矩阵$C$是单位矩阵，因此矩阵$B$是矩阵$A$的逆矩阵。</p>
+<p>因此我们有</p>
+<script type="math/tex; mode=display">\begin{bmatrix}&\frac{1}{n}(\omega_{n}^{-0})^{0}&\frac{1}{n}(\omega_{n}^{-0})^{1}&\cdots&\frac{1}{n}(\omega_{n}^{-0})^{n-1}&\\&\frac{1}{n}(\omega_{n}^{-1})^{0}&\frac{1}{n}(\omega_{n}^{-1})^{1}&\cdots&\frac{1}{n}(\omega_{n}^{-1})^{n-1}\\&\vdots&\vdots&\ddots&\vdots\\&\frac{1}{n}(\omega_{n}^{-n+1})^{0}&\frac{1}{n}(\omega_{n}^{-n+1})^{1}&\cdots&\frac{1}{n}(\omega_{n}^{-n+1})^{n-1}\\\end{bmatrix}\begin{bmatrix}&y_{0}&\\&y_{1}\\&\vdots\\&y_{n-1}\end{bmatrix}=\begin{bmatrix}&F[0]&\\&F[1]\\&\vdots\\&F[n-1]\end{bmatrix}</script><p>注意到这个过程和我们之前将系数转化为点值表达的过程极为相似。这就是在启示我们，如果说我们把之前用的$\omega_{n}^{0},\omega_{n}^{1},\cdots,\omega_{n}^{n-1}$换成$\omega_{n}^{0},\omega_{n}^{-1},\cdots,\omega_{n}^{-n+1}$，然后对着点值表达来一遍FFT，然后再除以$n$，就得到了原多项式的系数了。</p>
+<p>注意到这两个过程只有用到的单位根不一样，我们可以将上面那段代码的</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">complex unit(cos(Pi/p),sin(Pi/p));</span><br></pre></td></tr></table></figure>
+<p>改成</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">complex unit(cos(Pi/p),tp*sin(Pi/p));</span><br></pre></td></tr></table></figure>
+<p>然后调用时再传一个参数<code>tp</code>进去。<code>tp=1</code>表示是系数转点值，<code>tp=-1</code>表示是点值转系数。</p>
+<p>完整代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 2097152</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> Pi=<span class="built_in">acos</span>(<span class="number">-1.0</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> rev[maxn+<span class="number">1</span>];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">complex</span>&#123;</span></span><br><span class="line">    <span class="keyword">double</span> r,c;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">complex</span>(<span class="keyword">double</span> _r=<span class="number">0</span>,<span class="keyword">double</span> _c=<span class="number">0</span>)&#123;</span><br><span class="line">        r=_r;</span><br><span class="line">        c=_c;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">complex</span> F[maxn+<span class="number">1</span>],G[maxn+<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">complex</span> <span class="keyword">operator</span>+(<span class="keyword">complex</span>&amp; a,<span class="keyword">complex</span>&amp; b)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">complex</span>(a.r+b.r,a.c+b.c);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">complex</span> <span class="keyword">operator</span>-(<span class="keyword">complex</span>&amp; a,<span class="keyword">complex</span>&amp; b)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">complex</span>(a.r-b.r,a.c-b.c);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">complex</span> <span class="keyword">operator</span>*(<span class="keyword">complex</span>&amp; a,<span class="keyword">complex</span>&amp; b)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">complex</span>(a.r*b.r-a.c*b.c,a.r*b.c+a.c*b.r);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _tp&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(_tp&amp; x,_tp&amp; y)</span></span>&#123;</span><br><span class="line">    _tp tmp=x;</span><br><span class="line">    x=y;</span><br><span class="line">    y=tmp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">FAQ</span><span class="params">(<span class="keyword">complex</span> F[],<span class="keyword">int</span> tp)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)</span><br><span class="line">        <span class="keyword">if</span>(i&lt;rev[i])</span><br><span class="line">            swap(F[i],F[rev[i]]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> len=<span class="number">2</span>,p=<span class="number">1</span>;len&lt;=n;len&lt;&lt;=<span class="number">1</span>,p&lt;&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">        register complex unit(cos(Pi/p),tp*sin(Pi/p));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i+=len)&#123;</span><br><span class="line">            <span class="function"><span class="keyword">register</span> <span class="keyword">complex</span> <span class="title">cur</span><span class="params">(<span class="number">1</span>,<span class="number">0</span>)</span></span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=i;j&lt;i+p;++j)&#123;</span><br><span class="line">                <span class="keyword">register</span> <span class="keyword">complex</span> tmp=F[j+p]*cur;</span><br><span class="line">                F[j+p]=F[j]-tmp;</span><br><span class="line">                F[j]=F[j]+tmp;</span><br><span class="line">                cur=cur*unit;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">    ++n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;F[i].r);</span><br><span class="line">    ++m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;++i)</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;G[i].r);</span><br><span class="line">    <span class="keyword">for</span>(m+=n<span class="number">-1</span>,n=<span class="number">1</span>;n&lt;m;n&lt;&lt;=<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)</span><br><span class="line">        rev[i]=(rev[i&gt;&gt;<span class="number">1</span>]&gt;&gt;<span class="number">1</span>)|((i&amp;<span class="number">1</span>)?(n&gt;&gt;<span class="number">1</span>):<span class="number">0</span>);</span><br><span class="line">    FAQ(F,<span class="number">1</span>);</span><br><span class="line">    FAQ(G,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)</span><br><span class="line">        F[i]=F[i]*G[i];</span><br><span class="line">    FAQ(F,<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;++i)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%0.0lf "</span>,F[i].r/n);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><del>不要问我<code>cltstream</code>哪去了（</del></p>
+<p>然后您就可以切掉这道<a href="https://www.luogu.org/problemnew/show/P3803" target="_blank" rel="noopener">板子题</a>了。</p>
+<p>其实上面的代码是我从另一道题里复制过来然后现改的，说不定会改出错（</p>
+<p>最好还是自己写吧（</p>
+<p>什么？想知道是哪道题？往下看（</p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h3 id="「ZJOI2014」力"><a href="#「ZJOI2014」力" class="headerlink" title="「ZJOI2014」力"></a><a href="https://www.luogu.org/problemnew/show/P3338" target="_blank" rel="noopener">「ZJOI2014」力</a></h3><p>这是一道裸的卷积题。</p>
+<p>考虑两个长度为$n$的数组$F$和$G$，现在我们想求一个数组$H$，它满足</p>
+<script type="math/tex; mode=display">H[i]=\sum\limits_{j=0}^{i}F[j]G[i-j]=\sum\limits_{0\leqslant j<n,0\leqslant k<n,j+k=i}F[j]G[k]</script><p>在本页面往上翻，翻到这个式子：</p>
+<script type="math/tex; mode=display">(F\times G)[k]=\sum\limits_{0\leqslant i<n,0\leqslant j<m,i+j=k}F[i]G[j]</script><p>发现了吗？这两个过程其实是一样的。</p>
+<p>于是，我们如下构造两个多项式</p>
+<script type="math/tex; mode=display">F(x)=\sum\limits_{i=0}^{n-1}F[i]x^{i}</script><script type="math/tex; mode=display">G(x)=\sum\limits_{i=0}^{n-1}G[i]x^{i}</script><p>然后直接一波FFT套上去，输出次数最低的$n$项的系数就好。</p>
+<p>那么这题呢？首先我们把$j\lt i$和$j\gt i$分开计算。</p>
+<p>先考虑$j\lt i$，令$F[i]=q_{i}$，$G[i]=\begin{cases}&amp;\cfrac{1}{i^{2}}\;\;&amp;(i\gt 0)\\&amp;0&amp;(i=0)\end{cases}$，那么</p>
+<script type="math/tex; mode=display">\begin{aligned}
+E_{i}&=\sum_{j=0}^{i-1}F[j]G[i-j]\\
+&=\sum_{j=0}^{i}F[j]G[i-j]
+\end{aligned}</script><p>直接套板子就行。</p>
+<p>对于$j&gt;i$的情况，我们将数组$F$左右翻转，然后继续套板子就行（</p>
+<p>具体还是看代码吧：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span>\lt cstdio&gt;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 2097152</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> Pi=<span class="built_in">acos</span>(<span class="number">-1.0</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> rev[maxn+<span class="number">1</span>];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">complex</span>&#123;</span></span><br><span class="line">    <span class="keyword">double</span> r,c;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">complex</span>(<span class="keyword">double</span> _r=<span class="number">0</span>,<span class="keyword">double</span> _c=<span class="number">0</span>)&#123;</span><br><span class="line">        r=_r;</span><br><span class="line">        c=_c;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">complex</span> F1[maxn+<span class="number">1</span>],F2[maxn+<span class="number">1</span>],G[maxn+<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">complex</span> <span class="keyword">operator</span>+(<span class="keyword">complex</span>&amp; a,<span class="keyword">complex</span>&amp; b)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">complex</span>(a.r+b.r,a.c+b.c);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">complex</span> <span class="keyword">operator</span>-(<span class="keyword">complex</span>&amp; a,<span class="keyword">complex</span>&amp; b)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">complex</span>(a.r-b.r,a.c-b.c);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">complex</span> <span class="keyword">operator</span>*(<span class="keyword">complex</span>&amp; a,<span class="keyword">complex</span>&amp; b)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">complex</span>(a.r*b.r-a.c*b.c,a.r*b.c+a.c*b.r);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _tp&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(_tp&amp; x,_tp&amp; y)</span></span>&#123;</span><br><span class="line">    _tp tmp=x;</span><br><span class="line">    x=y;</span><br><span class="line">    y=tmp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">FAQ</span><span class="params">(<span class="keyword">complex</span> F[],<span class="keyword">int</span> tp)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)</span><br><span class="line">        <span class="keyword">if</span>(i&lt;rev[i])</span><br><span class="line">            swap(F[i],F[rev[i]]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> len=<span class="number">2</span>,p=<span class="number">1</span>;len&lt;=n;len&lt;&lt;=<span class="number">1</span>,p&lt;&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">        register complex unit(cos(Pi/p),tp*sin(Pi/p));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i+=len)&#123;</span><br><span class="line">            <span class="function"><span class="keyword">register</span> <span class="keyword">complex</span> <span class="title">cur</span><span class="params">(<span class="number">1</span>,<span class="number">0</span>)</span></span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=i;j&lt;i+p;++j)&#123;</span><br><span class="line">                <span class="keyword">register</span> <span class="keyword">complex</span> tmp=F[j+p]*cur;</span><br><span class="line">                F[j+p]=F[j]-tmp;</span><br><span class="line">                F[j]=F[j]+tmp;</span><br><span class="line">                cur=cur*unit;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%lf"</span>,&amp;F1[i].r);</span><br><span class="line">        F2[n-i<span class="number">-1</span>].r=F1[i].r;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;++i)</span><br><span class="line">        G[i]=<span class="number">1.0</span>/i/i;</span><br><span class="line">    <span class="keyword">for</span>(m=n,n=<span class="number">1</span>;n&lt;m;n&lt;&lt;=<span class="number">1</span>);</span><br><span class="line">    n&lt;&lt;=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)</span><br><span class="line">        rev[i]=(rev[i&gt;&gt;<span class="number">1</span>]&gt;&gt;<span class="number">1</span>)|((i&amp;<span class="number">1</span>)?(n&gt;&gt;<span class="number">1</span>):<span class="number">0</span>);</span><br><span class="line">    FAQ(G,<span class="number">1</span>);</span><br><span class="line">    FAQ(F1,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)</span><br><span class="line">        F1[i]=F1[i]*G[i];</span><br><span class="line">    FAQ(F1,<span class="number">-1</span>);</span><br><span class="line">    FAQ(F2,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)</span><br><span class="line">        F2[i]=F2[i]*G[i];</span><br><span class="line">    FAQ(F2,<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;++i)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%lf\n"</span>,(F1[i].r-F2[m-i<span class="number">-1</span>].r)/n);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="数论变换（Number-Theoretic-Transformation）"><a href="#数论变换（Number-Theoretic-Transformation）" class="headerlink" title="数论变换（Number-Theoretic Transformation）"></a>数论变换（Number-Theoretic Transformation）</h1><p>注意到朴素的FFT使用的是单位复根。然而它们有一个十分大的缺陷，就是必须要用<code>double</code>存。这会带来精度上的误差，一个直接的结果就是，对于只有整数参与的多项式乘法，跑完FFT却会出现小数。</p>
+<p>这就启示我们，能不能用其他的什么东西替换掉单位复根。</p>
+<p>设有两个互质的正整数$a$和$p$，最小的使得$a^{k}\equiv 1\pmod{p}$的$k$被称为$a$模$p$的阶，记作$\delta_{p}(a)$。</p>
+<p>如果说$\delta_{p}(a)=\varphi(p)$，我们就称$a$是模$p$的一个原根。</p>
+<p>现在我们找一个质数$p=an+1$，其中$a$是一个正整数，$n$是$2$的非负整数次幂。然后我们找到它的原根$g$，并定义$\omega_{n}=g^{a}$。让我们来看看单位复根有的性质现在的原根有没有：</p>
+<p>$\omega_{n}^{0},\omega_{n}^{1},\cdots,\omega_{n}^{n-1}$互不相同。这是为了保证点值表达的合法。</p>
+<p>虽然我不会证，不过我们的确有$g^{0},g^{1},\cdots,g^{n-1}$在模$p$意义下互不相同，$a$次幂自然也一样。</p>
+<blockquote>
+<p>Updated on 2019-03-17</p>
+<p>似乎这么证明有些问题？</p>
+<p>原根的这个性质实际上是$g^{0},g^{1},\cdots,g^{p-2}$在模$p$意义下互不相同。因此如果$(n-1)a&lt;p-1$，那么上面的结论就是正确的。</p>
+<script type="math/tex; mode=display">\begin{aligned}
+(n-1)a&=na-a\\
+&=p-1-\cfrac{p-1}{n}\\
+&\lt p-1
+\end{aligned}</script><p>以上。</p>
+</blockquote>
+<p>$\omega_{2n}^{2k}=\omega_{n}^{k}$。这是为了让我们可以分治。</p>
+<p>根据定义，$\omega_{2n}=g^{\frac{a}{2}}$，就是将现在的$p$进一步拆成$\cfrac{a}{2}\cdot2n+1$。不难发现</p>
+<script type="math/tex; mode=display">\omega_{2n}^{2k}=g^{\frac{a}{2}\cdot{2}k}=g^{ak}=\omega_{n}^{k}</script><p>因而原根有上述性质。</p>
+<p>$\omega_{n}^{k+\frac{n}{2}}=-\omega_{n}^{k}$，或者说$\omega_{n}^{\frac{n}{2}}=-1$。这同样是为了让我们可以分治。</p>
+<p>因为$p=an+1$，根据费马小定理，我们有</p>
+<script type="math/tex; mode=display">\omega_{n}^{n}\equiv g^{an}\equiv g^{p-1}\equiv 1\pmod{p}</script><p>因而$\omega_{n}^{\frac{n}{2}}\equiv\pm 1\pmod{p}$。又因为$\omega_{n}^{0}=1$，而$\omega_{n}^{\frac{n}{2}}\not\equiv\omega_{n}^{0}\pmod{p}$，我们就得到$\omega_{n}^{\frac{n}{2}}\equiv -1\pmod{p}$。</p>
+<p>若$k\neq 0$，$\sum_{i=0}^{n-1}(\omega_{n}^{k})^{i}=0$。这是为了实现逆变换。不过这个很明显，就留作习题吧。</p>
+<p>以上，我们成功地用原根取代了单位复根。一般情况下，我们会取$p=998244353=7\times 17\times 2^{23}+1$，它的原根是$3$。</p>
+<p>需要注意的是，我们还有一个可以优化的小细节。注意到$\omega_{n}=g^{a}=g^{\frac{p-1}{n}}$，我们可以将这些值预处理出来，就不用每次都跑快速幂了。对于$998244353$来说，我们需要预处理$\omega_{2},\omega_{4},\cdots,\omega_{2^{23}}$。注意到</p>
+<script type="math/tex; mode=display">\omega_{2^{23}}=3^{7\times 17}=3^{119}</script><script type="math/tex; mode=display">\omega_{2^{k}}=\omega_{2^{k+1}}^{2}</script><p>我们一遍快速幂算出$\omega_{2^{23}}$然后倒着推出剩下的即可。</p>
+<p>关于$\omega_{n}^{-k}$，注意到它就是$\omega_{n}^{k}$在模$998244353$意义下的逆元。那么我们把上面两个式子中的$3$换成它在模$998244353$意义下的逆元即可，这个数是$332748118$。</p>
+<p>然后我们把FFT板子里的单位复根全部换成原根，运算换成模意义下的就行了。</p>
+<p>代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> re register</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 2097152</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mod 998244353</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> swap(a,b) a^=b,b^=a,a^=b</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> cltstream&#123;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> size 1048576</span></span><br><span class="line">    <span class="keyword">char</span> cltin[size+<span class="number">1</span>],*ih=cltin,*it=cltin;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">char</span> <span class="title">gc</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">ifdef</span> ONLINE_JUDGE</span></span><br><span class="line">            <span class="keyword">if</span>(ih==it)&#123;</span><br><span class="line">                it=(ih=cltin)+fread(cltin,<span class="number">1</span>,size,<span class="built_in">stdin</span>);</span><br><span class="line">                <span class="keyword">if</span>(ih==it)</span><br><span class="line">                    <span class="keyword">return</span> EOF;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> *ih++;</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">            <span class="keyword">return</span> getchar();</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">char</span> cltout[size+<span class="number">1</span>],*oh=cltout,*ot=cltout+size;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pc</span><span class="params">(<span class="keyword">char</span> c)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(oh==ot)&#123;</span><br><span class="line">            fwrite(cltout,<span class="number">1</span>,size,<span class="built_in">stdout</span>);</span><br><span class="line">            oh=cltout;</span><br><span class="line">        &#125;</span><br><span class="line">        *oh++=c;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> clop() fwrite(cltstream::cltout,1,cltstream::oh-cltstream::cltout,stdout)</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">undef</span> size</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> _tp&gt;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(_tp&amp; x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sn=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">char</span> c=gc();</span><br><span class="line">        <span class="keyword">for</span>(;c!=<span class="number">45</span>&amp;&amp;(c&lt;<span class="number">48</span>||c&gt;<span class="number">57</span>)&amp;&amp;c!=EOF;c=gc());</span><br><span class="line">        <span class="keyword">if</span>(c==<span class="number">45</span>&amp;&amp;c!=EOF)</span><br><span class="line">            sn=<span class="number">-1</span>,c=gc();</span><br><span class="line">        <span class="keyword">for</span>(x=<span class="number">0</span>;c&gt;=<span class="number">48</span>&amp;&amp;c&lt;=<span class="number">57</span>&amp;&amp;c!=EOF;x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+(c^<span class="number">48</span>),c=gc());</span><br><span class="line">        x*=sn;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> _tp&gt;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(_tp x,<span class="keyword">char</span> text=<span class="number">-1</span>)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(x&lt;<span class="number">0</span>)</span><br><span class="line">            pc(<span class="number">45</span>),x=-x;</span><br><span class="line">        <span class="keyword">if</span>(!x)</span><br><span class="line">            pc(<span class="number">48</span>);</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">int</span> digit[<span class="number">22</span>];</span><br><span class="line">            <span class="keyword">for</span>(digit[<span class="number">0</span>]=<span class="number">0</span>;x;digit[++digit[<span class="number">0</span>]]=x%<span class="number">10</span>,x/=<span class="number">10</span>);</span><br><span class="line">            <span class="keyword">for</span>(;digit[<span class="number">0</span>];pc(digit[digit[<span class="number">0</span>]--]^<span class="number">48</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(text&gt;=<span class="number">0</span>)</span><br><span class="line">            pc(text);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> unit[<span class="number">2</span>][<span class="number">24</span>],rev[maxn+<span class="number">1</span>],F[maxn+<span class="number">1</span>],G[maxn+<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">cltpow</span><span class="params">(re <span class="keyword">int</span> x,re <span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    re <span class="keyword">int</span> res=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;y;)&#123;</span><br><span class="line">        <span class="keyword">if</span>(y&amp;<span class="number">1</span>)</span><br><span class="line">            res=<span class="number">1L</span>L*res*x%mod;</span><br><span class="line">        x=<span class="number">1L</span>L*x*x%mod;</span><br><span class="line">        y&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">NTT</span><span class="params">(<span class="keyword">int</span>* F,re <span class="keyword">int</span> tp)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)</span><br><span class="line">        <span class="keyword">if</span>(i&lt;rev[i])</span><br><span class="line">            swap(F[i],F[rev[i]]);</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> k=<span class="number">1</span>,p=<span class="number">1</span>;p&lt;n;++k,p&lt;&lt;=<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i+=p&lt;&lt;<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">for</span>(re <span class="keyword">int</span> j=i,tmp=<span class="number">1</span>;j&lt;i+p;++j,tmp=<span class="number">1L</span>L*tmp*unit[tp][k]%mod)&#123;</span><br><span class="line">                re <span class="keyword">int</span> x=F[j],y=<span class="number">1L</span>L*F[j+p]*tmp%mod;</span><br><span class="line">                F[j]=(x+y)%mod;</span><br><span class="line">                F[j+p]=(x-y+mod)%mod;</span><br><span class="line">            &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    unit[<span class="number">0</span>][<span class="number">23</span>]=cltpow(<span class="number">3</span>,<span class="number">119</span>);</span><br><span class="line">    unit[<span class="number">1</span>][<span class="number">23</span>]=cltpow(<span class="number">332748118</span>,<span class="number">119</span>);</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;++i)</span><br><span class="line">        <span class="keyword">for</span>(re <span class="keyword">int</span> j=<span class="number">22</span>;j&gt;=<span class="number">0</span>;--j)</span><br><span class="line">            unit[i][j]=<span class="number">1L</span>L*unit[i][j+<span class="number">1</span>]*unit[i][j+<span class="number">1</span>]%mod;</span><br><span class="line">    cltstream::read(n);</span><br><span class="line">    cltstream::read(m);</span><br><span class="line">    ++n;</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)</span><br><span class="line">        cltstream::read(F[i]);</span><br><span class="line">    ++m;</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;++i)</span><br><span class="line">        cltstream::read(G[i]);</span><br><span class="line">    <span class="keyword">for</span>(m+=n<span class="number">-1</span>,n=<span class="number">1</span>;n&lt;m;n&lt;&lt;=<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)</span><br><span class="line">        rev[i]=(rev[i&gt;&gt;<span class="number">1</span>]&gt;&gt;<span class="number">1</span>)|((i&amp;<span class="number">1</span>)?(n&gt;&gt;<span class="number">1</span>):<span class="number">0</span>);</span><br><span class="line">    NTT(F,<span class="number">0</span>);</span><br><span class="line">    NTT(G,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)</span><br><span class="line">        F[i]=<span class="number">1L</span>L*F[i]*G[i]%mod;</span><br><span class="line">    NTT(F,<span class="number">1</span>);</span><br><span class="line">    n=cltpow(n,mod<span class="number">-2</span>);</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;++i)</span><br><span class="line">        cltstream::write(<span class="number">1L</span>L*F[i]*n%mod,i&lt;m<span class="number">-1</span>?<span class="number">32</span>:<span class="number">-1</span>);</span><br><span class="line">    clop();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NTT/" rel="tag"># NTT</a>
+          
+            <a href="/tags/FFT/" rel="tag"># FFT</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/sqrt-decomposition-complexity-optimization/" rel="next" title="关于最优化分块时间复杂度的研究报告">
+                <i class="fa fa-chevron-left"></i> 关于最优化分块时间复杂度的研究报告
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/polynomial-learning-notes-pt2/" rel="prev" title="「多项式学习笔记Part II」多项式的进阶操作">
+                「多项式学习笔记Part II」多项式的进阶操作 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+  
+
+
+
+        </div>
+        
+          
+  
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+
+    
+
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Remilia_.png" alt="Challestend Rehtorbegnaro">
+            
+              <p class="site-author-name" itemprop="name">Challestend Rehtorbegnaro</p>
+              <p class="site-description motion-element" itemprop="description">A juruo OIer from SD province.</p>
+          </div>
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                以下全部都是大佬
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cnblogs.com/asuldb" title="asuldb" target="_blank">asuldb</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ctz45562.github.io/" title="ctz" target="_blank">ctz</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://me.csdn.net/feifanbaijun" title="feifanbaijun" target="_blank">feifanbaijun</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hachimanjy.github.io/" title="hachimanjy" target="_blank">hachimanjy</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.luogu.org/blog/66965/" title="Juan_feng" target="_blank">Juan_feng</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://rbzno1.github.io/" title="rbzno1" target="_blank">rbzno1</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/shzr/" title="shzr" target="_blank">shzr</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cnblogs.com/snowy2002" title="SnoWY" target="_blank">SnoWY</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://stevebraveman.github.io/" title="Steve_braveman" target="_blank">Steve_braveman</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cnblogs.com/SuperGoodGame/" title="SuperGoodGame" target="_blank">SuperGoodGame</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://dftyem.github.io/" title="Taduro" target="_blank">Taduro</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#点值表达"><span class="nav-number">1.</span> <span class="nav-text">点值表达</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#复数"><span class="nav-number">2.</span> <span class="nav-text">复数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">2.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单位圆与单位根"><span class="nav-number">2.2.</span> <span class="nav-text">单位圆与单位根</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#快速傅里叶变换（Fast-Fourier-Transformation）"><span class="nav-number">3.</span> <span class="nav-text">快速傅里叶变换（Fast Fourier Transformation）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#运行过程"><span class="nav-number">3.1.</span> <span class="nav-text">运行过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例题"><span class="nav-number">3.2.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#「ZJOI2014」力"><span class="nav-number">3.2.1.</span> <span class="nav-text">「ZJOI2014」力</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数论变换（Number-Theoretic-Transformation）"><span class="nav-number">4.</span> <span class="nav-text">数论变换（Number-Theoretic Transformation）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Challestend Rehtorbegnaro</span>
+</div>
+
+<div class="copyright">
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">205693</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">343 分钟</span>
+  
+
+  <span class="post-meta-divider">|</span>
+  <span class="post-meta-item-icon">
+    <i class="fa fa-users"></i>
+  </span>
+  <span id="busuanzi_container_site_uv">
+    站点访客数： <span id="busuanzi_value_site_uv"></span> 人次
+  </span>
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+	
+		
+			<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+			<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+			<script type="text/javascript">
+			const gitalk = new Gitalk({
+			clientID: '408bebf9cf98eab8ea73',
+			clientSecret: '9b3b31b9d5fd446513513ec24291e0008ec20f06',
+			repo: 'Challestend.github.io',
+			owner: 'Challestend',
+			admin: 'Challestend'.split(','),
+			pagerDirection: 'first',
+			id: md5(window.location.pathname),
+			distractionFreeMode: false
+			})
+			gitalk.render('gitalk-container')
+			</script>
+		
+	
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('-1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'manual') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script type="text/javascript">
+  
+    bookmark.scrollToMark('manual', "#更多");
+  
+  </script>
+
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+
+  <a href="https://github.com/Challestend"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
