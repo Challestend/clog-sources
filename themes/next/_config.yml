@@ -123,6 +123,7 @@ menu:
   categories: /categories/ || th
   tags: /tags/ || tags
   log: /log/ || book
+  wtf: /wtf/ || question-circle
 
 # Enable/Disable menu icons / item badges.
 menu_settings:
@@ -846,7 +847,7 @@ canvas_nest:
   enable: true
   onmobile: true # display on mobile or not
   color: '0,0,0' # RGB values, use ',' to separate
-  opacity: 10 # the opacity of line: 0~1
+  opacity: 1 # the opacity of line: 0~1
   zIndex: -1 # z-index property of the background
   count: 99 # the number of lines
 
