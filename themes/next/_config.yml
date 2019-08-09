@@ -123,7 +123,6 @@ menu:
   categories: /categories/ || th
   tags: /tags/ || tags
   log: /log/ || book
-  wtf: /wtf/ || question-circle
 
 # Enable/Disable menu icons / item badges.
 menu_settings:
@@ -183,8 +182,8 @@ social_icons:
 # Blog rolls
 links_icon: link
 links_title: 以下全部都是大佬
-links_layout: block
-# links_layout: inline
+# links_layout: block
+links_layout: inline
 links:
   asuldb: https://www.cnblogs.com/asuldb
   ctz: https://ctz45562.github.io/
@@ -236,7 +235,7 @@ sidebar:
   # If commented, will be default for:
   # Muse | Mist: 320
   # Pisces | Gemini: 240
-  # width: 320
+  width: 300
 
   # Sidebar Display, available value (only for Muse | Mist):
   #  - post    expand on posts automatically. Default.

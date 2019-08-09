@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN,en,default">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-center-simple.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"left","width":300,"display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"fadeIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="看到坐在我左边的dalao在学FWT。 想着二轮前学一些很酷很炫很失败的算法，于是来背一下学一下吧。 抄袭来源。">
+<meta name="keywords" content="FWT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FWT抄袭笔记">
+<meta property="og:url" content="https://github.com/Challestend/fwt-learning-notes/index.html">
+<meta property="og:site_name" content="Chromium">
+<meta property="og:description" content="看到坐在我左边的dalao在学FWT。 想着二轮前学一些很酷很炫很失败的算法，于是来背一下学一下吧。 抄袭来源。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/images/TIM图片20181011211750.jpg">
+<meta property="og:updated_time" content="2019-04-12T09:53:06.228Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FWT抄袭笔记">
+<meta name="twitter:description" content="看到坐在我左边的dalao在学FWT。 想着二轮前学一些很酷很炫很失败的算法，于是来背一下学一下吧。 抄袭来源。">
+<meta name="twitter:image" content="https://github.com/images/TIM图片20181011211750.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Chromium" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://github.com/Challestend/fwt-learning-notes/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>FWT抄袭笔记 | Chromium</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chromium</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-id-card"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">48</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">8</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">63</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-log">
+    <a href="/log/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-book"></i> <br>更新日志</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Challestend/fwt-learning-notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Challestend Rehtorbegnaro">
+      <meta itemprop="description" content="A juruo OIer from SD province.">
+      <meta itemprop="image" content="/images/Remilia_.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chromium">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">FWT抄袭笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          
+
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-11 10:28:42" itemprop="dateCreated datePublished" datetime="2019-04-11T10:28:42+08:00">2019-04-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-12 17:53:06" itemprop="dateModified" datetime="2019-04-12T17:53:06+08:00">2019-04-12</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">11658</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">19 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>看到坐在我左边的dalao在学FWT。</p>
+<p>想着二轮前学一些很酷很炫<del>很失败</del>的算法，于是来<del>背一下</del>学一下吧。</p>
+<p><a href="http://www.cnblogs.com/cjyyb/p/9065615.html" target="_blank" rel="noopener">抄袭来源</a>。</p>
+<a id="more"></a>
+<h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><p>我们利用FFT可以在$O(n\log n)$的时间复杂度内计算</p>
+<script type="math/tex; mode=display">H[k]=(F\times G)[k]=\sum_{i+j=k}F[i]G[j]</script><p>假如说我们把这个式子变一变</p>
+<script type="math/tex; mode=display">H[k]=(F\vee G)[k]=\sum_{i\vee j=k}F[i]G[j]</script><script type="math/tex; mode=display">H[k]=(F\wedge G)[k]=\sum_{i\wedge j=k}F[i]G[j]</script><script type="math/tex; mode=display">H[k]=(F\oplus G)[k]=\sum_{i\oplus j=k}F[i]G[j]</script><p>其中$\vee$指按位或，$\wedge$指按位与，$\oplus$指按位异或。</p>
+<p>我们还是希望能够在$O(n\log n)$的时间复杂度内计算出答案。</p>
+<p>这种时候我们就需要FWT（快速沃尔什变换，Fast Walsh–Hadamard Transformation）了。</p>
+<p>在FFT中，我们先计算出了$F$和$G$的点值多项式，然后将对应位直接相乘得到了$F\times G$的点值多项式，最后还原回了$F\times G$。</p>
+<p>类似地，我们可不可以试着计算出两个多项式$F^{\prime},G^{\prime}$，使得</p>
+<script type="math/tex; mode=display">(F\times G)^{\prime}=F^{\prime}\cdot G^{\prime}</script><p><del>当然可以啊不然还怎么会有FWT（</del></p>
+<h3 id="一些约定"><a href="#一些约定" class="headerlink" title="一些约定"></a>一些约定</h3><p>对于两个向量$A$和$B$，我们令</p>
+<script type="math/tex; mode=display">(A,B)=(A[0],A[1],\cdots,B[0],B[1],\cdots)</script><p>设$F$的项数为$2^{t}$。为了方便，我们将其看做一个$2^{t}$维向量</p>
+<script type="math/tex; mode=display">(F[0],F[1],\cdots,F[2^{t}-1])</script><p>然后我们定义</p>
+<script type="math/tex; mode=display">F_{0}=(F[0],F[1],\cdots,F[2^{t-1}-1])</script><script type="math/tex; mode=display">F_{1}=(F[2^{t-1}],F[2^{t-1}+1],\cdots,F[2^{t}-1])</script><h3 id="正变换"><a href="#正变换" class="headerlink" title="正变换"></a>正变换</h3><h4 id="按位或"><a href="#按位或" class="headerlink" title="按位或"></a>按位或</h4><p>定义</p>
+<script type="math/tex; mode=display">F^{\prime}=\begin{cases}
+&(F_{0}^{\prime},F_{1}^{\prime}+F_{0}^{\prime})\;\;\;\;\;\;\;\;&(t\gt 0)\\
+&F&(t=0)
+\end{cases}</script><p>我们发现</p>
+<script type="math/tex; mode=display">F^{\prime}[i]=\sum_{j\vee i=i}F[j]</script><p>$t=0$时这十分显然，我们来考虑$t\gt 0$时的情况。</p>
+<p>首先很明显的一点是$j\vee i=i\Leftrightarrow j\subseteq i$，也就是说$j$是$i$的子集。</p>
+<p>对于$F_{1}$中的一个下标$i$，我们在$F_{1}$左边接上$F_{0}$后，这个$i$就多了一个$2^{t-1}$。</p>
+<p>之前$i$的每一个子集$j$，也同样多了一个$2^{t-1}$，它们产生的贡献已经被统计在了$F_{1}^{\prime}[i]$内。</p>
+<p>那么去掉这个$2^{t-1}$，我们还有$j\subseteq i+2^{t-1}$，这部分其实就是$F_{0}^{\prime}[i]$的值。</p>
+<p>据此，我们就有</p>
+<script type="math/tex; mode=display">\begin{aligned}
+F^{\prime}\cdot G^{\prime}[i]&=\left(\sum_{j\subseteq i}F[j]\right)\left(\sum_{k\subseteq i}G[k]\right)\\
+&=\sum_{j\vee k\subseteq i}F[j]G[k]\\
+&=\sum_{l\subseteq i}\sum_{j\vee k=l}F[j]G[k]\\
+&=\sum_{l\subseteq i}(F\vee G)[l]\\
+&=(F\vee G)^{\prime}[i]
+\end{aligned}</script><h4 id="按位与"><a href="#按位与" class="headerlink" title="按位与"></a>按位与</h4><p>定义</p>
+<script type="math/tex; mode=display">F^{\prime}=\begin{cases}
+&(F_{0}^{\prime}+F_{1}^{\prime},F_{1}^{\prime})\;\;\;\;\;\;\;\;&(t\gt 0)\\
+&F&(t=0)
+\end{cases}</script><p>它具有类似的性质</p>
+<script type="math/tex; mode=display">F^{\prime}[i]=\sum_{j\wedge i=i}F[j]</script><script type="math/tex; mode=display">(F\wedge G)^{\prime}=F^{\prime}\cdot G^{\prime}</script><p>证明略。</p>
+<h4 id="按位异或"><a href="#按位异或" class="headerlink" title="按位异或"></a>按位异或</h4><p>定义</p>
+<script type="math/tex; mode=display">F^{\prime}=\begin{cases}
+&(F_{0}^{\prime}+F_{1}^{\prime},F_{0}^{\prime}-F_{1}^{\prime})\;\;\;\;\;\;\;\;&(t\gt 0)\\
+&F&(t=0)
+\end{cases}</script><p>然后我们发现按位异或并没有像上面一样的和子集相关的性质。因此我们需要通过一些其他方式来证明它的正确性。</p>
+<p>首先</p>
+<script type="math/tex; mode=display">(F+G)^{\prime}=F^{\prime}+G^{\prime}</script><p>如果$F$和$G$都只有一项，这十分显然。</p>
+<p>否则</p>
+<script type="math/tex; mode=display">\begin{aligned}
+F^{\prime}+G^{\prime}&=(F_{0}^{\prime}+F_{1}^{\prime},F_{0}^{\prime}-F_{1}^{\prime})+(G_{0}^{\prime}+G_{1}^{\prime},G_{0}^{\prime}-G_{1}^{\prime})\\
+&=(F_{0}^{\prime}+G_{0}^{\prime}+F_{1}^{\prime}+G_{1}^{\prime},F_{0}^{\prime}+G_{0}^{\prime}-F_{1}^{\prime}-G_{1}^{\prime})\\
+&=((F+G)_{0}^{\prime}+(F+G)_{1}^{\prime},(F+G)_{0}^{\prime}-(F+G)_{1}^{\prime})\\
+&=(F+G)^{\prime}
+\end{aligned}</script><script type="math/tex; mode=display">(F\oplus G)^{\prime}=F^{\prime}\cdot G^{\prime}</script><p>这个不会证，告辞。</p>
+<h3 id="逆变换"><a href="#逆变换" class="headerlink" title="逆变换"></a>逆变换</h3><p>就是把刚刚算出来的$F^{\prime}$变回$F$。</p>
+<script type="math/tex; mode=display">F=\begin{cases}
+&F^{\prime}&(t=0)\\
+&\begin{cases}
+&(F_{0},F_{1}-F_{0})&(\vee)\\
+&(F_{0}-F_{1},F_{1})&(\wedge)\\
+&(\cfrac{F_{0}+F_{1}}{2},\cfrac{F_{0}-F_{1}}{2})\;\;\;\;\;\;\;\;&(\oplus)
+\end{cases}\;\;\;\;\;\;\;\;&(t\gt 0)
+\end{cases}</script><p><del>啥意思啊看不懂啊（</del></p>
+<p>然后您就可以切掉这道<a href="https://www.luogu.org/problemnew/show/P4717" target="_blank" rel="noopener">板子题</a>了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> re register</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 17</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mod 998244353</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> cltstream&#123;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> size 1048576</span></span><br><span class="line">    <span class="keyword">char</span> cltin[size+<span class="number">1</span>],*ih=cltin,*it=cltin;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">char</span> <span class="title">gc</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">ifdef</span> ONLINE_JUDGE</span></span><br><span class="line">            <span class="keyword">if</span>(ih==it)&#123;</span><br><span class="line">                it=(ih=cltin)+fread(cltin,<span class="number">1</span>,size,<span class="built_in">stdin</span>);</span><br><span class="line">                <span class="keyword">if</span>(ih==it)</span><br><span class="line">                    <span class="keyword">return</span> EOF;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> *ih++;</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">            <span class="keyword">return</span> getchar();</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">char</span> cltout[size+<span class="number">1</span>],*oh=cltout,*ot=cltout+size;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pc</span><span class="params">(<span class="keyword">char</span> c)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(oh==ot)&#123;</span><br><span class="line">            fwrite(cltout,<span class="number">1</span>,size,<span class="built_in">stdout</span>);</span><br><span class="line">            oh=cltout;</span><br><span class="line">        &#125;</span><br><span class="line">        *oh++=c;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> clop() fwrite(cltstream::cltout,1,cltstream::oh-cltstream::cltout,stdout),cltstream::oh=cltstream::cltout</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">undef</span> size</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> _tp&gt;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(_tp&amp; x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sn=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">char</span> c=gc();</span><br><span class="line">        <span class="keyword">for</span>(;c!=<span class="number">45</span>&amp;&amp;(c&lt;<span class="number">48</span>||c&gt;<span class="number">57</span>)&amp;&amp;c!=EOF;c=gc());</span><br><span class="line">        <span class="keyword">if</span>(c==<span class="number">45</span>&amp;&amp;c!=EOF)</span><br><span class="line">            sn=<span class="number">-1</span>,c=gc();</span><br><span class="line">        <span class="keyword">for</span>(x=<span class="number">0</span>;c&gt;=<span class="number">48</span>&amp;&amp;c&lt;=<span class="number">57</span>&amp;&amp;c!=EOF;x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+(c^<span class="number">48</span>),c=gc());</span><br><span class="line">        x*=sn;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> _tp&gt;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(_tp x,<span class="keyword">char</span> text=<span class="number">-1</span>)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(x&lt;<span class="number">0</span>)</span><br><span class="line">            pc(<span class="number">45</span>),x=-x;</span><br><span class="line">        <span class="keyword">if</span>(!x)</span><br><span class="line">            pc(<span class="number">48</span>);</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">int</span> digit[<span class="number">22</span>];</span><br><span class="line">            <span class="keyword">for</span>(digit[<span class="number">0</span>]=<span class="number">0</span>;x;digit[++digit[<span class="number">0</span>]]=x%<span class="number">10</span>,x/=<span class="number">10</span>);</span><br><span class="line">            <span class="keyword">for</span>(;digit[<span class="number">0</span>];pc(digit[digit[<span class="number">0</span>]--]^<span class="number">48</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(text&gt;=<span class="number">0</span>)</span><br><span class="line">            pc(text);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> F[<span class="number">1</span>&lt;&lt;maxn][<span class="number">3</span>],G[<span class="number">1</span>&lt;&lt;maxn][<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FWT(F,tp) &#123;\</span></span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> p=<span class="number">1</span>;p&lt;n;p&lt;&lt;=<span class="number">1</span>)\</span><br><span class="line">        <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i+=p&lt;&lt;<span class="number">1</span>)\</span><br><span class="line">            <span class="keyword">for</span>(re <span class="keyword">int</span> j=i;j&lt;i+p;++j)&#123;\</span><br><span class="line">                F[j+p][<span class="number">0</span>]=!tp?(F[j+p][<span class="number">0</span>]+F[j][<span class="number">0</span>])%mod:(F[j+p][<span class="number">0</span>]-F[j][<span class="number">0</span>]+mod)%mod;\</span><br><span class="line">                F[j][<span class="number">1</span>]=!tp?(F[j][<span class="number">1</span>]+F[j+p][<span class="number">1</span>])%mod:(F[j][<span class="number">1</span>]-F[j+p][<span class="number">1</span>]+mod)%mod;\</span><br><span class="line">                re <span class="keyword">int</span> x=F[j][<span class="number">2</span>],y=F[j+p][<span class="number">2</span>];\</span><br><span class="line">                F[j][<span class="number">2</span>]=(x+y)%mod;\</span><br><span class="line">                F[j+p][<span class="number">2</span>]=(x-y+mod)%mod;\</span><br><span class="line">                <span class="keyword">if</span>(tp)&#123;\</span><br><span class="line">                    F[j][<span class="number">2</span>]=<span class="number">499122177L</span>L*F[j][<span class="number">2</span>]%mod;\</span><br><span class="line">                    F[j+p][<span class="number">2</span>]=<span class="number">499122177L</span>L*F[j+p][<span class="number">2</span>]%mod;\</span><br><span class="line">                &#125;\</span><br><span class="line">            &#125;\</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cltstream::read(n);</span><br><span class="line">    n=<span class="number">1</span>&lt;&lt;n;</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">        cltstream::read(F[i][<span class="number">0</span>]);</span><br><span class="line">        F[i][<span class="number">1</span>]=F[i][<span class="number">2</span>]=F[i][<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">        cltstream::read(G[i][<span class="number">0</span>]);</span><br><span class="line">        G[i][<span class="number">1</span>]=G[i][<span class="number">2</span>]=G[i][<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    FWT(F,<span class="number">0</span>);</span><br><span class="line">    FWT(G,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">3</span>;++j)</span><br><span class="line">        <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)</span><br><span class="line">            F[i][j]=<span class="number">1L</span>L*F[i][j]*G[i][j]%mod;</span><br><span class="line">    FWT(F,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">3</span>;++j)</span><br><span class="line">        <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)</span><br><span class="line">            cltstream::write(F[i][j],i&lt;n<span class="number">-1</span>?<span class="number">32</span>:<span class="number">10</span>);</span><br><span class="line">    clop();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="单位元"><a href="#单位元" class="headerlink" title="单位元"></a>单位元</h3><p>我们知道FFT中的单位元多项式是$F(x)=1$，类似地，FWT是否也拥有这样的一个单位元呢？</p>
+<p>当然是有的。</p>
+<p>对于按位或和按位异或来说，它们的单位元是</p>
+<script type="math/tex; mode=display">(1,0,\cdots,0,0)</script><p>对于按位与来说，它的单位元是</p>
+<script type="math/tex; mode=display">(0,0,\cdots,0,1)</script><h3 id="求逆"><a href="#求逆" class="headerlink" title="求逆"></a>求逆</h3><p>既然有了单位元，我们就不禁会想……这东西能求逆吗？</p>
+<p>大概……能吧。</p>
+<p>以下所有运算在模$998244353$意义下进行。</p>
+<h4 id="按位或-1"><a href="#按位或-1" class="headerlink" title="按位或"></a>按位或</h4><p>给定一个多项式$F$，让你求出一个多项式$G$，使得</p>
+<script type="math/tex; mode=display">F\vee G=(1,0,\cdots,0,0)</script><p>首先我们需要知道</p>
+<script type="math/tex; mode=display">F\vee G=(F_{0}\vee G_{0},F_{0}\vee G_{1}+F_{1}\vee G_{0}+F_{1}\vee G_{1})</script><p>注意到左半部分和右半部分的下标有一个重要区别就是从右往左第$t$位是否为$1$。</p>
+<p>如果某个下标和右半部分的某个下标进行了按位或，它的第$t$位一定是$1$，那么它就跑到右半部分去了。</p>
+<p>否则，即两个左半部分的下标进行了按位或，这种情况结果还是在左半部分。</p>
+<p>然后我们就可以往下推了</p>
+<script type="math/tex; mode=display">\begin{aligned}
+F_{0}\vee G_{1}+F_{1}\vee G_{0}+F_{1}\vee G_{1}&=0\\
+(F_{0}+F_{1})\vee G_{1}&=-F_{1}\vee G_{0}\\
+G_{1}&=-F_{1}\vee G_{0}\vee (F_{0}+F_{1})^{-1}
+\end{aligned}</script><p>边界条件$G[0]=F[0]^{-1}$。</p>
+<p>大致代码如下</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Inv</span><span class="params">(re <span class="keyword">int</span>* F,re <span class="keyword">int</span>* G,re <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span>)</span><br><span class="line">        G[<span class="number">0</span>]=cltpow(F[<span class="number">0</span>],mod<span class="number">-2</span>);</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">int</span> tmp1[<span class="number">1</span>&lt;&lt;maxn],tmp2[<span class="number">1</span>&lt;&lt;maxn];</span><br><span class="line">        Inv(F,G,n&gt;&gt;<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;(n&gt;&gt;<span class="number">1</span>);++i)</span><br><span class="line">            tmp1[i]=F[i]+F[(n&gt;&gt;<span class="number">1</span>)+i];</span><br><span class="line">        Inv(tmp1,tmp2,n&gt;&gt;<span class="number">1</span>);</span><br><span class="line">        FWT(F+(n&gt;&gt;<span class="number">1</span>),n&gt;&gt;<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">        FWT(G,n&gt;&gt;<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">        FWT(tmp2,n&gt;&gt;<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;(n&gt;&gt;<span class="number">1</span>);++i)</span><br><span class="line">            tmp2[i]=<span class="number">1L</span>L*F[(n&gt;&gt;<span class="number">1</span>)+i]*G[i]%mod*tmp2[i]%mod;</span><br><span class="line">        FWT(F+(n&gt;&gt;<span class="number">1</span>),n&gt;&gt;<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">        FWT(G,n&gt;&gt;<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">        FWT(tmp2,n&gt;&gt;<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;(n&gt;&gt;<span class="number">1</span>);++i)</span><br><span class="line">            G[(n&gt;&gt;<span class="number">1</span>)+i]=(mod-tmp2[i])%mod;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度非常显然是$O(n^{2}2^{n})$。</p>
+<h4 id="按位与-1"><a href="#按位与-1" class="headerlink" title="按位与"></a>按位与</h4><p>给定一个多项式$F$，让你求出一个多项式$G$，使得</p>
+<script type="math/tex; mode=display">F\wedge G=(0,0,\cdots,0,1)</script><p>我们可以用类似的过程得到如下结论</p>
+<script type="math/tex; mode=display">F\wedge G=(F_{0}\wedge G_{0}+F_{0}\wedge G_{1}+F_{1}\wedge G_{0},F_{1}\wedge G_{1})</script><script type="math/tex; mode=display">G_{0}=-F_{0}\wedge G_{1}\wedge (F_{0}+F_{1})^{-1}</script><h4 id="按位异或-1"><a href="#按位异或-1" class="headerlink" title="按位异或"></a>按位异或</h4><p>给定一个多项式$F$，让你求出一个多项式$G$，使得</p>
+<script type="math/tex; mode=display">F\oplus G=(1,0,\cdots,0,0)</script><p>首先我们有</p>
+<script type="math/tex; mode=display">F\oplus G=(F_{0}\oplus G_{0}+F_{1}\oplus G_{1},F_{0}\oplus G_{1}+F_{1}\oplus G_{0})</script><p>也就是说</p>
+<script type="math/tex; mode=display">F_{0}\oplus G_{0}+F_{1}\oplus G_{1}=\epsilon</script><script type="math/tex; mode=display">F_{0}\oplus G_{1}+F_{1}\oplus G_{0}=0</script><p>将上面两个式子相加、相减，得到</p>
+<script type="math/tex; mode=display">(F_{0}+F_{1})\oplus(G_{0}+G_{1})=\epsilon</script><script type="math/tex; mode=display">(F_{0}-F_{1})\oplus(G_{0}-G_{1})=\epsilon</script><p>于是</p>
+<script type="math/tex; mode=display">G_{0}=\cfrac{(F_{0}+F_{1})^{-1}+(F_{0}-F_{1})^{-1}}{2}</script><script type="math/tex; mode=display">G_{1}=\cfrac{(F_{0}+F_{1})^{-1}-(F_{0}-F_{1})^{-1}}{2}</script><p>时间复杂度$O(n2^{n})$。</p>
+<p>这就没了？并不是。</p>
+<p>如果您按照上面的式子写好程序，然后往里面输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">1 2 3 4</span><br></pre></td></tr></table></figure>
+<p>这样一组数据，您会发现您的程序给出的结果并不正确。</p>
+<p>那么原因是什么呢？是我们式子推错了吗？</p>
+<p>输出一下中间的运算过程，我们发现，在中间有一步，我们计算$(2,2)^{-1}$时，需要用到$(0)^{-1}$。</p>
+<p>显然它不存在，但是同样显然的是，如果$(2,2)^{-1}$存在，那么这个过程不应该出现这样的问题。</p>
+<p>所以说原因就是，$(2,2)^{-1}$，或者更进一步地，$(1,2,3,4)^{-1}$<strong>不存在</strong>。</p>
+<h3 id="子集卷积"><a href="#子集卷积" class="headerlink" title="子集卷积"></a><a href="https://loj.ac/problem/152" target="_blank" rel="noopener">子集卷积</a></h3><p><del>让我来看看有没有点进去看完题面一脸懵逼地关闭标签页的。</del></p>
+<p>这道题是让我们求这个东西</p>
+<script type="math/tex; mode=display">h_{R}=\sum_{S\vee T=R,S\wedge T=\varnothing}f_{S}g_{T}</script><p>这比我们之前看到的卷积拥有更加严格的要求，$S\wedge T=\varnothing$，很明显，这是在提示我们抄题解。</p>
+<p>我们定义</p>
+<script type="math/tex; mode=display">F_{i,S}=\begin{cases}
+&f_{S}\;\;\;\;\;\;\;\;&(|S|=i)\\
+&0&(|S|\neq i)
+\end{cases}</script><script type="math/tex; mode=display">G_{i,S}=\begin{cases}
+&g_{S}\;\;\;\;\;\;\;\;&(|S|=i)\\
+&0&(|S|\neq i)
+\end{cases}</script><script type="math/tex; mode=display">H_{i,S}=\begin{cases}
+&h_{S}\;\;\;\;\;\;\;\;&(|S|=i)\\
+&0&(|S|\neq i)
+\end{cases}</script><p>然后我们从小到大枚举$i$，计算</p>
+<script type="math/tex; mode=display">H_{i}=\sum_{j=0}^{i}F_{j}\vee G_{i-j}</script><p>为了理解这个式子，我们先将其展开</p>
+<script type="math/tex; mode=display">H_{i,R}=\sum_{j=0}^{i}\sum_{S\vee T=R}F_{j,S}G_{i-j,T}</script><p>根据定义，$F_{i,S}$和$G_{i,S}$有值当且仅当$|S|=i$，因此这就相当于</p>
+<script type="math/tex; mode=display">H_{i,R}=\sum_{S\vee T=R,|S|+|T|=i}F_{|S|,S}G_{|T|,T}</script><p>因为$S$和$T$可能会有交集，从而$i\gt |R|$时$H_{i,R}$也可能有值，这是不符合定义的，因此（如果有必要的话）我们需要手动清空。</p>
+<p>代码如下</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> re register</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 20</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mod 1000000009</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> cltstream&#123;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> size 1048576</span></span><br><span class="line">    <span class="keyword">char</span> cltin[size+<span class="number">1</span>],*ih=cltin,*it=cltin;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">char</span> <span class="title">gc</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">ifdef</span> ONLINE_JUDGE</span></span><br><span class="line">            <span class="keyword">if</span>(ih==it)&#123;</span><br><span class="line">                it=(ih=cltin)+fread(cltin,<span class="number">1</span>,size,<span class="built_in">stdin</span>);</span><br><span class="line">                <span class="keyword">if</span>(ih==it)</span><br><span class="line">                    <span class="keyword">return</span> EOF;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> *ih++;</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">            <span class="keyword">return</span> getchar();</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">char</span> cltout[size+<span class="number">1</span>],*oh=cltout,*ot=cltout+size;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pc</span><span class="params">(<span class="keyword">char</span> c)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(oh==ot)&#123;</span><br><span class="line">            fwrite(cltout,<span class="number">1</span>,size,<span class="built_in">stdout</span>);</span><br><span class="line">            oh=cltout;</span><br><span class="line">        &#125;</span><br><span class="line">        *oh++=c;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> clop() fwrite(cltstream::cltout,1,cltstream::oh-cltstream::cltout,stdout),cltstream::oh=cltstream::cltout</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">undef</span> size</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> _tp&gt;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(_tp&amp; x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sn=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">char</span> c=gc();</span><br><span class="line">        <span class="keyword">for</span>(;c!=<span class="number">45</span>&amp;&amp;(c&lt;<span class="number">48</span>||c&gt;<span class="number">57</span>)&amp;&amp;c!=EOF;c=gc());</span><br><span class="line">        <span class="keyword">if</span>(c==<span class="number">45</span>&amp;&amp;c!=EOF)</span><br><span class="line">            sn=<span class="number">-1</span>,c=gc();</span><br><span class="line">        <span class="keyword">for</span>(x=<span class="number">0</span>;c&gt;=<span class="number">48</span>&amp;&amp;c&lt;=<span class="number">57</span>&amp;&amp;c!=EOF;x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+(c^<span class="number">48</span>),c=gc());</span><br><span class="line">        x*=sn;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> _tp&gt;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(_tp x,<span class="keyword">char</span> text=<span class="number">-1</span>)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(x&lt;<span class="number">0</span>)</span><br><span class="line">            pc(<span class="number">45</span>),x=-x;</span><br><span class="line">        <span class="keyword">if</span>(!x)</span><br><span class="line">            pc(<span class="number">48</span>);</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">int</span> digit[<span class="number">22</span>];</span><br><span class="line">            <span class="keyword">for</span>(digit[<span class="number">0</span>]=<span class="number">0</span>;x;digit[++digit[<span class="number">0</span>]]=x%<span class="number">10</span>,x/=<span class="number">10</span>);</span><br><span class="line">            <span class="keyword">for</span>(;digit[<span class="number">0</span>];pc(digit[digit[<span class="number">0</span>]--]^<span class="number">48</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(text&gt;=<span class="number">0</span>)</span><br><span class="line">            pc(text);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,N;</span><br><span class="line"><span class="keyword">int</span> cnt[<span class="number">1</span>&lt;&lt;maxn],F[maxn+<span class="number">1</span>][<span class="number">1</span>&lt;&lt;maxn],G[maxn+<span class="number">1</span>][<span class="number">1</span>&lt;&lt;maxn],H[maxn+<span class="number">1</span>][<span class="number">1</span>&lt;&lt;maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">FWT</span><span class="params">(re <span class="keyword">int</span>* F,re <span class="keyword">int</span> tp)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> p=<span class="number">1</span>;p&lt;N;p&lt;&lt;=<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i+=p&lt;&lt;<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">for</span>(re <span class="keyword">int</span> j=i;j&lt;i+p;++j)</span><br><span class="line">                F[j+p]=!tp?(F[j+p]+F[j])%mod:(F[j+p]-F[j]+mod)%mod;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cltstream::read(n);</span><br><span class="line">    N=<span class="number">1</span>&lt;&lt;n;</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;N;++i)</span><br><span class="line">        cnt[i]=cnt[i&gt;&gt;<span class="number">1</span>]+(i&amp;<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;++i)</span><br><span class="line">        cltstream::read(F[cnt[i]][i]);</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;++i)</span><br><span class="line">        cltstream::read(G[cnt[i]][i]);</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        FWT(F[i],<span class="number">0</span>);</span><br><span class="line">        FWT(G[i],<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span>(re <span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=i;++j)</span><br><span class="line">            <span class="keyword">for</span>(re <span class="keyword">int</span> S=<span class="number">0</span>;S&lt;N;++S)</span><br><span class="line">                H[i][S]=(H[i][S]+<span class="number">1L</span>L*F[j][S]*G[i-j][S]%mod)%mod;</span><br><span class="line">        FWT(H[i],<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(re <span class="keyword">int</span> S=<span class="number">0</span>;S&lt;N;++S)</span><br><span class="line">            cnt[S]==i||(H[i][S]=<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(re <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;++i)</span><br><span class="line">        cltstream::write(H[cnt[i]][i],<span class="number">32</span>);</span><br><span class="line">    clop();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p><img src="/images/TIM图片20181011211750.jpg" alt></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/FWT/" rel="tag"># FWT</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/sdoi2019r1-notes/" rel="next" title="「SDOI2019R1游记」僕らは泥を這いつくばるもの">
+                <i class="fa fa-chevron-left"></i> 「SDOI2019R1游记」僕らは泥を這いつくばるもの
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/luogu-p1587-solution/" rel="prev" title="「NOI2016」循环之美">
+                「NOI2016」循环之美 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+  
+
+
+
+        </div>
+        
+          
+  
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+
+    
+
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Remilia_.png" alt="Challestend Rehtorbegnaro">
+            
+              <p class="site-author-name" itemprop="name">Challestend Rehtorbegnaro</p>
+              <p class="site-description motion-element" itemprop="description">A juruo OIer from SD province.</p>
+          </div>
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                以下全部都是大佬
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cnblogs.com/asuldb" title="asuldb" target="_blank">asuldb</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ctz45562.github.io/" title="ctz" target="_blank">ctz</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://me.csdn.net/feifanbaijun" title="feifanbaijun" target="_blank">feifanbaijun</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hachimanjy.github.io/" title="hachimanjy" target="_blank">hachimanjy</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.luogu.org/blog/66965/" title="Juan_feng" target="_blank">Juan_feng</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://rbzno1.github.io/" title="rbzno1" target="_blank">rbzno1</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/shzr/" title="shzr" target="_blank">shzr</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cnblogs.com/snowy2002" title="SnoWY" target="_blank">SnoWY</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://stevebraveman.github.io/" title="Steve_braveman" target="_blank">Steve_braveman</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cnblogs.com/SuperGoodGame/" title="SuperGoodGame" target="_blank">SuperGoodGame</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://dftyem.github.io/" title="Taduro" target="_blank">Taduro</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#引入"><span class="nav-number">1.</span> <span class="nav-text">引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一些约定"><span class="nav-number">2.</span> <span class="nav-text">一些约定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正变换"><span class="nav-number">3.</span> <span class="nav-text">正变换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#按位或"><span class="nav-number">3.1.</span> <span class="nav-text">按位或</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#按位与"><span class="nav-number">3.2.</span> <span class="nav-text">按位与</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#按位异或"><span class="nav-number">3.3.</span> <span class="nav-text">按位异或</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逆变换"><span class="nav-number">4.</span> <span class="nav-text">逆变换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单位元"><span class="nav-number">5.</span> <span class="nav-text">单位元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求逆"><span class="nav-number">6.</span> <span class="nav-text">求逆</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#按位或-1"><span class="nav-number">6.1.</span> <span class="nav-text">按位或</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#按位与-1"><span class="nav-number">6.2.</span> <span class="nav-text">按位与</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#按位异或-1"><span class="nav-number">6.3.</span> <span class="nav-text">按位异或</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子集卷积"><span class="nav-number">7.</span> <span class="nav-text">子集卷积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例题"><span class="nav-number">8.</span> <span class="nav-text">例题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Challestend Rehtorbegnaro</span>
+</div>
+
+<div class="copyright">
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">237375</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">396 分钟</span>
+  
+
+  <span class="post-meta-divider">|</span>
+  <span class="post-meta-item-icon">
+    <i class="fa fa-users"></i>
+  </span>
+  <span id="busuanzi_container_site_uv">
+    站点访客数： <span id="busuanzi_value_site_uv"></span> 人次
+  </span>
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+	
+		
+			<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+			<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+			<script type="text/javascript">
+			const gitalk = new Gitalk({
+			clientID: '408bebf9cf98eab8ea73',
+			clientSecret: '9b3b31b9d5fd446513513ec24291e0008ec20f06',
+			repo: 'Challestend.github.io',
+			owner: 'Challestend',
+			admin: 'Challestend'.split(','),
+			pagerDirection: 'first',
+			id: md5(window.location.pathname),
+			distractionFreeMode: false
+			})
+			gitalk.render('gitalk-container')
+			</script>
+		
+	
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('-1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'manual') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script type="text/javascript">
+  
+    bookmark.scrollToMark('manual', "#更多");
+  
+  </script>
+
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+
+  <a href="https://github.com/Challestend"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

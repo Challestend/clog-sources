@@ -8,7 +8,9 @@ subtitle:
 description: A juruo OIer from SD province.
 keywords:
 author: Challestend Rehtorbegnaro
-language: zh-CN
+language:
+  - zh-CN
+  - en
 timezone: Asia/Shanghai
 
 # URL
